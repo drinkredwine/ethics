@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "assessment": "Assessment",
+    "history": "History",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "Discover Your Moral Development Stage",
+    "subtitle": "Take our AI-powered assessment based on Lawrence Kohlberg's stages of moral development",
+    "startButton": "Start Assessment",
+    "getStarted": "Get Started",
+    "login": "Login"
+  },
+  "auth": {
+    "signIn": "Sign in to your account",
+    "createAccount": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "signingIn": "Signing in...",
+    "creatingAccount": "Creating account...",
+    "signInButton": "Sign in",
+    "createAccountButton": "Create account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUp": "Sign up",
+    "signInLink": "Sign in"
+  },
+  "kohlberg": {
+    "title": "About Kohlberg's Theory",
+    "description": "Lawrence Kohlberg's theory of moral development describes how people progress through different stages of moral reasoning. Understanding your current stage can help you develop stronger ethical decision-making skills.",
+    "preconventional": "Preconventional",
+    "conventional": "Conventional",
+    "postconventional": "Postconventional",
+    "stage1": "Stage 1: Punishment Avoidance",
+    "stage1Desc": "Right action is that which avoids punishment",
+    "stage2": "Stage 2: Instrumental Purpose",
+    "stage2Desc": "Right action serves one's own interests",
+    "stage3": "Stage 3: Good Interpersonal Relationships",
+    "stage3Desc": "Right action pleases others and wins approval",
+    "stage4": "Stage 4: Maintaining Social Order",
+    "stage4Desc": "Right action upholds law and social order",
+    "stage5": "Stage 5: Social Contract",
+    "stage5Desc": "Right action follows agreed-upon rights and standards",
+    "stage6": "Stage 6: Universal Ethical Principles",
+    "stage6Desc": "Right action follows universal ethical principles",
+    "aiWorksTitle": "How Our AI Assessment Works",
+    "aiWorks1": "• Present you with moral dilemmas and scenarios",
+    "aiWorks2": "• Analyze your reasoning patterns using Claude AI",
+    "aiWorks3": "• Provide personalized insights into your moral development stage",
+    "aiWorks4": "• Offer specific recommendations for advancing to higher stages",
+    "beginButton": "Begin Your Assessment"
+  },
+  "assessment": {
+    "title": "Moral Development Assessment",
+    "question": "Question",
+    "of": "of",
+    "complete": "Assessment Complete!",
+    "analyzing": "Your responses are being analyzed by our AI system...",
+    "stage": "Your Moral Development Stage",
+    "analysis": "Analysis",
+    "recommendations": "Recommendations for Growth",
+    "explainReasoning": "Please explain your reasoning (this helps our AI provide better analysis):",
+    "reasoningPlaceholder": "Why did you choose this option? What factors influenced your decision?",
+    "previous": "Previous",
+    "next": "Next",
+    "completeAssessment": "Complete Assessment"
+  },
+  "history": {
+    "title": "Assessment History",
+    "newAssessment": "New Assessment",
+    "history": "History",
+    "journey": "Your Moral Development Journey",
+    "trackProgress": "Track your progress through Kohlberg's stages",
+    "totalAssessments": "Total Assessments",
+    "currentStage": "Current Stage:",
+    "noAssessments": "No Assessments Yet",
+    "noAssessmentsDesc": "Take your first assessment to begin your moral development journey.",
+    "startFirst": "Start Your First Assessment",
+    "stageAssessment": "Stage Assessment",
+    "hideDetails": "Hide Details",
+    "viewDetails": "View Details",
+    "primaryStage": "Primary Stage",
+    "responses": "Responses",
+    "completion": "Completion",
+    "aiAnalysis": "AI Analysis",
+    "identifiedStage": "Identified Stage",
+    "yourResponses": "Your Responses",
+    "yourReasoning": "Your reasoning:"
+  },
+  "scenarios": {
+    "heinz": {
+      "title": "The Heinz Dilemma",
+      "scenario": "A woman was near death from a special kind of cancer. There was one drug that the doctors thought might save her. It was a form of radium that a druggist in the same town had recently discovered. The drug was expensive to make, but the druggist was charging ten times what the drug cost him to produce. He paid $200 for the radium and charged $2,000 for a small dose of the drug. The sick woman's husband, Heinz, went to everyone he knew to borrow the money, but he could only get together about $1,000, which is half of what it cost. He told the druggist that his wife was dying and asked him to sell it cheaper or let him pay later. But the druggist said, 'No, I discovered the drug and I'm going to make money from it.' So Heinz got desperate and broke into the man's laboratory to steal the drug for his wife.",
+      "options": [
+        "Heinz should not steal the medicine because it's against the law and he might get punished.",
+        "Heinz should steal the medicine because his wife needs it and he tried to pay for it.",
+        "Heinz should steal the medicine because society expects a husband to care for his wife.",
+        "Heinz should not steal because laws exist to maintain order, even in difficult situations.",
+        "Heinz should steal because the right to life is more fundamental than property rights.",
+        "Heinz should steal because preserving human life aligns with universal ethical principles."
+      ]
+    },
+    "officer": {
+      "title": "The Officer and the Draft",
+      "scenario": "During wartime, a young man named Joe was drafted into the military. However, Joe believed the war was unjust and morally wrong. He had to decide whether to report for duty as legally required or to refuse and face imprisonment.",
+      "options": [
+        "Joe should report for duty to avoid punishment and legal consequences.",
+        "Joe should do whatever serves his own interests and safety best.",
+        "Joe should report for duty because that's what good citizens do.",
+        "Joe should report for duty because the law requires it and laws must be obeyed.",
+        "Joe should refuse if his conscience conflicts with legal obligations.",
+        "Joe should follow his moral principles about human dignity and justice."
+      ]
+    },
+    "lifeboat": {
+      "title": "The Lifeboat Dilemma",
+      "scenario": "A ship has sunk and there are 6 people in a lifeboat that can only safely hold 5. The boat is sinking slowly. One person must be removed or everyone will drown. The people are: a doctor, a pregnant woman, an elderly man, a child, a convicted criminal, and a college student.",
+      "options": [
+        "Remove whoever is physically weakest to ensure the others survive.",
+        "Remove the person who contributes least to my own survival chances.",
+        "Remove the criminal because society views them as less valuable.",
+        "Follow established maritime law about who should be saved first.",
+        "Make the decision democratically, respecting everyone's equal right to life.",
+        "This choice violates human dignity - find another solution or accept shared fate."
+      ]
+    }
+  }
+}

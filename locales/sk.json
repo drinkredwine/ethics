@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "assessment": "Hodnotenie",
+    "history": "História",
+    "logout": "Odhlásiť sa"
+  },
+  "home": {
+    "title": "Objavte svoju úroveň morálneho vývoja",
+    "subtitle": "Absolvujte naše hodnotenie s umelou inteligenciou založené na štádiách morálneho vývoja Lawrence Kohlberga",
+    "startButton": "Začať hodnotenie",
+    "getStarted": "Začať",
+    "login": "Prihlásiť sa"
+  },
+  "auth": {
+    "signIn": "Prihlásiť sa do účtu",
+    "createAccount": "Vytvoriť účet",
+    "email": "E-mail",
+    "password": "Heslo",
+    "signingIn": "Prihlasovanie...",
+    "creatingAccount": "Vytváranie účtu...",
+    "signInButton": "Prihlásiť sa",
+    "createAccountButton": "Vytvoriť účet",
+    "noAccount": "Nemáte účet?",
+    "hasAccount": "Už máte účet?",
+    "signUp": "Zaregistrovať sa",
+    "signInLink": "Prihlásiť sa"
+  },
+  "kohlberg": {
+    "title": "O Kohlbergovej teórii",
+    "description": "Teória morálneho vývoja Lawrence Kohlberga opisuje, ako ľudia postupujú cez rôzne štádiá morálneho uvažovania. Pochopenie vášho súčasného štádia vám môže pomôcť rozvinúť silnejšie schopnosti etického rozhodovania.",
+    "preconventional": "Predkonvenčná",
+    "conventional": "Konvenčná",
+    "postconventional": "Postkonvenčna",
+    "stage1": "Štádium 1: Vyhýbanie sa trestu",
+    "stage1Desc": "Správne konanie je to, ktoré sa vyhýba trestu",
+    "stage2": "Štádium 2: Inštrumentálny účel",
+    "stage2Desc": "Správne konanie slúži vlastným záujmom",
+    "stage3": "Štádium 3: Dobré medziľudské vzťahy",
+    "stage3Desc": "Správne konanie sa páči ostatným a získava súhlas",
+    "stage4": "Štádium 4: Udržiavanie spoločenského poriadku",
+    "stage4Desc": "Správne konanie podporuje zákon a spoločenský poriadok",
+    "stage5": "Štádium 5: Spoločenská zmluva",
+    "stage5Desc": "Správne konanie nasleduje dohodnuté práva a štandardy",
+    "stage6": "Štádium 6: Univerzálne etické princípy",
+    "stage6Desc": "Správne konanie nasleduje univerzálne etické princípy",
+    "aiWorksTitle": "Ako funguje naše hodnotenie s AI",
+    "aiWorks1": "• Prezentuje vám morálne dilemy a scenáre",
+    "aiWorks2": "• Analyzuje vaše vzorce uvažovania pomocou Claude AI",
+    "aiWorks3": "• Poskytuje personalizované poznatky o vašom štádiu morálneho vývoja",
+    "aiWorks4": "• Ponúka konkrétne odporúčania na postup do vyšších štádií",
+    "beginButton": "Začať vaše hodnotenie"
+  },
+  "assessment": {
+    "title": "Hodnotenie morálneho vývoja",
+    "question": "Otázka",
+    "of": "z",
+    "complete": "Hodnotenie dokončené!",
+    "analyzing": "Vaše odpovede sa analyzujú našim AI systémom...",
+    "stage": "Vaše štádium morálneho vývoja",
+    "analysis": "Analýza",
+    "recommendations": "Odporúčania na rast",
+    "explainReasoning": "Prosím, vysvetlite svoje uvažovanie (pomáha to našej AI poskytovať lepšiu analýzu):",
+    "reasoningPlaceholder": "Prečo ste si vybrali túto možnosť? Aké faktory ovplyvnili vaše rozhodnutie?",
+    "previous": "Predchádzajúce",
+    "next": "Ďalšie",
+    "completeAssessment": "Dokončiť hodnotenie"
+  },
+  "history": {
+    "title": "História hodnotení",
+    "newAssessment": "Nové hodnotenie",
+    "history": "História",
+    "journey": "Vaša cesta morálneho vývoja",
+    "trackProgress": "Sledujte svoj pokrok cez Kohlbergove štádiá",
+    "totalAssessments": "Celkový počet hodnotení",
+    "currentStage": "Súčasné štádium:",
+    "noAssessments": "Zatiaľ žiadne hodnotenia",
+    "noAssessmentsDesc": "Absolvujte svoje prvé hodnotenie a začnite svoju cestu morálneho vývoja.",
+    "startFirst": "Začať vaše prvé hodnotenie",
+    "stageAssessment": "Hodnotenie štádia",
+    "hideDetails": "Skryť podrobnosti",
+    "viewDetails": "Zobraziť podrobnosti",
+    "primaryStage": "Primárne štádium",
+    "responses": "Odpovede",
+    "completion": "Dokončenie",
+    "aiAnalysis": "AI analýza",
+    "identifiedStage": "Identifikované štádium",
+    "yourResponses": "Vaše odpovede",
+    "yourReasoning": "Vaše uvažovanie:"
+  },
+  "scenarios": {
+    "heinz": {
+      "title": "Heinzova dilema",
+      "scenario": "Žena bola blízko smrti kvôli špeciálnemu druhu rakoviny. Existoval jeden liek, o ktorom si lekári mysleli, že by ju mohol zachrániť. Bol to druh rádia, ktorý lekárnik v tom istom meste nedávno objavil. Liek bol drahý na výrobu, ale lekárnik si účtoval desaťnásobne viac, ako ho stál. Zaplatil 200 dolárov za rádium a účtoval si 2 000 dolárov za malú dávku lieku. Manžel chorej ženy, Heinz, išiel za všetkými, ktorých poznal, aby si požičal peniaze, ale dokázal získať len asi 1 000 dolárov, čo je polovica ceny. Povedal lekárnikovi, že jeho žena zomiera a požiadal ho, aby liek predal lacnejšie alebo mu dovolil zaplatiť neskôr. Ale lekárnik povedal: 'Nie, ja som objavil liek a chcem na ňom zarobiť.' Heinz sa tak zúfalo rozhodol vlámať do mužovej laboratória a ukradnúť liek pre svoju ženu.",
+      "options": [
+        "Heinz by nemal ukradnúť liek, pretože je to proti zákonu a mohol by byť potrestaný.",
+        "Heinz by mal ukradnúť liek, pretože ho jeho žena potrebuje a pokúsil sa za neho zaplatiť.",
+        "Heinz by mal ukradnúť liek, pretože spoločnosť očakáva od manžela, že sa postará o svoju ženu.",
+        "Heinz by nemal kradnúť, pretože zákony existujú na udržanie poriadku, aj v ťažkých situáciách.",
+        "Heinz by mal kradnúť, pretože právo na život je základnejšie ako vlastnícke práva.",
+        "Heinz by mal kradnúť, pretože zachovanie ľudského života je v súlade s univerzálnymi etickými princípmi."
+      ]
+    },
+    "officer": {
+      "title": "Dôstojník a odvod",
+      "scenario": "Počas vojny bol mladý muž menom Joe odvedený do armády. Joe však veril, že vojna je nespravodlivá a morálne nesprávna. Musel sa rozhodnúť, či sa dostaví na službu, ako to vyžaduje zákon, alebo odmietne a bude čeliť väzeniu.",
+      "options": [
+        "Joe by sa mal dostaviť na službu, aby sa vyhol trestu a právnym následkom.",
+        "Joe by mal urobiť to, čo najlepšie slúži jeho vlastným záujmom a bezpečnosti.",
+        "Joe by sa mal dostaviť na službu, pretože to robia dobrí občania.",
+        "Joe by sa mal dostaviť na službu, pretože to vyžaduje zákon a zákony sa musia dodržiavať.",
+        "Joe by mal odmietnuť, ak je jeho svedomie v konflikte s právnymi povinnosťami.",
+        "Joe by mal nasledovať svoje morálne princípy o ľudskej dôstojnosti a spravodlivosti."
+      ]
+    },
+    "lifeboat": {
+      "title": "Dilema záchranného člnu",
+      "scenario": "Loď sa potopila a v záchrannom člne je 6 ľudí, ale člun môže bezpečne udržať len 5. Člun sa pomaly potápa. Jedna osoba sa musí odstrániť, inak sa všetci utopia. Ľudia sú: lekár, tehotná žena, starý muž, dieťa, odsúdený zločinec a vysokoškolský študent.",
+      "options": [
+        "Odstrániť toho, kto je fyzicky najslabší, aby ostatní prežili.",
+        "Odstrániť osobu, ktorá najmenej prispieva k mojim šanciam na prežitie.",
+        "Odstrániť zločinca, pretože ho spoločnosť považuje za menej hodnotného.",
+        "Nasledovať ustanovené námorné právo o tom, kto by mal byť zachránený ako prvý.",
+        "Rozhodnúť sa demokraticky, rešpektujúc rovnaké právo každého na život.",
+        "Táto voľba porušuje ľudskú důstojnosť - nájsť iné riešenie alebo prijať spoločný osud."
+      ]
+    }
+  }
+}

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase', '@nuxtjs/i18n'],
   runtimeConfig: {
     anthropicApiKey: process.env.ANTHROPIC_API_KEY,
     public: {
@@ -17,6 +17,16 @@ export default defineNuxtConfig({
       callback: '/assessment',
       exclude: ['/', '/login', '/register', '/debug']
     }
+  },
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'sk', iso: 'sk-SK', name: 'Slovenčina', file: 'sk.json' }
+    ],
+    lazy: true,
+    langDir: 'locales/',
+    defaultLocale: 'sk',
+    strategy: 'prefix_except_default'
   },
   ssr: true
 })

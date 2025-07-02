@@ -5,16 +5,17 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
-            <h1 class="text-xl font-bold text-gray-900">Moral Development Assessment</h1>
+            <h1 class="text-xl font-bold text-gray-900">{{ $t('assessment.title') }}</h1>
             <div class="flex space-x-4">
-              <NuxtLink to="/assessment" class="text-indigo-600 font-medium">Assessment</NuxtLink>
-              <NuxtLink to="/history" class="text-gray-600 hover:text-gray-900">History</NuxtLink>
+              <NuxtLink :to="localePath('/assessment')" class="text-indigo-600 font-medium">{{ $t('nav.assessment') }}</NuxtLink>
+              <NuxtLink :to="localePath('/history')" class="text-gray-600 hover:text-gray-900">{{ $t('nav.history') }}</NuxtLink>
             </div>
           </div>
           <div class="flex items-center space-x-4">
-            <span class="text-gray-600">Question {{ currentQuestion + 1 }} of {{ scenarios.length }}</span>
+            <LanguagePicker />
+            <span class="text-gray-600">{{ $t('assessment.question') }} {{ currentQuestion + 1 }} {{ $t('assessment.of') }} {{ scenarios.length }}</span>
             <span v-if="user" class="text-gray-600">{{ user.email }}</span>
-            <button @click="logout" class="text-gray-600 hover:text-gray-900">Logout</button>
+            <button @click="logout" class="text-gray-600 hover:text-gray-900">{{ $t('nav.logout') }}</button>
           </div>
         </div>
       </div>
@@ -34,23 +35,23 @@
       <!-- Assessment Complete -->
       <div v-if="assessmentComplete" class="bg-white rounded-lg shadow-lg p-8">
         <div class="text-center mb-6">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Assessment Complete!</h2>
-          <p class="text-gray-600">Your responses are being analyzed by our AI system...</p>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ $t('assessment.complete') }}</h2>
+          <p class="text-gray-600">{{ $t('assessment.analyzing') }}</p>
         </div>
         
         <div v-if="evaluation" class="space-y-6">
           <div class="border-l-4 border-indigo-500 pl-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Your Moral Development Stage</h3>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $t('assessment.stage') }}</h3>
             <div class="prose max-w-none" v-html="evaluation.stage"></div>
           </div>
           
           <div class="border-l-4 border-green-500 pl-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Analysis</h3>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $t('assessment.analysis') }}</h3>
             <div class="prose max-w-none" v-html="evaluation.analysis"></div>
           </div>
           
           <div class="border-l-4 border-blue-500 pl-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Recommendations for Growth</h3>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $t('assessment.recommendations') }}</h3>
             <div class="prose max-w-none" v-html="evaluation.recommendations"></div>
           </div>
         </div>
@@ -93,13 +94,13 @@
 
         <div class="mb-6">
           <label class="block text-sm font-medium text-gray-700 mb-2">
-            Please explain your reasoning (this helps our AI provide better analysis):
+            {{ $t('assessment.explainReasoning') }}
           </label>
           <textarea
             v-model="reasoning"
             rows="4"
             class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            placeholder="Why did you choose this option? What factors influenced your decision?"
+            :placeholder="$t('assessment.reasoningPlaceholder')"
           ></textarea>
         </div>
 
@@ -109,7 +110,7 @@
             @click="previousQuestion"
             class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
           >
-            Previous
+            {{ $t('assessment.previous') }}
           </button>
           <div v-else></div>
           
@@ -118,7 +119,7 @@
             :disabled="selectedOption === null"
             class="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {{ currentQuestion === scenarios.length - 1 ? 'Complete Assessment' : 'Next' }}
+            {{ currentQuestion === scenarios.length - 1 ? $t('assessment.completeAssessment') : $t('assessment.next') }}
           </button>
         </div>
       </div>
@@ -140,44 +141,25 @@ const responses = ref([])
 const assessmentComplete = ref(false)
 const evaluation = ref(null)
 
-const scenarios = [
+const { t } = useI18n()
+
+const scenarios = computed(() => [
   {
-    title: "The Heinz Dilemma",
-    scenario: "A woman was near death from a special kind of cancer. There was one drug that the doctors thought might save her. It was a form of radium that a druggist in the same town had recently discovered. The drug was expensive to make, but the druggist was charging ten times what the drug cost him to produce. He paid $200 for the radium and charged $2,000 for a small dose of the drug. The sick woman's husband, Heinz, went to everyone he knew to borrow the money, but he could only get together about $1,000, which is half of what it cost. He told the druggist that his wife was dying and asked him to sell it cheaper or let him pay later. But the druggist said, 'No, I discovered the drug and I'm going to make money from it.' So Heinz got desperate and broke into the man's laboratory to steal the drug for his wife.",
-    options: [
-      { text: "Heinz should not steal the medicine because it's against the law and he might get punished.", stage: 1 },
-      { text: "Heinz should steal the medicine because his wife needs it and he tried to pay for it.", stage: 2 },
-      { text: "Heinz should steal the medicine because society expects a husband to care for his wife.", stage: 3 },
-      { text: "Heinz should not steal because laws exist to maintain order, even in difficult situations.", stage: 4 },
-      { text: "Heinz should steal because the right to life is more fundamental than property rights.", stage: 5 },
-      { text: "Heinz should steal because preserving human life aligns with universal ethical principles.", stage: 6 }
-    ]
+    title: t('scenarios.heinz.title'),
+    scenario: t('scenarios.heinz.scenario'),
+    options: t('scenarios.heinz.options').map((text, index) => ({ text, stage: index + 1 }))
   },
   {
-    title: "The Officer and the Draft",
-    scenario: "During wartime, a young man named Joe was drafted into the military. However, Joe believed the war was unjust and morally wrong. He had to decide whether to report for duty as legally required or to refuse and face imprisonment.",
-    options: [
-      { text: "Joe should report for duty to avoid punishment and legal consequences.", stage: 1 },
-      { text: "Joe should do whatever serves his own interests and safety best.", stage: 2 },
-      { text: "Joe should report for duty because that's what good citizens do.", stage: 3 },
-      { text: "Joe should report for duty because the law requires it and laws must be obeyed.", stage: 4 },
-      { text: "Joe should refuse if his conscience conflicts with legal obligations.", stage: 5 },
-      { text: "Joe should follow his moral principles about human dignity and justice.", stage: 6 }
-    ]
+    title: t('scenarios.officer.title'),
+    scenario: t('scenarios.officer.scenario'),
+    options: t('scenarios.officer.options').map((text, index) => ({ text, stage: index + 1 }))
   },
   {
-    title: "The Lifeboat Dilemma",
-    scenario: "A ship has sunk and there are 6 people in a lifeboat that can only safely hold 5. The boat is sinking slowly. One person must be removed or everyone will drown. The people are: a doctor, a pregnant woman, an elderly man, a child, a convicted criminal, and a college student.",
-    options: [
-      { text: "Remove whoever is physically weakest to ensure the others survive.", stage: 1 },
-      { text: "Remove the person who contributes least to my own survival chances.", stage: 2 },
-      { text: "Remove the criminal because society views them as less valuable.", stage: 3 },
-      { text: "Follow established maritime law about who should be saved first.", stage: 4 },
-      { text: "Make the decision democratically, respecting everyone's equal right to life.", stage: 5 },
-      { text: "This choice violates human dignity - find another solution or accept shared fate.", stage: 6 }
-    ]
+    title: t('scenarios.lifeboat.title'),
+    scenario: t('scenarios.lifeboat.scenario'),
+    options: t('scenarios.lifeboat.options').map((text, index) => ({ text, stage: index + 1 }))
   }
-]
+])
 
 const nextQuestion = async () => {
   if (selectedOption.value === null) return
@@ -215,12 +197,33 @@ const previousQuestion = () => {
 }
 
 const evaluateResponses = async () => {
-  const context = `You are a moral development expert analyzing responses to Kohlberg's moral development scenarios. 
+  const { locale } = useI18n()
+  const currentLocale = locale.value
+  const isSlovak = currentLocale === 'sk'
+  
+  const context = isSlovak 
+    ? `Ste expert na morálny vývoj analyzujúci odpovede na scenáre morálneho vývoja podľa Kohlberga. 
+
+Používateľ dokončil hodnotenie s nasledujúcimi odpoveďami:
+${responses.value.map((r, i) => `
+Otázka ${i + 1}: ${scenarios.value[i].title}
+Vybraná možnosť: ${scenarios.value[i].options[r.selectedOption].text}
+Uvažovanie používateľa: ${r.reasoning}
+Pridružené štádium: ${r.stage}
+`).join('\n')}
+
+Na základe týchto odpovedí poskytni komplexnú analýzu vrátane:
+1. Ich primárne štádium morálneho vývoja (s vysvetlením)
+2. Analýza ich vzorov morálneho uvažovania
+3. Konkrétne odporúčania na postup do vyšších štádií
+
+Formátuj svoju odpoveď v HTML s jasne oddelenými sekciami pre štádium, analýzu a odporúčania. Píš po slovensky.`
+    : `You are a moral development expert analyzing responses to Kohlberg's moral development scenarios. 
 
 The user has completed an assessment with the following responses:
 ${responses.value.map((r, i) => `
-Question ${i + 1}: ${scenarios[i].title}
-Selected option: ${scenarios[i].options[r.selectedOption].text}
+Question ${i + 1}: ${scenarios.value[i].title}
+Selected option: ${scenarios.value[i].options[r.selectedOption].text}
 User's reasoning: ${r.reasoning}
 Associated stage: ${r.stage}
 `).join('\n')}
@@ -324,6 +327,6 @@ const logout = async () => {
 }
 
 useHead({
-  title: 'Assessment - Kohlberg Moral Development'
+  title: t('assessment.title') + ' - Kohlberg Assessment'
 })
 </script>
