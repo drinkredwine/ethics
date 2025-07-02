@@ -65,16 +65,16 @@
       <div v-else class="bg-white rounded-lg shadow-lg p-8">
         <div class="mb-6">
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ scenarios[currentQuestion].title }}
+            {{ scenarios[currentQuestion]?.title }}
           </h2>
           <div class="prose max-w-none text-gray-700">
-            <p>{{ scenarios[currentQuestion].scenario }}</p>
+            <p>{{ scenarios[currentQuestion]?.scenario }}</p>
           </div>
         </div>
 
         <div class="space-y-4 mb-6">
           <div
-            v-for="(option, index) in scenarios[currentQuestion].options"
+            v-for="(option, index) in scenarios[currentQuestion]?.options || []"
             :key="index"
             class="border rounded-lg p-4 cursor-pointer transition-colors hover:bg-gray-50"
             :class="{ 'border-indigo-500 bg-indigo-50': selectedOption === index }"
@@ -119,7 +119,7 @@
             :disabled="selectedOption === null"
             class="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {{ currentQuestion === scenarios.length - 1 ? $t('assessment.completeAssessment') : $t('assessment.next') }}
+            {{ currentQuestion === scenarios.value.length - 1 ? $t('assessment.completeAssessment') : $t('assessment.next') }}
           </button>
         </div>
       </div>
@@ -205,10 +205,10 @@ const nextQuestion = async () => {
     question: currentQuestion.value,
     selectedOption: selectedOption.value,
     reasoning: reasoning.value,
-    stage: scenarios[currentQuestion.value].options[selectedOption.value].stage
+    stage: scenarios.value[currentQuestion.value].options[selectedOption.value].stage
   })
 
-  if (currentQuestion.value === scenarios.length - 1) {
+  if (currentQuestion.value === scenarios.value.length - 1) {
     // Complete assessment
     assessmentComplete.value = true
     await evaluateResponses()
