@@ -144,27 +144,57 @@ const evaluation = ref(null)
 const { t } = useI18n()
 
 const scenarios = computed(() => {
-  const heinzOptions = t('scenarios.heinz.options')
-  const officerOptions = t('scenarios.officer.options') 
-  const lifeboatOptions = t('scenarios.lifeboat.options')
-  
-  return [
-    {
-      title: t('scenarios.heinz.title'),
-      scenario: t('scenarios.heinz.scenario'),
-      options: Array.isArray(heinzOptions) ? heinzOptions.map((text, index) => ({ text, stage: index + 1 })) : []
-    },
-    {
-      title: t('scenarios.officer.title'),
-      scenario: t('scenarios.officer.scenario'),
-      options: Array.isArray(officerOptions) ? officerOptions.map((text, index) => ({ text, stage: index + 1 })) : []
-    },
-    {
-      title: t('scenarios.lifeboat.title'),
-      scenario: t('scenarios.lifeboat.scenario'),
-      options: Array.isArray(lifeboatOptions) ? lifeboatOptions.map((text, index) => ({ text, stage: index + 1 })) : []
-    }
-  ]
+  try {
+    const heinzOptions = t('scenarios.heinz.options')
+    const officerOptions = t('scenarios.officer.options') 
+    const lifeboatOptions = t('scenarios.lifeboat.options')
+    
+    console.log('Heinz options:', heinzOptions)
+    console.log('Officer options:', officerOptions)
+    console.log('Lifeboat options:', lifeboatOptions)
+    
+    return [
+      {
+        title: t('scenarios.heinz.title'),
+        scenario: t('scenarios.heinz.scenario'),
+        options: Array.isArray(heinzOptions) ? heinzOptions.map((text, index) => ({ text, stage: index + 1 })) : [
+          { text: "Heinz by nemal ukradnúť liek, pretože je to proti zákonu a mohol by byť potrestaný.", stage: 1 },
+          { text: "Heinz by mal ukradnúť liek, pretože ho jeho žena potrebuje a pokúsil sa za neho zaplatiť.", stage: 2 },
+          { text: "Heinz by mal ukradnúť liek, pretože spoločnosť očakáva od manžela, že sa postará o svoju ženu.", stage: 3 },
+          { text: "Heinz by nemal kradnúť, pretože zákony existujú na udržanie poriadku, aj v ťažkých situáciách.", stage: 4 },
+          { text: "Heinz by mal kradnúť, pretože právo na život je základnejšie ako vlastnícke práva.", stage: 5 },
+          { text: "Heinz by mal kradnúť, pretože zachovanie ľudského života je v súlade s univerzálnymi etickými princípmi.", stage: 6 }
+        ]
+      },
+      {
+        title: t('scenarios.officer.title'),
+        scenario: t('scenarios.officer.scenario'),
+        options: Array.isArray(officerOptions) ? officerOptions.map((text, index) => ({ text, stage: index + 1 })) : [
+          { text: "Joe by sa mal dostaviť na službu, aby sa vyhol trestu a právnym následkom.", stage: 1 },
+          { text: "Joe by mal urobiť to, čo najlepšie slúži jeho vlastným záujmom a bezpečnosti.", stage: 2 },
+          { text: "Joe by sa mal dostaviť na službu, pretože to robia dobrí občania.", stage: 3 },
+          { text: "Joe by sa mal dostaviť na službu, pretože to vyžaduje zákon a zákony sa musia dodržiavať.", stage: 4 },
+          { text: "Joe by mal odmietnuť, ak je jeho svedomie v konflikte s právnymi povinnosťami.", stage: 5 },
+          { text: "Joe by mal nasledovať svoje morálne princípy o ľudskej dôstojnosti a spravodlivosti.", stage: 6 }
+        ]
+      },
+      {
+        title: t('scenarios.lifeboat.title'),
+        scenario: t('scenarios.lifeboat.scenario'),
+        options: Array.isArray(lifeboatOptions) ? lifeboatOptions.map((text, index) => ({ text, stage: index + 1 })) : [
+          { text: "Odstrániť toho, kto je fyzicky najslabší, aby ostatní prežili.", stage: 1 },
+          { text: "Odstrániť osobu, ktorá najmenej prispieva k mojim šanciam na prežitie.", stage: 2 },
+          { text: "Odstrániť zločinca, pretože ho spoločnosť považuje za menej hodnotného.", stage: 3 },
+          { text: "Nasledovať ustanovené námorné právo o tom, kto by mal byť zachránený ako prvý.", stage: 4 },
+          { text: "Rozhodnúť sa demokraticky, rešpektujúc rovnaké právo každého na život.", stage: 5 },
+          { text: "Táto voľba porušuje ľudskú důstojnosť - nájsť iné riešenie alebo prijať spoločný osud.", stage: 6 }
+        ]
+      }
+    ]
+  } catch (error) {
+    console.error('Error loading scenarios:', error)
+    return []
+  }
 })
 
 const nextQuestion = async () => {
