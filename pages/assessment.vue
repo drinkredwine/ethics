@@ -13,7 +13,7 @@
           </div>
           <div class="flex items-center space-x-4">
             <LanguagePicker />
-            <span class="text-gray-600">{{ $t('assessment.question') }} {{ currentQuestion + 1 }} {{ $t('assessment.of') }} {{ scenarios.length }}</span>
+            <span class="text-gray-600">{{ $t('assessment.question') }} {{ currentQuestion + 1 }} {{ $t('assessment.of') }} {{ scenarios?.length || 0 }}</span>
             <span v-if="user" class="text-gray-600">{{ user.email }}</span>
             <button @click="logout" class="text-gray-600 hover:text-gray-900">{{ $t('nav.logout') }}</button>
           </div>
@@ -27,7 +27,7 @@
         <div class="bg-gray-200 rounded-full h-2">
           <div 
             class="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-            :style="{ width: `${(currentQuestion / scenarios.length) * 100}%` }"
+            :style="{ width: `${scenarios?.length ? (currentQuestion / scenarios.length) * 100 : 0}%` }"
           ></div>
         </div>
       </div>
@@ -119,7 +119,7 @@
             :disabled="selectedOption === null"
             class="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {{ currentQuestion === scenarios.value.length - 1 ? $t('assessment.completeAssessment') : $t('assessment.next') }}
+            {{ currentQuestion === (scenarios?.length - 1) ? $t('assessment.completeAssessment') : $t('assessment.next') }}
           </button>
         </div>
       </div>
