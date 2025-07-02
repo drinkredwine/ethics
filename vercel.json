@@ -2,8 +2,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".output/public",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "env": {
-    "NUXT_SECRET_KEY": "@nuxt-secret-key"
-  }
+  "installCommand": "npm install"
 }

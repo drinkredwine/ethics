@@ -61,6 +61,8 @@ SUPABASE_URL=https://your-project-id.supabase.co
 SUPABASE_ANON_KEY=your_supabase_anon_key_here
 ```
 
+**Note**: You don't need to set a `NUXT_SECRET_KEY` since we're using Supabase for authentication instead of custom JWT tokens.
+
 ### 5. Domain Configuration (Optional)
 
 1. In Vercel dashboard, go to **Settings** → **Domains**
