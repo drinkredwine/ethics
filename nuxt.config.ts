@@ -20,14 +20,13 @@ export default defineNuxtConfig({
   },
   i18n: {
     locales: [
-      { code: 'sk', iso: 'sk-SK', name: 'Slovenčina', file: 'sk.json' },
-      { code: 'en', iso: 'en-US', name: 'English', file: 'en.json' }
+      { code: 'sk', iso: 'sk-SK', name: 'Slovenčina' },
+      { code: 'en', iso: 'en-US', name: 'English' }
     ],
-    lazy: true,
-    langDir: 'locales/',
     defaultLocale: 'sk',
     strategy: 'prefix_except_default',
-    detectBrowserLanguage: false
+    detectBrowserLanguage: false,
+    vueI18n: './i18n.config.ts'
   },
   ssr: true
 })
