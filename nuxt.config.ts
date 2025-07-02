@@ -20,13 +20,14 @@ export default defineNuxtConfig({
   },
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', name: 'English', file: 'en.json' },
-      { code: 'sk', iso: 'sk-SK', name: 'Slovenčina', file: 'sk.json' }
+      { code: 'sk', iso: 'sk-SK', name: 'Slovenčina', file: 'sk.json' },
+      { code: 'en', iso: 'en-US', name: 'English', file: 'en.json' }
     ],
     lazy: true,
     langDir: 'locales/',
     defaultLocale: 'sk',
-    strategy: 'prefix_except_default'
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: false
   },
   ssr: true
 })
