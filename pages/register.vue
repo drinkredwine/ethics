@@ -87,7 +87,10 @@ const handleRegister = async () => {
       return
     }
 
-    await navigateTo('/assessment')
+    // If we have a session, user is logged in
+    if (data?.session) {
+      await navigateTo('/assessment')
+    }
   } catch (err) {
     error.value = 'Registration failed. Please try again.'
   } finally {
@@ -95,13 +98,7 @@ const handleRegister = async () => {
   }
 }
 
-// Redirect if already logged in
-const user = useSupabaseUser()
-watch(user, (newUser) => {
-  if (newUser) {
-    navigateTo('/assessment')
-  }
-}, { immediate: true })
+// Note: Authentication redirect is handled by global middleware
 
 useHead({
   title: 'Register - Kohlberg Assessment'

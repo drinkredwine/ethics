@@ -127,16 +127,11 @@
 </template>
 
 <script setup>
-// Authentication check
+// Get user and Supabase client
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 
-// Redirect to login if not authenticated
-watch(user, (newUser) => {
-  if (!newUser) {
-    navigateTo('/login')
-  }
-}, { immediate: true })
+// Note: Authentication is handled by global middleware
 
 const currentQuestion = ref(0)
 const selectedOption = ref(null)

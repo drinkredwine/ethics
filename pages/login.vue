@@ -89,13 +89,7 @@ const handleLogin = async () => {
   }
 }
 
-// Redirect if already logged in
-const user = useSupabaseUser()
-watch(user, (newUser) => {
-  if (newUser) {
-    navigateTo('/assessment')
-  }
-}, { immediate: true })
+// Note: Authentication redirect is handled by global middleware
 
 useHead({
   title: 'Login - Kohlberg Assessment'

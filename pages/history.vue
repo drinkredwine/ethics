@@ -154,12 +154,7 @@
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 
-// Redirect to login if not authenticated
-watch(user, (newUser) => {
-  if (!newUser) {
-    navigateTo('/login')
-  }
-}, { immediate: true })
+// Note: Authentication is handled by global middleware
 
 const assessments = ref([])
 const profile = ref(null)
