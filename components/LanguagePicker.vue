@@ -38,7 +38,7 @@
 
 <script setup>
 const { locale, locales } = useI18n()
-const localePath = useLocalePath()
+const switchLocalePath = useSwitchLocalePath()
 
 const showDropdown = ref(false)
 

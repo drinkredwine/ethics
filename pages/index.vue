@@ -9,10 +9,10 @@
           </div>
           <div class="flex items-center space-x-4">
             <LanguagePicker />
-            <NuxtLink :to="localePath('/login')" class="text-gray-600 hover:text-gray-900">
+            <NuxtLink :to="$localePath('/login')" class="text-gray-600 hover:text-gray-900">
               {{ $t('home.login') }}
             </NuxtLink>
-            <NuxtLink :to="localePath('/register')" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+            <NuxtLink :to="$localePath('/register')" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
               {{ $t('home.getStarted') }}
             </NuxtLink>
           </div>
@@ -29,7 +29,7 @@
         <p class="text-xl text-gray-600 mb-8">
           {{ $t('home.subtitle') }}
         </p>
-        <NuxtLink :to="localePath('/register')" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+        <NuxtLink :to="$localePath('/register')" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
           {{ $t('home.startButton') }}
         </NuxtLink>
       </div>
@@ -104,7 +104,7 @@
         </div>
 
         <div class="mt-8 text-center">
-          <NuxtLink :to="localePath('/register')" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+          <NuxtLink :to="$localePath('/register')" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
             {{ $t('kohlberg.beginButton') }}
           </NuxtLink>
         </div>

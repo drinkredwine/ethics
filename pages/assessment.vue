@@ -7,8 +7,8 @@
           <div class="flex items-center space-x-8">
             <h1 class="text-xl font-bold text-gray-900">{{ $t('assessment.title') }}</h1>
             <div class="flex space-x-4">
-              <NuxtLink :to="localePath('/assessment')" class="text-indigo-600 font-medium">{{ $t('nav.assessment') }}</NuxtLink>
-              <NuxtLink :to="localePath('/history')" class="text-gray-600 hover:text-gray-900">{{ $t('nav.history') }}</NuxtLink>
+              <NuxtLink :to="$localePath('/assessment')" class="text-indigo-600 font-medium">{{ $t('nav.assessment') }}</NuxtLink>
+              <NuxtLink :to="$localePath('/history')" class="text-gray-600 hover:text-gray-900">{{ $t('nav.history') }}</NuxtLink>
             </div>
           </div>
           <div class="flex items-center space-x-4">

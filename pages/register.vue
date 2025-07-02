@@ -45,7 +45,7 @@
         <div class="text-center">
           <p class="text-sm text-gray-600">
             {{ $t('auth.hasAccount') }}
-            <NuxtLink :to="localePath('/login')" class="font-medium text-indigo-600 hover:text-indigo-500">
+            <NuxtLink :to="$localePath('/login')" class="font-medium text-indigo-600 hover:text-indigo-500">
               {{ $t('auth.signInLink') }}
             </NuxtLink>
           </p>
@@ -89,7 +89,7 @@ const handleRegister = async () => {
 
     // If we have a session, user is logged in
     if (data?.session) {
-      await navigateTo('/assessment')
+      await navigateTo($localePath('/assessment'))
     }
   } catch (err) {
     error.value = 'Registration failed. Please try again.'

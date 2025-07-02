@@ -5,15 +5,16 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
-            <h1 class="text-xl font-bold text-gray-900">Assessment History</h1>
+            <h1 class="text-xl font-bold text-gray-900">{{ $t('history.title') }}</h1>
             <div class="flex space-x-4">
-              <NuxtLink to="/assessment" class="text-gray-600 hover:text-gray-900">New Assessment</NuxtLink>
-              <NuxtLink to="/history" class="text-indigo-600 font-medium">History</NuxtLink>
+              <NuxtLink :to="$localePath('/assessment')" class="text-gray-600 hover:text-gray-900">{{ $t('history.newAssessment') }}</NuxtLink>
+              <NuxtLink :to="$localePath('/history')" class="text-indigo-600 font-medium">{{ $t('history.history') }}</NuxtLink>
             </div>
           </div>
           <div class="flex items-center space-x-4">
+            <LanguagePicker />
             <span v-if="profile" class="text-gray-600">{{ profile.email }}</span>
-            <button @click="logout" class="text-gray-600 hover:text-gray-900">Logout</button>
+            <button @click="logout" class="text-gray-600 hover:text-gray-900">{{ $t('nav.logout') }}</button>
           </div>
         </div>
       </div>
@@ -24,14 +25,14 @@
       <div v-if="profile" class="bg-white rounded-lg shadow-lg p-6 mb-8">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-2xl font-bold text-gray-900">Your Moral Development Journey</h2>
-            <p class="text-gray-600 mt-1">Track your progress through Kohlberg's stages</p>
+            <h2 class="text-2xl font-bold text-gray-900">{{ $t('history.journey') }}</h2>
+            <p class="text-gray-600 mt-1">{{ $t('history.trackProgress') }}</p>
           </div>
           <div class="text-right">
             <div class="text-3xl font-bold text-indigo-600">{{ profile.total_assessments || 0 }}</div>
-            <div class="text-sm text-gray-500">Total Assessments</div>
+            <div class="text-sm text-gray-500">{{ $t('history.totalAssessments') }}</div>
             <div v-if="profile.current_stage" class="mt-2">
-              <div class="text-lg font-semibold text-gray-700">Current Stage: {{ profile.current_stage }}</div>
+              <div class="text-lg font-semibold text-gray-700">{{ $t('history.currentStage') }} {{ profile.current_stage }}</div>
             </div>
           </div>
         </div>
@@ -218,6 +219,8 @@ const logout = async () => {
   await navigateTo('/')
 }
 
+const { t } = useI18n()
+
 // Load data when component mounts and user is available
 watch(user, (newUser) => {
   if (newUser) {
@@ -226,6 +229,6 @@ watch(user, (newUser) => {
 }, { immediate: true })
 
 useHead({
-  title: 'Assessment History - Kohlberg Assessment'
+  title: t('history.title') + ' - Kohlberg Assessment'
 })
 </script>

@@ -45,7 +45,7 @@
         <div class="text-center">
           <p class="text-sm text-gray-600">
             {{ $t('auth.noAccount') }}
-            <NuxtLink :to="localePath('/register')" class="font-medium text-indigo-600 hover:text-indigo-500">
+            <NuxtLink :to="$localePath('/register')" class="font-medium text-indigo-600 hover:text-indigo-500">
               {{ $t('auth.signUp') }}
             </NuxtLink>
           </p>
@@ -81,7 +81,7 @@ const handleLogin = async () => {
       return
     }
 
-    await navigateTo('/assessment')
+    await navigateTo($localePath('/assessment'))
   } catch (err) {
     error.value = 'Login failed. Please try again.'
   } finally {
