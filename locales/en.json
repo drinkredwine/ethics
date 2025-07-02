@@ -59,11 +59,35 @@
     "stage": "Your Moral Development Stage",
     "analysis": "Analysis",
     "recommendations": "Recommendations for Growth",
-    "explainReasoning": "Please explain your reasoning (this helps our AI provide better analysis):",
-    "reasoningPlaceholder": "Why did you choose this option? What factors influenced your decision?",
+    "progress": "Your Progress",
+    "explainReasoning": "How would you handle this situation? Explain your reasoning and what factors would guide your decision:",
+    "reasoningPlaceholder": "Describe what you would do and why. What moral principles, concerns, or values would guide your decision? Please provide a detailed response.",
+    "minLength": "Please provide at least 50 characters for a meaningful analysis",
+    "pleaseProvideResponse": "Please provide a response to continue.",
     "previous": "Previous",
     "next": "Next",
-    "completeAssessment": "Complete Assessment"
+    "completeAssessment": "Complete Assessment",
+    "continue3More": "Continue with 3 More Questions",
+    "viewHistory": "View History",
+    "startNew": "Start New Assessment",
+    "loadingScenarios": "Loading scenarios...",
+    "preparingAssessment": "Preparing your assessment...",
+    "analysisProgress": "Analysis Progress",
+    "discoveredInsights": "Insights Discovered",
+    "positiveAnalysis": "Your responses show thoughtful moral reasoning",
+    "analysisComplete": "Analysis Complete!",
+    "personalizedProfile": "Your personalized moral development profile is ready",
+    "premiumTitle": "Detailed Personal Development Plan",
+    "premiumDescription": "Get a comprehensive analysis with personalized exercises, long-term development plan, and concrete steps for advancing to higher stages of moral development.",
+    "premiumFeature1": "5-10 page detailed report",
+    "premiumFeature2": "Personalized exercises",
+    "premiumFeature3": "90-day development plan",
+    "premiumFeature4": "Specific practice scenarios",
+    "premiumButton": "Get Premium Report",
+    "premiumPrice": "one-time payment",
+    "allScenariosCompleted": "You have completed all available scenarios. Use \"Start New Assessment\" to retake all scenarios.",
+    "session": "Session",
+    "questionsTotal": "Questions Total"
   },
   "history": {
     "title": "Assessment History",
@@ -88,41 +112,101 @@
     "yourReasoning": "Your reasoning:"
   },
   "scenarios": {
-    "heinz": {
-      "title": "The Heinz Dilemma",
-      "scenario": "A woman was near death from a special kind of cancer. There was one drug that the doctors thought might save her. It was a form of radium that a druggist in the same town had recently discovered. The drug was expensive to make, but the druggist was charging ten times what the drug cost him to produce. He paid $200 for the radium and charged $2,000 for a small dose of the drug. The sick woman's husband, Heinz, went to everyone he knew to borrow the money, but he could only get together about $1,000, which is half of what it cost. He told the druggist that his wife was dying and asked him to sell it cheaper or let him pay later. But the druggist said, 'No, I discovered the drug and I'm going to make money from it.' So Heinz got desperate and broke into the man's laboratory to steal the drug for his wife.",
-      "options": [
-        "Heinz should not steal the medicine because it's against the law and he might get punished.",
-        "Heinz should steal the medicine because his wife needs it and he tried to pay for it.",
-        "Heinz should steal the medicine because society expects a husband to care for his wife.",
-        "Heinz should not steal because laws exist to maintain order, even in difficult situations.",
-        "Heinz should steal because the right to life is more fundamental than property rights.",
-        "Heinz should steal because preserving human life aligns with universal ethical principles."
-      ]
+    "cheating": {
+      "title": "The Final Exam Dilemma",
+      "scenario": "You're taking your most important final exam worth 40% of your grade. You've studied hard, but you're struggling with a crucial question that could determine whether you pass or fail the course. You notice your friend Alex, who sits next to you, has clearly written the correct answer on their paper. The professor is distracted, helping another student across the room. Nobody would see if you quickly glanced at Alex's answer. Your future scholarship depends on maintaining your GPA, and failing this course would mean disappointing your family who sacrificed financially for your education. What do you do?"
     },
-    "officer": {
-      "title": "The Officer and the Draft",
-      "scenario": "During wartime, a young man named Joe was drafted into the military. However, Joe believed the war was unjust and morally wrong. He had to decide whether to report for duty as legally required or to refuse and face imprisonment.",
-      "options": [
-        "Joe should report for duty to avoid punishment and legal consequences.",
-        "Joe should do whatever serves his own interests and safety best.",
-        "Joe should report for duty because that's what good citizens do.",
-        "Joe should report for duty because the law requires it and laws must be obeyed.",
-        "Joe should refuse if his conscience conflicts with legal obligations.",
-        "Joe should follow his moral principles about human dignity and justice."
-      ]
+    "party": {
+      "title": "The Underage Party",
+      "scenario": "Your best friend Jamie is throwing a huge birthday party at their apartment. You arrive to find that Jamie's older cousin has brought several bottles of alcohol, and most of your friends (who are under 21) are drinking. The music is loud, neighbors might complain, and campus security could show up any moment. Jamie pulls you aside, stressed and panicked, asking you to help decide what to do. They're worried about getting in trouble, but they also don't want to ruin everyone's fun or seem like a buzzkill. Several of your friends are already pretty drunk and would be angry if you shut down the party. How do you advise Jamie?"
     },
-    "lifeboat": {
-      "title": "The Lifeboat Dilemma",
-      "scenario": "A ship has sunk and there are 6 people in a lifeboat that can only safely hold 5. The boat is sinking slowly. One person must be removed or everyone will drown. The people are: a doctor, a pregnant woman, an elderly man, a child, a convicted criminal, and a college student.",
-      "options": [
-        "Remove whoever is physically weakest to ensure the others survive.",
-        "Remove the person who contributes least to my own survival chances.",
-        "Remove the criminal because society views them as less valuable.",
-        "Follow established maritime law about who should be saved first.",
-        "Make the decision democratically, respecting everyone's equal right to life.",
-        "This choice violates human dignity - find another solution or accept shared fate."
-      ]
+    "roommate": {
+      "title": "The Struggling Roommate",
+      "scenario": "Your roommate Sam has been acting strangely lately - skipping classes, staying in bed all day, and barely eating. When you try to talk to them, Sam breaks down and confesses they've been severely depressed and having thoughts of self-harm. Sam begs you not to tell anyone, especially not their parents or the counseling center, because they're afraid of being forced to take medical leave and losing their scholarship. Sam insists they can handle it on their own and just need time. You're genuinely worried about Sam's safety, but you also want to respect their wishes and maintain their trust. What do you do?"
+    },
+    "whistleblower": {
+      "title": "The Corporate Cover-Up",
+      "scenario": "You work for a pharmaceutical company and discover that your company is hiding serious side effects of a new drug that could harm thousands of patients. Your supervisor warns you that reporting this would likely result in you being fired and blacklisted from the industry, affecting your family's financial security. The company has significant political influence and might not face serious consequences even if reported. However, you know that staying silent could result in preventable harm to innocent people. What do you decide to do?"
+    },
+    "medical_consent": {
+      "title": "Medical Emergency",
+      "scenario": "You're a doctor treating a 16-year-old patient who needs a life-saving blood transfusion. The patient's parents refuse consent due to religious beliefs, but the teenager privately tells you they want the treatment and are afraid to oppose their parents. Without the transfusion, the patient will likely die within hours. Hospital policy requires parental consent for minors, but you could potentially get a court order. Time is running out. What is your course of action?"
+    },
+    "autonomous_vehicle": {
+      "title": "Programming Moral Decisions",
+      "scenario": "You're programming an autonomous vehicle's emergency response system. In an unavoidable accident scenario, the car must choose between: (A) staying on course and hitting five elderly pedestrians who jaywalked, or (B) swerving and hitting one child who is legally crossing at a crosswalk. The passengers will be safe in either case. How should the car be programmed to make this decision, and what principles should guide this choice?"
+    },
+    "refugee_crisis": {
+      "title": "The Refugee Dilemma",
+      "scenario": "Your country faces a massive influx of refugees fleeing war and persecution. Taking them all in would strain public resources and potentially create social tensions among citizens who are already struggling economically. However, turning them away means some may face death or persecution. International law requires accepting refugees, but some citizens are protesting and threatening political consequences. As a government official, what policy do you recommend?"
+    },
+    "environmental_job": {
+      "title": "Factory vs. Environment",
+      "scenario": "A factory in your town provides 40% of local jobs but is discovered to be causing cancer rates to rise due to chemical emissions. Shutting it down would eliminate the health risk but cause massive unemployment and economic devastation in your community. The company offers to reduce emissions by 50% over five years while keeping all jobs. As mayor, you must decide what's best for your community. What do you choose and why?"
+    },
+    "ai_surveillance": {
+      "title": "Privacy vs. Security",
+      "scenario": "Your city can install an AI surveillance system that would reduce violent crime by 60% and help find missing children quickly. However, it would monitor all citizens constantly, potentially infringe on privacy rights, and could be misused by future administrations. Civil liberties groups oppose it while police and some citizens support it. The technology is legal but controversial. What is your position on implementing this system?"
+    },
+    "genetic_testing": {
+      "title": "Genetic Discrimination",
+      "scenario": "Scientists develop a test that can predict with 90% accuracy who will develop Alzheimer's disease. Insurance companies want to use this test to adjust premiums or deny coverage entirely. This could help them manage financial risk but would discriminate against people based on their genetic makeup, something they cannot control. As a policymaker, how do you regulate this technology and what principles guide your decision?"
+    },
+    "social_media_content": {
+      "title": "Misinformation vs. Free Speech",
+      "scenario": "You manage content policy for a major social media platform. False medical information is spreading that leads people to avoid life-saving vaccines, contributing to disease outbreaks. You can remove this content (potentially limiting free speech) or leave it up (potentially causing public health harm). Legal experts say both approaches are defensible, but the decision could affect millions of lives. What policy do you implement?"
+    },
+    "clinical_trial": {
+      "title": "Human Testing Ethics",
+      "scenario": "You're overseeing a clinical trial for a promising cancer treatment. Early results show the experimental drug is significantly more effective than the current standard treatment. However, continuing the trial as planned means some patients in the control group will receive the less effective treatment for several more months while more data is collected. Ending the trial early would give all patients access to the better treatment but might compromise the scientific validity of the results. What do you decide?"
+    },
+    "drone_strike": {
+      "title": "Military Ethics",
+      "scenario": "Intelligence indicates a terrorist leader is meeting with associates in a building where civilians, including children, are also present. A drone strike would likely eliminate the terrorist threat but kill innocent people. Waiting might allow the terrorist to escape and carry out planned attacks that could kill many more people. International law permits such strikes under certain conditions, but the moral implications are complex. What do you order and why?"
+    },
+    "corporate_layoffs": {
+      "title": "Fair Layoffs",
+      "scenario": "As a CEO, you must lay off 30% of your workforce to save the company from bankruptcy. You can either: (A) lay off based on performance metrics, which would disproportionately affect older employees and parents, or (B) use last-hired-first-fired, which would disproportionately affect younger employees and minorities. Both approaches are legal and have different impacts on different groups. What criteria do you use and how do you justify your decision?"
+    },
+    "elderly_care": {
+      "title": "End-of-Life Decisions",
+      "scenario": "Your grandmother has advanced dementia and no longer recognizes family members. She previously stated she never wanted to be kept alive in such a condition, but never made a legal advance directive. She's now in the hospital with pneumonia, and doctors say she could live several more years with treatment, but would likely die within days without it. Your family is divided on what to do. What do you advocate for and why?"
+    },
+    "student_plagiarism": {
+      "title": "Academic Integrity",
+      "scenario": "You're a professor and discover that one of your best students has plagiarized a significant portion of their final project. This student has worked hard all semester, comes from a disadvantaged background, and this assignment could determine whether they graduate and get into graduate school. The plagiarism seems to stem from poor understanding of citation rules rather than malicious intent. University policy requires you to report this, which would likely end the student's academic career. What do you do?"
+    },
+    "organ_donation": {
+      "title": "Organ Allocation",
+      "scenario": "You're on a hospital ethics committee deciding who should receive a donated liver. The candidates are: a 45-year-old doctor and father of three who has liver failure due to a rare genetic condition, and a 25-year-old with liver failure from alcohol abuse who has been sober for two years and shows genuine commitment to recovery. Both have equal medical chances of success. Hospital resources only allow one surgery. Who do you recommend and why?"
+    },
+    "data_privacy": {
+      "title": "Personal Data Ethics",
+      "scenario": "You work for a tech company that has access to millions of users' personal data, including location tracking and private messages. Government agencies approach you requesting access to this data to help solve serious crimes and prevent terrorist attacks. The data could save lives and bring criminals to justice, but sharing it would violate user privacy and trust. The requests are technically legal under certain interpretations of the law. What do you recommend your company do?"
+    },
+    "animal_testing": {
+      "title": "Medical Research Ethics",
+      "scenario": "Scientists need to test a promising cancer treatment on animals before human trials. The testing will cause suffering to the animals but could lead to treatments that save millions of human lives. Alternative methods exist but are less reliable and would delay the research by several years, during which people will continue to die from cancer. How do you weigh animal welfare against potential human benefits, and what do you decide?"
+    },
+    "minimum_wage": {
+      "title": "Economic Policy Dilemma",
+      "scenario": "As a city councilmember, you're voting on a significant minimum wage increase. Supporters argue it will help workers afford basic necessities and reduce poverty. Opponents warn it could force small businesses to close and eliminate jobs, potentially hurting the very people it's meant to help. Economic studies show mixed results. Both sides present compelling arguments about fairness, economic impact, and social responsibility. How do you vote and what principles guide your decision?"
+    },
+    "heinz_drug": {
+      "title": "Heinz Steals the Drug",
+      "scenario": "In Europe, a woman was near death from a special kind of cancer. There was one drug that the doctors thought might save her. It was a form of radium that a druggist in the same town had recently discovered. The drug was expensive to make, but the druggist was charging ten times what the drug cost him to produce. He paid $200 for the radium and charged $2,000 for a small dose of the drug. The sick woman's husband, Heinz, went to everyone he knew to borrow the money, but he could only get together about $1,000, which is half of what it cost. He told the druggist that his wife was dying and asked him to sell it cheaper or let him pay later. But the druggist said: 'No, I discovered the drug and I'm going to make money from it.' So Heinz got desperate and broke into the man's laboratory to steal the drug for his wife. Should Heinz have broken into the laboratory to steal the drug for his wife? Why or why not?"
+    },
+    "stolen_money": {
+      "title": "Two Young Men and Stolen Money",
+      "scenario": "Two young men, both wanting to leave their small town, each steal money to fund their escape. Mike steals $1,000 from a wealthy store owner who won't even notice the loss, planning to use it for college tuition to better his life and eventually give back to society. John steals $50 from his poor grandmother's purse, knowing she needs every penny for her medication, but he wants the money for concert tickets and entertainment. Both thefts are discovered the same day. Whose crime is worse? Consider not just the amounts stolen, but the victims affected, the motives involved, and the broader moral implications. How do you judge these two acts, and what principles guide your reasoning?"
+    },
+    "joe_camp_money": {
+      "title": "Joe's Camp Money Dilemma",
+      "scenario": "Joe is a 14-year-old boy who has been saving money for over a year to go to summer camp. He has saved $40 by working odd jobs and really wants to go to camp with his friends. However, his father has lost some money gambling and wants Joe to give him the $40 so he can go on a fishing trip with his friends instead. Joe's father promises he'll pay him back, but Joe knows his father often doesn't keep such promises. The father says that Joe should respect his authority as a parent and give him the money because 'everything you have really belongs to the family.' Joe wants to go to camp but also doesn't want to disobey his father. What should Joe do? Should he give his father the money he saved for camp, or should he keep it for his intended purpose? What moral principles should guide Joe's decision?"
+    },
+    "judy_louise_sisters": {
+      "title": "Judy and Louise: The Sisters' Dilemma",
+      "scenario": "Judy and Louise are sisters. Judy is 16 and Louise is 14. Their mother gave Judy permission to go to a special rock concert in a nearby city, with the understanding that she would spend the money she had been saving from her allowance and part-time job. However, Judy lied to her mother about how much money she had saved. She actually didn't have enough for the concert ticket and transportation, so she secretly borrowed money from Louise without permission, promising to pay her back after the concert. When Judy returned from the concert, she told her mother she had a wonderful time but didn't mention borrowing Louise's money. Louise knows about the lie and the borrowed money that hasn't been paid back. Should Louise tell their mother the truth about Judy's deception? Consider Louise's loyalty to her sister versus honesty with their mother, and what this situation teaches about truth-telling in family relationships."
     }
   }
 }

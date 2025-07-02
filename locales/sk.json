@@ -30,7 +30,7 @@
     "description": "Teória morálneho vývoja Lawrence Kohlberga opisuje, ako ľudia postupujú cez rôzne štádiá morálneho uvažovania. Pochopenie vášho súčasného štádia vám môže pomôcť rozvinúť silnejšie schopnosti etického rozhodovania.",
     "preconventional": "Predkonvenčná",
     "conventional": "Konvenčná",
-    "postconventional": "Postkonvenčna",
+    "postconventional": "Postkonvenčná",
     "stage1": "Štádium 1: Vyhýbanie sa trestu",
     "stage1Desc": "Správne konanie je to, ktoré sa vyhýba trestu",
     "stage2": "Štádium 2: Inštrumentálny účel",
@@ -55,15 +55,39 @@
     "question": "Otázka",
     "of": "z",
     "complete": "Hodnotenie dokončené!",
-    "analyzing": "Vaše odpovede sa analyzujú našim AI systémom...",
+    "analyzing": "Vaše odpovede sa analyzujú naším AI systémom...",
     "stage": "Vaše štádium morálneho vývoja",
     "analysis": "Analýza",
     "recommendations": "Odporúčania na rast",
-    "explainReasoning": "Prosím, vysvetlite svoje uvažovanie (pomáha to našej AI poskytovať lepšiu analýzu):",
-    "reasoningPlaceholder": "Prečo ste si vybrali túto možnosť? Aké faktory ovplyvnili vaše rozhodnutie?",
-    "previous": "Predchádzajúce",
-    "next": "Ďalšie",
-    "completeAssessment": "Dokončiť hodnotenie"
+    "progress": "Váš pokrok",
+    "explainReasoning": "Ako by ste túto situáciu riešili? Vysvetlite svoje uvažovanie a faktory, ktoré by viedli vaše rozhodnutie:",
+    "reasoningPlaceholder": "Opíšte, čo by ste urobili a prečo. Aké morálne princípy, obavy alebo hodnoty by viedli vaše rozhodnutie? Prosím, poskytnite podrobnú odpoveď.",
+    "minLength": "Prosím, poskytnite aspoň 50 znakov pre zmysluplnú analýzu",
+    "pleaseProvideResponse": "Prosím, poskytnite odpoveď na pokračovanie.",
+    "previous": "Predchádzajúca",
+    "next": "Ďalšia",
+    "completeAssessment": "Dokončiť hodnotenie",
+    "continue3More": "Pokračovať s ďalšími 3 otázkami",
+    "viewHistory": "Zobraziť históriu",
+    "startNew": "Začať nové hodnotenie",
+    "loadingScenarios": "Načítavam scenáre...",
+    "preparingAssessment": "Pripravujem hodnotenie pre vás...",
+    "analysisProgress": "Priebeh analýzy",
+    "discoveredInsights": "Objavené poznatky",
+    "positiveAnalysis": "Vaše odpovede ukazujú premyslené morálne uvažovanie",
+    "analysisComplete": "Analýza dokončená!",
+    "personalizedProfile": "Váš personalizovaný profil morálneho vývoja je pripravený",
+    "premiumTitle": "Detailný plán osobného rozvoja",
+    "premiumDescription": "Získajte kompletnú analýzu s personalizovanými cvičeniami, dlhodobým plánom rozvoja a konkrétnymi krokmi pre pokrok do vyšších štádií morálneho vývoja.",
+    "premiumFeature1": "5-10 stránkový detailný report",
+    "premiumFeature2": "Personalizované cvičenia",
+    "premiumFeature3": "90-dňový plán rozvoja",
+    "premiumFeature4": "Konkrétne scenáre na precvičenie",
+    "premiumButton": "Získať prémium report",
+    "premiumPrice": "jednorazová platba",
+    "allScenariosCompleted": "Vyčerpali ste všetky dostupné scenáre. Použite \"Začať nové hodnotenie\" pre opätovné testovanie.",
+    "session": "Relácia",
+    "questionsTotal": "Otázok celkom"
   },
   "history": {
     "title": "História hodnotení",
@@ -88,41 +112,125 @@
     "yourReasoning": "Vaše uvažovanie:"
   },
   "scenarios": {
-    "heinz": {
-      "title": "Heinzova dilema",
-      "scenario": "Žena bola blízko smrti kvôli špeciálnemu druhu rakoviny. Existoval jeden liek, o ktorom si lekári mysleli, že by ju mohol zachrániť. Bol to druh rádia, ktorý lekárnik v tom istom meste nedávno objavil. Liek bol drahý na výrobu, ale lekárnik si účtoval desaťnásobne viac, ako ho stál. Zaplatil 200 dolárov za rádium a účtoval si 2 000 dolárov za malú dávku lieku. Manžel chorej ženy, Heinz, išiel za všetkými, ktorých poznal, aby si požičal peniaze, ale dokázal získať len asi 1 000 dolárov, čo je polovica ceny. Povedal lekárnikovi, že jeho žena zomiera a požiadal ho, aby liek predal lacnejšie alebo mu dovolil zaplatiť neskôr. Ale lekárnik povedal: 'Nie, ja som objavil liek a chcem na ňom zarobiť.' Heinz sa tak zúfalo rozhodol vlámať do mužovej laboratória a ukradnúť liek pre svoju ženu.",
+    "cheating": {
+      "title": "Dilema záverečnej skúšky",
+      "scenario": "Píšete najdôležitejšiu záverečnú skúšku, ktorá má hodnotu 40% z celkovej známky. Usilovne ste sa učili, ale máte problém s kľúčovou otázkou, ktorá môže rozhodnúť o tom, či predmet zvládnete alebo nie. Všimnete si, že váš kamarát Alex, ktorý sedí vedľa vás, má na papieri jasne napísanú správnu odpoveď. Profesor je rozptýlený, pomáha inému študentovi na druhej strane miestnosti. Nikto by nevidel, keby ste sa rýchlo pozreli na Alexovu odpoveď. Vaše budúce štipendium závisí od udržania priemeru a prepadnutie z tohto predmetu by znamenalo sklamanie rodiny, ktorá sa pre vaše vzdelanie finančne obetovala. Čo urobíte?",
       "options": [
-        "Heinz by nemal ukradnúť liek, pretože je to proti zákonu a mohol by byť potrestaný.",
-        "Heinz by mal ukradnúť liek, pretože ho jeho žena potrebuje a pokúsil sa za neho zaplatiť.",
-        "Heinz by mal ukradnúť liek, pretože spoločnosť očakáva od manžela, že sa postará o svoju ženu.",
-        "Heinz by nemal kradnúť, pretože zákony existujú na udržanie poriadku, aj v ťažkých situáciách.",
-        "Heinz by mal kradnúť, pretože právo na život je základnejšie ako vlastnícke práva.",
-        "Heinz by mal kradnúť, pretože zachovanie ľudského života je v súlade s univerzálnymi etickými princípmi."
+        "Nebudem sa pozerať, pretože by ma mohli chytiť a čelil by som vážnym následkom ako je podmienečné vylúčenie.",
+        "Rýchlo sa pozriem na Alexovu odpoveď, pretože moje štipendium a investícia rodiny sú dôležitejšie ako abstraktné pravidlá.",
+        "Nebudem podvádzať, pretože moji priatelia a rodina by stratili rešpekt ku mne, keby sa to dozvedeli.",
+        "Odmietam podvádzať, pretože pravidlá akademickej integrity existujú na zabezpečenie spravodlivosti pre všetkých študentov.",
+        "Nebudem podvádzať, pretože to porušuje dôveru a spoločenskú zmluvu medzi študentmi a vzdelávacou inštitúciou.",
+        "Odmietam podvádzať, pretože čestnosť a osobná integrita sú základné princípy, ktoré riadia všetky moje činy."
       ]
     },
-    "officer": {
-      "title": "Dôstojník a odvod",
-      "scenario": "Počas vojny bol mladý muž menom Joe odvedený do armády. Joe však veril, že vojna je nespravodlivá a morálne nesprávna. Musel sa rozhodnúť, či sa dostaví na službu, ako to vyžaduje zákon, alebo odmietne a bude čeliť väzeniu.",
+    "party": {
+      "title": "Neplnoletá párty",
+      "scenario": "Váš najlepší priateľ Jamie organizuje veľkú narodeninová oslavu vo svojom byte. Keď prídete, zistíte, že Jamieho starší bratranec priniesol niekoľko fliaš alkoholu a väčšina vašich priateľov (ktorí sú mladší ako 21 rokov) pije. Hudba je hlasná, susedia sa môžu sťažovať a bezpečnostná služba kampusu môže kedykoľvek prísť. Jamie vás odtiahne nabok, je vystresovaný a zúfalý, žiada vás, aby ste pomohli rozhodnúť, čo robiť. Obáva sa, že sa dostane do problémov, ale tiež nechce zkaziť všetkým zábavu alebo vyzerať ako moralizátor. Niekoľko vašich priateľov je už poriadne opitých a hnevali by sa, keby ste párty ukončili. Ako poradíte Jamiemu?",
       "options": [
-        "Joe by sa mal dostaviť na službu, aby sa vyhol trestu a právnym následkom.",
-        "Joe by mal urobiť to, čo najlepšie slúži jeho vlastným záujmom a bezpečnosti.",
-        "Joe by sa mal dostaviť na službu, pretože to robia dobrí občania.",
-        "Joe by sa mal dostaviť na službu, pretože to vyžaduje zákon a zákony sa musia dodržiavať.",
-        "Joe by mal odmietnuť, ak je jeho svedomie v konflikte s právnymi povinnosťami.",
-        "Joe by mal nasledovať svoje morálne princípy o ľudskej dôstojnosti a spravodlivosti."
+        "Pokračovať v párty, ale byť opatrnejší - len sa nedať chytiť bezpečnostnou službou alebo políciou.",
+        "Pokračovať v párty, pretože všetci sa zabávajú a sociálne vám prospeje byť súčasťou skupiny.",
+        "Ukončiť párty, pretože vaši priatelia budú sklamaní z vás, ak sa niekto pod vašou zodpovednosťou zraní.",
+        "Okamžite ukončiť párty, pretože konzumácia alkoholu maloletými porušuje univerzitné pravidlá a miestne zákony.",
+        "Prestať podávať alkohol, ale nechať ľudí zostať - toto vyvažuje zábavu so zodpovednosťou voči kampusovej komunite.",
+        "Ukončiť párty, pretože ochrana ľudí pred potenciálnou škodou je dôležitejšia ako dočasná zábava."
       ]
     },
-    "lifeboat": {
-      "title": "Dilema záchranného člnu",
-      "scenario": "Loď sa potopila a v záchrannom člne je 6 ľudí, ale člun môže bezpečne udržať len 5. Člun sa pomaly potápa. Jedna osoba sa musí odstrániť, inak sa všetci utopia. Ľudia sú: lekár, tehotná žena, starý muž, dieťa, odsúdený zločinec a vysokoškolský študent.",
+    "roommate": {
+      "title": "Spolubývajúci v problémoch",
+      "scenario": "Váš spolubývajúci Sam sa v poslednom čase správa zvláštne - vynecháva hodiny, zostáva celý deň v posteli a takmer nejde. Keď sa s ním pokúšate rozprávať, Sam sa zrúti a prizná, že má vážnu depresiu a myšlienky na sebapoškodenie. Sam vás prosí, aby ste nikomu nepovedali, najmä nie rodičom alebo poradenskému centru, pretože sa bojí, že bude nútený nastúpiť na zdravotnú dovolenku a stratí štipendium. Sam trvá na tom, že to zvládne sám a potrebuje len čas. Úprimne sa obávate o Samovu bezpečnosť, ale tiež chcete rešpektovať jeho želania a zachovať jeho dôveru. Čo urobíte?",
       "options": [
-        "Odstrániť toho, kto je fyzicky najslabší, aby ostatní prežili.",
-        "Odstrániť osobu, ktorá najmenej prispieva k mojim šanciam na prežitie.",
-        "Odstrániť zločinca, pretože ho spoločnosť považuje za menej hodnotného.",
-        "Nasledovať ustanovené námorné právo o tom, kto by mal byť zachránený ako prvý.",
-        "Rozhodnúť sa demokraticky, rešpektujúc rovnaké právo každého na život.",
-        "Táto voľba porušuje ľudskú důstojnosť - nájsť iné riešenie alebo prijať spoločný osud."
+        "Zostať ticho, pretože ak poruším Samovu dôveru, mohol by sa pomstiť alebo to pre mňa zhoršiť.",
+        "Mlčať, pretože Sam vie, čo je najlepšie pre jeho vlastnú situáciu a budúcnosť.",
+        "Rešpektovať Samove želania, pretože dobrí priatelia zachovávajú tajomstvá a nezrádzajú dôveru navzájom.",
+        "Kontaktovať poradenské centrum, pretože existujú zavedené postupy na riešenie kríz duševného zdravia.",
+        "Presvedčiť Sama, aby dobrovoľne vyhľadal pomoc, pričom rešpektujem jeho autonómiu a právo rozhodovať o sebe.",
+        "Okamžite získať odbornú pomoc, pretože zachovanie ľudského života a pohody je nad akýmkoľvek sľubom mlčanlivosti."
       ]
+    },
+    "whistleblower": {
+      "title": "Firemné zatajovanie",
+      "scenario": "Pracujete pre farmaceutickú spoločnosť a zistíte, že vaša firma zatajuje vážne vedľajšie účinky nového lieku, ktoré by mohli uškodiť tisícom pacientov. Váš nadradený vás varuje, že nahlásenie tohto problému by pravdepodobne viedlo k vašemu prepusteniu a znesiu vás z priemyslu, čo by ovplyvnilo finančnú bezpečnosť vašej rodiny. Spoločnosť má značný politický vplyv a možno nebude čeliť vážnym následkom, aj keď to nahlásíte. Vediete však, že mlčanie by mohlo viesť k prevenujúcej škode nevinných ľudí. Čo sa rozhodnete urobiť?"
+    },
+    "medical_consent": {
+      "title": "Lekárska núdza",
+      "scenario": "Ste lekár liečiaci 16-ročného pacienta, ktorý potrebuje životne dôležitú transfúziu krvi. Rodičia pacienta odmietnú súhlas z náboženských dôvodov, ale tínedžer vám súkromne povie, že chce liečbu a bojí sa postaviť proti svojim rodičom. Bez transfúzie pacient pravdepodobne zomrie do niekoľkých hodín. Nemocničná politika vyžaduje súhlas rodičov pre maloletých, ale mohli by ste získať súdny príkaz. Čas sa kráti. Aký je váš postup?"
+    },
+    "autonomous_vehicle": {
+      "title": "Programovanie morálnych rozhodnutí",
+      "scenario": "Programujete núdzový systém autonómneho vozidla. V neodvratnom scenári nehody si musí auto vybrať medzi: (A) pokračovaním v kurze a narazením do piatich starších chodcov, ktorí prechádzali mimo značku, alebo (B) vyhnutím sa a narazením do jedného dieťaťa, ktoré legálne prechádza na prechode. Cestujúci budú v oboch prípadoch v bezpečí. Ako by malo byť auto naprogramované na toto rozhodnutie a aké princípy by mali viesť túto voľbu?"
+    },
+    "refugee_crisis": {
+      "title": "Dilema utečencov",
+      "scenario": "Vaša krajina čelí masívnemu prílevu utečencov unikajúcich pred vojnou a prenasledovaním. Prijatie všetkých by zaťažilo verejné zdroje a potenciálne vytvorilo sociálne napätie medzi občanmi, ktorí už ekonomicky bojujú. Odmietnutie ich však znamená, že niektorí môžu čeliť smrti alebo prenasledovaniu. Medzinárodné právo vyžaduje prijímanie utečencov, ale niektorí občania protestujú a hrozia politickými následkami. Ako vládny úradník, akú politiku odporúčate?"
+    },
+    "environmental_job": {
+      "title": "Továreň verzus životné prostredie",
+      "scenario": "Továreň vo vašom meste poskytuje 40% miestnych pracovných miest, ale zistí sa, že spôsobuje nárast rakoviny kvôli chemickým emisiám. Zatvorenie by eliminovalo zdravotné riziko, ale spôsobilo by masívnu nezamestnanosť a ekonomickú devastáciu vo vašej komunite. Spoločnosť ponúka zníženie emisií o 50% za päť rokov pri zachovaní všetkých pracovných miest. Ako starosta musíte rozhodnúť, čo je najlepšie pre vašu komunitu. Čo si vyberiete a prečo?"
+    },
+    "ai_surveillance": {
+      "title": "Súkromie verzus bezpečnosť",
+      "scenario": "Vaše mesto môže nainštalovať AI sledovací systém, ktorý by znížil násilnú kriminalitu o 60% a pomohol by rýchlo nájsť nezvestné deti. Avšak by neustále monitoroval všetkých občanov, potenciálne porušoval práva na súkromie a mohol byť zneužitý budúcimi administratívami. Skupiny občianskych slobôd sú proti tomu, zatiaľ čo polícia a niektorí občania to podporujú. Technológia je legálna, ale kontroverzná. Aký je váš postoj k implementácii tohto systému?"
+    },
+    "genetic_testing": {
+      "title": "Genetická diskriminácia",
+      "scenario": "Vedci vyvinuli test, ktorý dokáže s 90% presnosťou predpovedať, kto bude trpieť Alzheimerovou chorobou. Poisťovne chcú použiť tento test na úpravu poistného alebo úplné odmietnutie pokrytia. Toto by im mohlo pomôcť riadiť finančné riziko, ale diskriminovalo by to ľudí na základe ich genetickej výbavy, čo nemôžu ovplyvniť. Ako tvorca politiky, ako regulujete túto technológiu a aké princípy vedú vaše rozhodnutie?"
+    },
+    "social_media_content": {
+      "title": "Dezinformácie verzus sloboda prejavu",
+      "scenario": "Riadite obsahovú politiku hlavnej sociálnej mediálnej platformy. Šíria sa nepravdivé lekárske informácie, ktoré vedú ľudí k vyhýbaniu sa životne dôležitým vakcínam, čo prispieva k vypuknutiu chorôb. Môžete odstrániť tento obsah (potenciálne obmedzujúc slobodu prejavu) alebo ho nechať (potenciálne spôsobujúc škodu verejnému zdraviu). Právni experti hovoria, že oba prístupy su obhájiteľné, ale rozhodnutie by mohlo ovplyvniť milióny životov. Akú politiku implementujete?"
+    },
+    "clinical_trial": {
+      "title": "Etika ľudského testovania",
+      "scenario": "Dozorujete klinickú štúdiu sľubnej liečby rakoviny. Prvé výsledky ukazujú, že experimentálny liek je výrazne účinnejší ako súčasná štandardná liečba. Pokračovanie štúdie podľa plánu však znamená, že niektorí pacienti v kontrolnej skupine budú dostávať menej účinnú liečbu ešte niekoľko mesiacov, kým sa zbiera viac údajov. Predčasné ukončenie štúdie by dalo všetkým pacientom prístup k lepšej liečbe, ale mohlo by ohroziť vedeckú platnosť výsledkov. Čo sa rozhodnete?"
+    },
+    "drone_strike": {
+      "title": "Vojenská etika",
+      "scenario": "Spravodajské služby naznačujú, že sa terorista stretáva so spolupracovníkmi v budove, kde sú prítomní aj civilisti, vrátane detí. Dronový útok by pravdepodobne eliminoval teroristickú hrozbu, ale zabil by nevinných ľudí. Čakanie by mohlo umožniť teroristovi uniknúť a vykonať plánované útoky, ktoré by mohli zabiť oveľa viac ľudí. Medzinárodné právo umožňuje takéto útoky za určitých podmienok, ale morálne dôsledky sú komplexné. Čo nariadite a prečo?"
+    },
+    "corporate_layoffs": {
+      "title": "Spravodlivé prepúšťanie",
+      "scenario": "Ako generálny riaditeľ musíte prepustiť 30% svojich zamestnancov, aby ste zachránili spoločnosť pred bankrotom. Môžete buď: (A) prepúšťať na základe výkonnostných metrík, čo by neproporčne ovplyvnilo starších zamestnancov a rodičov, alebo (B) použiť princíp posledný prijatý-prvý prepustený, čo by neproporčne ovplyvnilo mladších zamestnancov a menšiny. Oba prístupy sú legálne a majú rôzne dopady na rôzne skupiny. Aké kritériá použijete a ako odôvodníte svoje rozhodnutie?"
+    },
+    "elderly_care": {
+      "title": "Rozhodnutia o konci života",
+      "scenario": "Vaša babička má pokročilú demenciu a už nepozná členov rodiny. Predtým uviedla, že nikdy nechcela byť udržiavaná nažive v takom stave, ale nikdy neurobila právnu smernícu. Teraz je v nemocnici so zápalofň pľúc a lekári hovoria, že by mohla žiť ešte niekoľko rokov s liečbou, ale pravdepodobne by zomrela do niekoľkých dní bez nej. Vaša rodina je rozdelená v tom, čo robiť. Za čo bojujete a prečo?"
+    },
+    "student_plagiarism": {
+      "title": "Akademická integrita",
+      "scenario": "Ste profesor a objavíte, že jeden z vašich najlepších študentov plagiátoval značnú časť svojho záverečného projektu. Tento študent celý semester tvrdo pracoval, pochádza zo znevýhodneného prostredia a táto úloha by mohla rozhodnúť o tom, či promuje a dostane sa na doktorandské štúdium. Plagiátorstvo sa zdá vyplývať zo slabého pochopenia citačných pravidiel skôr ako zo zlomyseľného úmyslu. Univerzitná politika vyžaduje, aby ste to nahlásili, čo by pravdepodobne ukončilo akademickú kariéru študenta. Čo urobíte?"
+    },
+    "organ_donation": {
+      "title": "Alokácia orgánov",
+      "scenario": "Ste v nemocničnom etickom výbore rozhodujúcom o tom, kto by mal dostať darované pečeň. Kandidáti sú: 45-ročný lekár a otec troch detí, ktorý má zlyhanie pečene kvôli vzácnemu genetickému ochoreniu, a 25-ročný s zlyhaním pečene z alkoholizmu, ktorý je dva roky triezvy a prejavuje skutočnú angažovanosť na uzdravenie. Obaja majú rovnaké lekárske šance na úspech. Nemocničné zdroje umožňujú len jednu operáciu. Koho odporúčate a prečo?"
+    },
+    "data_privacy": {
+      "title": "Etika osobných údajov",
+      "scenario": "Pracujete pre technologickú spoločnosť, ktorá má prístup k osobným údajom miliónov používateľov, vrátane sledovania polohy a súkromných správ. Vládne agentúry sa na vás obracajú s požiadavkou o prístup k týmto údajom na pomoc pri riešení vážnych zločinov a predchádzaní teroristickým útokom. Údaje by mohli zachrániť životy a priniesť zločincov pred spravodlivosť, ale ich zdieľanie by porušilo súkromie a dôveru používateľov. Požiadavky sú technicky legálne pod určitými interpretáciami zákona. Čo odporúčate vašej spoločnosti robiť?"
+    },
+    "animal_testing": {
+      "title": "Etika lekárskeho výskumu",
+      "scenario": "Vedci potrebujú testovať sľubnú liečbu rakoviny na zvieratách pred ľudskými štúdiami. Testovanie spôsobí utrpenie zvieratám, ale mohlo by viesť k liečbe, ktorá zachráni milióny ľudských životov. Alternatívne metódy existujú, ale sú menej spoľahlivé a odložili by výskum o niekoľko rokov, počas ktorých budú ľudia naďalej umierať na rakovinu. Ako vyvážite blaho zvierat proti potenciálnym ľudským prínosom a čo sa rozhodnete?"
+    },
+    "minimum_wage": {
+      "title": "Dilema ekonomickej politiky",
+      "scenario": "Ako člen mestského zastupiteľstva hlasujete o výraznom zvýšení minimálnej mzdy. Podporovatelia tvrdia, že pomôže pracovníkom dovoliť si základné potreby a zníži chudobu. Odporcovia varujú, že by to mohlo prinútiť malé podniky zatvoriť a eliminovať pracovné miesta, potenciálne ublížiac presne tým ľuďom, ktorým má pomôcť. Ekonomické štúdie ukazujú zmiešané výsledky. Obe strany predkladajú presvedčivé argumenty o spravodlivosti, ekonomickom dopade a sociálnej zodpovednosti. Ako hlasujete a aké princípy vedú vaše rozhodnutie?"
+    },
+    "heinz_drug": {
+      "title": "Heinz kradne liek",
+      "scenario": "V Európe bola žena blízko smrti kvôli špeciálnemu druhu rakoviny. Existoval jeden liek, o ktorom si lekári mysleli, že by ju mohol zachrániť. Bol to druh rádia, ktorý lekárnik v tom istom meste nedávno objavil. Liek bol drahý na výrobu, ale lekárnik si účtoval desaťnásobne viac, ako ho výroba stála. Zaplatil 200 dolárov za rádium a účtoval si 2000 dolárov za malú dávku lieku. Manžel chorej ženy, Heinz, išiel za všetkými, ktorých poznal, aby si požičal peniaze, ale dokázal získať len asi 1000 dolárov, čo je polovica z toho, čo to stálo. Povedal lekárnikovi, že jeho žena umiera, a požiadal ho, aby mu liek predal lacnejšie alebo mu nechal zaplatiť neskôr. Ale lekárnik povedal: 'Nie, ja som liek objavil a budem z neho zarábať peniaze.' Takže Heinz sa zúfalil a vlámał sa do mužovej laboratória, aby ukradol liek pre svoju ženu. Mal Heinz vlámať sa do laboratória a ukradnúť liek pre svoju ženu? Prečo áno alebo prečo nie?"
+    },
+    "stolen_money": {
+      "title": "Dvaja mladí muži a ukradnuté peniaze",
+      "scenario": "Dvaja mladí muži, obaja chcú opustiť svoje malé mesto, každý ukradne peniaze na financovanie svojho úniku. Mike ukradne 1000 dolárov od bohatého majiteľa obchodu, ktorý si ani nevšimne stratu, plánuje ich použiť na školné, aby si zlepšil život a nakoniec prispel späť spoločnosti. John ukradne 50 dolárov z kabelky svojej chudobnej babičky, vediac, že potrebuje každý cent na svoje lieky, ale chce peniaze na koncertné lístky a zábavu. Obe krádeže sú objavené v ten istý deň. Čí zločin je horší? Zvážte nielen ukradnuté sumy, ale aj postihnuté obete, motívy a širšie morálne dôsledky. Ako posudzujete tieto dva činy a aké princípy vedú vaše uvažovanie?"
+    },
+    "joe_camp_money": {
+      "title": "Dilema Joeho peňazí na tábor",
+      "scenario": "Joe je 14-ročný chlapec, ktorý si už viac ako rok šetrí peniaze na letný tábor. Ušetril si 40 dolárov prácou na rôznych brigádach a naozaj chce ísť do tábora so svojimi priateľmi. Jeho otec však prehral nejaké peniaze pri hazarde a chce, aby mu Joe dal tých 40 dolárov, aby mohol ísť na rybačku so svojimi priateľmi. Joeho otec sľubuje, že mu to vráti, ale Joe vie, že jeho otec často nedodrží takéto sľuby. Otec hovorí, že Joe by mal rešpektovať jeho autoritu ako rodiča a dať mu peniaze, pretože 'všetko, čo máš, skutočne patrí rodine.' Joe chce ísť do tábora, ale tiež nechce neposlúchnuť svojho otca. Čo by mal Joe urobiť? Má dať otcovi peniaze, ktoré si ušetril na tábor, alebo si ich má nechať na svoj zamýšľaný účel? Aké morálne princípy by mali viesť Joeho rozhodnutie?"
+    },
+    "judy_louise_sisters": {
+      "title": "Judy a Louise: Dilema sestier",
+      "scenario": "Judy a Louise sú sestry. Judy má 16 rokov a Louise 14. Ich mama dala Judy povolenie ísť na špeciálny rockový koncert v neďalekom meste s tým, že minnie peniaze, ktoré si šetrila z vreckového a brigády. Judy však mamne zalukala o tom, koľko peňazí si ušetrila. V skutočnosti nemala dosť na koncertný lístok a dopravu, takže si potajomky požičala peniaze od Louise bez povolenia, sľúbiac, že jej ich vráti po koncerte. Keď sa Judy vrátila z koncertu, povedala mame, že sa výborne bavila, ale nespomenula si požičané peniaze od Louise. Louise vie o lži a požičaných peniazoch, ktoré neboli vrátené. Má Louise povedať mame pravdu o Judyinom podvode? Zvážte Louisinu vernosť k sestre verzus poctivosť s mamou a čo táto situácia učí o hovorení pravdy v rodinných vzťahoch."
     }
   }
 }

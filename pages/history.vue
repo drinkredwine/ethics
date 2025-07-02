@@ -5,16 +5,30 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
-            <h1 class="text-xl font-bold text-gray-900">{{ $t('history.title') }}</h1>
+            <h1 class="text-xl font-bold text-gray-900">
+              {{ $t("history.title") }}
+            </h1>
             <div class="flex space-x-4">
-              <NuxtLink :to="$localePath('/assessment')" class="text-gray-600 hover:text-gray-900">{{ $t('history.newAssessment') }}</NuxtLink>
-              <NuxtLink :to="$localePath('/history')" class="text-indigo-600 font-medium">{{ $t('history.history') }}</NuxtLink>
+              <NuxtLink
+                :to="$localePath('/assessment')"
+                class="text-gray-600 hover:text-gray-900"
+                >{{ $t("history.newAssessment") }}</NuxtLink
+              >
+              <NuxtLink
+                :to="$localePath('/history')"
+                class="text-indigo-600 font-medium"
+                >{{ $t("history.history") }}</NuxtLink
+              >
             </div>
           </div>
           <div class="flex items-center space-x-4">
             <LanguagePicker />
-            <span v-if="profile" class="text-gray-600">{{ profile.email }}</span>
-            <button @click="logout" class="text-gray-600 hover:text-gray-900">{{ $t('nav.logout') }}</button>
+            <span v-if="profile" class="text-gray-600">{{
+              profile.email
+            }}</span>
+            <button @click="logout" class="text-gray-600 hover:text-gray-900">
+              {{ $t("nav.logout") }}
+            </button>
           </div>
         </div>
       </div>
@@ -25,14 +39,22 @@
       <div v-if="profile" class="bg-white rounded-lg shadow-lg p-6 mb-8">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-2xl font-bold text-gray-900">{{ $t('history.journey') }}</h2>
-            <p class="text-gray-600 mt-1">{{ $t('history.trackProgress') }}</p>
+            <h2 class="text-2xl font-bold text-gray-900">
+              {{ $t("history.journey") }}
+            </h2>
+            <p class="text-gray-600 mt-1">{{ $t("history.trackProgress") }}</p>
           </div>
           <div class="text-right">
-            <div class="text-3xl font-bold text-indigo-600">{{ profile.total_assessments || 0 }}</div>
-            <div class="text-sm text-gray-500">{{ $t('history.totalAssessments') }}</div>
+            <div class="text-3xl font-bold text-indigo-600">
+              {{ profile.total_assessments || 0 }}
+            </div>
+            <div class="text-sm text-gray-500">
+              {{ $t("history.totalAssessments") }}
+            </div>
             <div v-if="profile.current_stage" class="mt-2">
-              <div class="text-lg font-semibold text-gray-700">{{ $t('history.currentStage') }} {{ profile.current_stage }}</div>
+              <div class="text-lg font-semibold text-gray-700">
+                {{ $t("history.currentStage") }} {{ profile.current_stage }}
+              </div>
             </div>
           </div>
         </div>
@@ -40,19 +62,39 @@
 
       <!-- Assessment History -->
       <div v-if="loading" class="flex justify-center py-12">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <div
+          class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"
+        ></div>
       </div>
 
-      <div v-else-if="assessments.length === 0" class="bg-white rounded-lg shadow-lg p-8 text-center">
+      <div
+        v-else-if="assessments.length === 0"
+        class="bg-white rounded-lg shadow-lg p-8 text-center"
+      >
         <div class="text-gray-500 mb-4">
-          <svg class="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <svg
+            class="mx-auto h-16 w-16"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
           </svg>
         </div>
-        <h3 class="text-lg font-medium text-gray-900 mb-2">{{ $t('history.noAssessments') }}</h3>
-        <p class="text-gray-600 mb-6">{{ $t('history.noAssessmentsDesc') }}</p>
-        <NuxtLink :to="$localePath('/assessment')" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-          {{ $t('history.startFirst') }}
+        <h3 class="text-lg font-medium text-gray-900 mb-2">
+          {{ $t("history.noAssessments") }}
+        </h3>
+        <p class="text-gray-600 mb-6">{{ $t("history.noAssessmentsDesc") }}</p>
+        <NuxtLink
+          :to="$localePath('/assessment')"
+          class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+        >
+          {{ $t("history.startFirst") }}
         </NuxtLink>
       </div>
 
@@ -65,22 +107,32 @@
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center space-x-4">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
-                  <span class="text-indigo-600 font-bold text-lg">{{ assessment.primary_stage }}</span>
+                <div
+                  class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center"
+                >
+                  <span class="text-indigo-600 font-bold text-lg">{{
+                    assessment.primary_stage
+                  }}</span>
                 </div>
               </div>
               <div>
                 <h3 class="text-lg font-semibold text-gray-900">
                   Stage {{ assessment.primary_stage }} Assessment
                 </h3>
-                <p class="text-gray-600">{{ formatDate(assessment.completed_at) }}</p>
+                <p class="text-gray-600">
+                  {{ formatDate(assessment.completed_at) }}
+                </p>
               </div>
             </div>
             <button
               @click="toggleDetails(assessment.id)"
               class="text-indigo-600 hover:text-indigo-500"
             >
-              {{ expandedAssessments.includes(assessment.id) ? 'Hide Details' : 'View Details' }}
+              {{
+                expandedAssessments.includes(assessment.id)
+                  ? "Hide Details"
+                  : "View Details"
+              }}
             </button>
           </div>
 
@@ -88,11 +140,15 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div class="bg-gray-50 rounded-lg p-4">
               <div class="text-sm text-gray-600">Primary Stage</div>
-              <div class="text-2xl font-bold text-gray-900">Stage {{ assessment.primary_stage }}</div>
+              <div class="text-2xl font-bold text-gray-900">
+                Stage {{ assessment.primary_stage }}
+              </div>
             </div>
             <div class="bg-gray-50 rounded-lg p-4">
               <div class="text-sm text-gray-600">Responses</div>
-              <div class="text-2xl font-bold text-gray-900">{{ assessment.responses?.length || 0 }}</div>
+              <div class="text-2xl font-bold text-gray-900">
+                {{ assessment.responses?.length || 0 }}
+              </div>
             </div>
             <div class="bg-gray-50 rounded-lg p-4">
               <div class="text-sm text-gray-600">Completion</div>
@@ -101,30 +157,67 @@
           </div>
 
           <!-- Detailed Results (Collapsible) -->
-          <div v-if="expandedAssessments.includes(assessment.id)" class="border-t pt-6">
+          <div
+            v-if="expandedAssessments.includes(assessment.id)"
+            class="border-t pt-6"
+          >
             <div class="space-y-6">
               <!-- AI Evaluation -->
               <div v-if="assessment.evaluation">
-                <h4 class="text-lg font-semibold text-gray-900 mb-3">AI Analysis</h4>
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                  AI Analysis
+                </h4>
                 <div class="space-y-4">
-                  <div v-if="assessment.evaluation.stage" class="border-l-4 border-indigo-500 pl-4">
+                  <div
+                    v-if="assessment.evaluation.stage"
+                    class="border-l-4 border-indigo-500 pl-4"
+                  >
                     <h5 class="font-medium text-gray-900">Identified Stage</h5>
-                    <div class="text-gray-700 prose max-w-none" v-html="assessment.evaluation.stage"></div>
+                    <div
+                      class="text-gray-700 prose max-w-none"
+                      v-html="renderMarkdown(assessment.evaluation.stage)"
+                    ></div>
                   </div>
-                  <div v-if="assessment.evaluation.analysis" class="border-l-4 border-green-500 pl-4">
+                  <div
+                    v-if="assessment.evaluation.analysis"
+                    class="border-l-4 border-green-500 pl-4"
+                  >
                     <h5 class="font-medium text-gray-900">Analysis</h5>
-                    <div class="text-gray-700 prose max-w-none" v-html="assessment.evaluation.analysis"></div>
+                    <div
+                      class="text-gray-700 prose max-w-none"
+                      v-html="renderMarkdown(assessment.evaluation.analysis)"
+                    ></div>
                   </div>
-                  <div v-if="assessment.evaluation.recommendations" class="border-l-4 border-blue-500 pl-4">
+                  <div
+                    v-if="assessment.evaluation.recommendations"
+                    class="border-l-4 border-blue-500 pl-4"
+                  >
                     <h5 class="font-medium text-gray-900">Recommendations</h5>
-                    <div class="text-gray-700 prose max-w-none" v-html="assessment.evaluation.recommendations"></div>
+                    <div
+                      class="text-gray-700 prose max-w-none"
+                      v-html="
+                        renderMarkdown(assessment.evaluation.recommendations)
+                      "
+                    ></div>
+                  </div>
+                  <div
+                    v-if="assessment.evaluation.progress"
+                    class="border-l-4 border-amber-500 pl-4"
+                  >
+                    <h5 class="font-medium text-gray-900">Progress</h5>
+                    <div
+                      class="text-gray-700 prose max-w-none"
+                      v-html="renderMarkdown(assessment.evaluation.progress)"
+                    ></div>
                   </div>
                 </div>
               </div>
 
               <!-- Response Details -->
               <div v-if="assessment.responses">
-                <h4 class="text-lg font-semibold text-gray-900 mb-3">Your Responses</h4>
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                  Your Responses
+                </h4>
                 <div class="space-y-4">
                   <div
                     v-for="(response, index) in assessment.responses"
@@ -132,8 +225,12 @@
                     class="bg-gray-50 rounded-lg p-4"
                   >
                     <div class="flex justify-between items-start mb-2">
-                      <h5 class="font-medium text-gray-900">Question {{ index + 1 }}</h5>
-                      <span class="text-sm bg-indigo-100 text-indigo-800 px-2 py-1 rounded">
+                      <h5 class="font-medium text-gray-900">
+                        Question {{ index + 1 }}
+                      </h5>
+                      <span
+                        class="text-sm bg-indigo-100 text-indigo-800 px-2 py-1 rounded"
+                      >
                         Stage {{ response.stage }}
                       </span>
                     </div>
@@ -152,83 +249,131 @@
 </template>
 
 <script setup>
-const user = useSupabaseUser()
-const supabase = useSupabaseClient()
+const user = useSupabaseUser();
+const supabase = useSupabaseClient();
 
 // Note: Authentication is handled by global middleware
 
-const assessments = ref([])
-const profile = ref(null)
-const loading = ref(true)
-const expandedAssessments = ref([])
+const assessments = ref([]);
+const profile = ref(null);
+const loading = ref(true);
+const expandedAssessments = ref([]);
 
 const loadAssessments = async () => {
-  if (!user.value) return
+  if (!user.value) return;
 
   try {
     // Load user profile
     const { data: profileData } = await supabase
-      .from('user_profiles')
-      .select('*')
-      .eq('id', user.value.id)
-      .single()
-    
-    profile.value = profileData
+      .from("user_profiles")
+      .select("*")
+      .eq("id", user.value.id)
+      .single();
+
+    profile.value = profileData;
 
     // Load assessments
     const { data: assessmentData, error } = await supabase
-      .from('assessments')
-      .select('*')
-      .eq('user_id', user.value.id)
-      .order('completed_at', { ascending: false })
+      .from("assessments")
+      .select("*")
+      .eq("user_id", user.value.id)
+      .order("completed_at", { ascending: false });
 
     if (error) {
-      console.error('Error loading assessments:', error)
-      return
+      console.error("Error loading assessments:", error);
+      return;
     }
 
-    assessments.value = assessmentData || []
+    assessments.value = assessmentData || [];
   } catch (error) {
-    console.error('Failed to load data:', error)
+    console.error("Failed to load data:", error);
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 
 const toggleDetails = (assessmentId) => {
-  const index = expandedAssessments.value.indexOf(assessmentId)
+  const index = expandedAssessments.value.indexOf(assessmentId);
   if (index > -1) {
-    expandedAssessments.value.splice(index, 1)
+    expandedAssessments.value.splice(index, 1);
   } else {
-    expandedAssessments.value.push(assessmentId)
+    expandedAssessments.value.push(assessmentId);
   }
-}
+};
 
 const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  })
-}
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
 
 const logout = async () => {
-  await supabase.auth.signOut()
-  await navigateTo('/')
-}
+  await supabase.auth.signOut();
+  await navigateTo("/");
+};
 
-const { t } = useI18n()
+const { t } = useI18n();
+
+// Enhanced markdown rendering function (same as in assessment.vue)
+const renderMarkdown = (content) => {
+  if (!content) return "";
+
+  let formatted = content
+    // Headers
+    .replace(
+      /^## (.*$)/gm,
+      '<h2 class="text-xl font-bold text-gray-900 mt-6 mb-3">$1</h2>'
+    )
+    .replace(
+      /^### (.*$)/gm,
+      '<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">$1</h3>'
+    )
+    // Bold headers and text
+    .replace(
+      /\*\*(.*?):\*\*/g,
+      '<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">$1</h3>'
+    )
+    .replace(
+      /\*\*(.*?)\*\*/g,
+      '<strong class="font-semibold text-gray-900">$1</strong>'
+    )
+    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+    // Lists
+    .replace(/^- (.*$)/gm, '<li class="ml-2 mb-1 text-sm">• $1</li>')
+    // Paragraphs
+    .replace(/\n\n/g, '</p><p class="mb-3">')
+    .replace(/\n/g, "<br>");
+
+  // Wrap in paragraph if not already wrapped
+  if (!formatted.startsWith("<h") && !formatted.startsWith("<li")) {
+    formatted = `<p class="mb-3">${formatted}</p>`;
+  }
+
+  // Wrap lists in ul tags
+  formatted = formatted.replace(
+    /(<li class="ml-2 mb-1 text-sm">.*?<\/li>)/g,
+    '<ul class="list-none mb-3 space-y-1">$1</ul>'
+  );
+
+  return formatted;
+};
 
 // Load data when component mounts and user is available
-watch(user, (newUser) => {
-  if (newUser) {
-    loadAssessments()
-  }
-}, { immediate: true })
+watch(
+  user,
+  (newUser) => {
+    if (newUser) {
+      loadAssessments();
+    }
+  },
+  { immediate: true }
+);
 
 useHead({
-  title: t('history.title') + ' - Kohlberg Assessment'
-})
+  title: t("history.title") + " - Kohlberg Assessment",
+});
 </script>
