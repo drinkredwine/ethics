@@ -143,23 +143,29 @@ const evaluation = ref(null)
 
 const { t } = useI18n()
 
-const scenarios = computed(() => [
-  {
-    title: t('scenarios.heinz.title'),
-    scenario: t('scenarios.heinz.scenario'),
-    options: t('scenarios.heinz.options').map((text, index) => ({ text, stage: index + 1 }))
-  },
-  {
-    title: t('scenarios.officer.title'),
-    scenario: t('scenarios.officer.scenario'),
-    options: t('scenarios.officer.options').map((text, index) => ({ text, stage: index + 1 }))
-  },
-  {
-    title: t('scenarios.lifeboat.title'),
-    scenario: t('scenarios.lifeboat.scenario'),
-    options: t('scenarios.lifeboat.options').map((text, index) => ({ text, stage: index + 1 }))
-  }
-])
+const scenarios = computed(() => {
+  const heinzOptions = t('scenarios.heinz.options')
+  const officerOptions = t('scenarios.officer.options') 
+  const lifeboatOptions = t('scenarios.lifeboat.options')
+  
+  return [
+    {
+      title: t('scenarios.heinz.title'),
+      scenario: t('scenarios.heinz.scenario'),
+      options: Array.isArray(heinzOptions) ? heinzOptions.map((text, index) => ({ text, stage: index + 1 })) : []
+    },
+    {
+      title: t('scenarios.officer.title'),
+      scenario: t('scenarios.officer.scenario'),
+      options: Array.isArray(officerOptions) ? officerOptions.map((text, index) => ({ text, stage: index + 1 })) : []
+    },
+    {
+      title: t('scenarios.lifeboat.title'),
+      scenario: t('scenarios.lifeboat.scenario'),
+      options: Array.isArray(lifeboatOptions) ? lifeboatOptions.map((text, index) => ({ text, stage: index + 1 })) : []
+    }
+  ]
+})
 
 const nextQuestion = async () => {
   if (selectedOption.value === null) return
