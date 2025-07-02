@@ -34,30 +34,103 @@
 
       <!-- Assessment Complete -->
       <div v-if="assessmentComplete" class="bg-white rounded-lg shadow-lg p-8">
-        <div class="text-center mb-6">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ $t('assessment.complete') }}</h2>
-          <p class="text-gray-600">{{ $t('assessment.analyzing') }}</p>
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ $t('assessment.complete') }}</h2>
         </div>
         
-        <div v-if="evaluation" class="space-y-6">
-          <div class="border-l-4 border-indigo-500 pl-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $t('assessment.stage') }}</h3>
-            <div class="prose max-w-none" v-html="evaluation.stage"></div>
+        <div v-if="evaluation" class="space-y-8">
+          <!-- Results Header with Stage Indicator -->
+          <div class="text-center bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-4">
+              <span class="text-2xl font-bold text-indigo-600">{{ primaryStage }}</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ $t('assessment.stage') }}</h3>
+            <div class="prose max-w-none mx-auto" v-html="renderMarkdown(evaluation.stage)"></div>
           </div>
           
-          <div class="border-l-4 border-green-500 pl-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $t('assessment.analysis') }}</h3>
-            <div class="prose max-w-none" v-html="evaluation.analysis"></div>
+          <!-- Main Recommendations (Prominent) -->
+          <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border-l-4 border-green-500">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">{{ $t('assessment.recommendations') }}</h3>
+            </div>
+            <div class="prose max-w-none" v-html="renderMarkdown(evaluation.recommendations)"></div>
           </div>
           
-          <div class="border-l-4 border-blue-500 pl-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $t('assessment.recommendations') }}</h3>
-            <div class="prose max-w-none" v-html="evaluation.recommendations"></div>
+          <!-- Analysis (Collapsible) -->
+          <div class="border border-gray-200 rounded-xl">
+            <button 
+              @click="showAnalysis = !showAnalysis"
+              class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 rounded-xl transition-colors"
+            >
+              <div class="flex items-center">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900">{{ $t('assessment.analysis') }}</h3>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 transition-transform" :class="{ 'rotate-180': showAnalysis }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div v-if="showAnalysis" class="px-4 pb-4">
+              <div class="prose max-w-none" v-html="renderMarkdown(evaluation.analysis)"></div>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-6">
+            <NuxtLink :to="$localePath('/assessment')" class="flex-1 bg-indigo-600 text-white text-center py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+              Vykonať nové hodnotenie
+            </NuxtLink>
+            <NuxtLink :to="$localePath('/history')" class="flex-1 bg-gray-100 text-gray-900 text-center py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors">
+              Zobraziť históriu
+            </NuxtLink>
           </div>
         </div>
 
-        <div v-else class="flex justify-center py-8">
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <!-- Enhanced Loading Animation -->
+        <div v-else class="py-12">
+          <div class="max-w-md mx-auto">
+            <!-- Brain Animation -->
+            <div class="relative mb-8">
+              <div class="w-24 h-24 mx-auto relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full animate-pulse"></div>
+                <div class="absolute inset-2 bg-white rounded-full flex items-center justify-center">
+                  <svg class="w-10 h-10 text-indigo-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                  </svg>
+                </div>
+              </div>
+              
+              <!-- Thinking Dots -->
+              <div class="flex justify-center space-x-1 mt-4">
+                <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+                <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+                <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+              </div>
+            </div>
+            
+            <!-- Status Messages -->
+            <div class="text-center space-y-3">
+              <h3 class="text-lg font-semibold text-gray-900">{{ currentAnalysisStep }}</h3>
+              <p class="text-gray-600">{{ $t('assessment.analyzing') }}</p>
+              
+              <!-- Progress Steps -->
+              <div class="flex justify-center space-x-2 mt-6">
+                <div v-for="(step, index) in analysisSteps" :key="index" 
+                     class="w-3 h-3 rounded-full transition-colors"
+                     :class="index <= currentStepIndex ? 'bg-indigo-500' : 'bg-gray-200'">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -140,8 +213,24 @@ const reasoning = ref('')
 const responses = ref([])
 const assessmentComplete = ref(false)
 const evaluation = ref(null)
+const showAnalysis = ref(false)
+const currentStepIndex = ref(0)
+const primaryStage = ref(null)
 
 const { t } = useI18n()
+
+// Enhanced loading animation
+const analysisSteps = ref([
+  'Analyzujem vaše odpovede...',
+  'Identifikujem morálne vzory...',
+  'Určujem štádium vývoja...',
+  'Pripravujem odporúčania...',
+  'Finalizujem analýzu...'
+])
+
+const currentAnalysisStep = computed(() => {
+  return analysisSteps.value[currentStepIndex.value] || analysisSteps.value[0]
+})
 
 const scenarios = computed(() => {
   try {
@@ -232,7 +321,47 @@ const previousQuestion = () => {
   }
 }
 
+// Markdown rendering function
+const renderMarkdown = (content) => {
+  if (!content) return ''
+  
+  // Import marked dynamically
+  import('marked').then(({ marked }) => {
+    return marked.parse(content)
+  }).catch(() => {
+    // Fallback: simple HTML formatting
+    return content
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>')
+  })
+  
+  // Simple fallback formatting
+  return content
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>')
+    .replace(/^/, '<p>')
+    .replace(/$/, '</p>')
+}
+
+const startLoadingAnimation = () => {
+  currentStepIndex.value = 0
+  const interval = setInterval(() => {
+    if (currentStepIndex.value < analysisSteps.value.length - 1) {
+      currentStepIndex.value++
+    } else {
+      clearInterval(interval)
+    }
+  }, 800)
+}
+
 const evaluateResponses = async () => {
+  // Start loading animation
+  startLoadingAnimation()
+  
   const { locale } = useI18n()
   const currentLocale = locale.value
   const isSlovak = currentLocale === 'sk'
@@ -248,12 +377,13 @@ Uvažovanie používateľa: ${r.reasoning}
 Pridružené štádium: ${r.stage}
 `).join('\n')}
 
-Na základe týchto odpovedí poskytni komplexnú analýzu vrátane:
-1. Ich primárne štádium morálneho vývoja (s vysvetlením)
-2. Analýza ich vzorov morálneho uvažovania
-3. Konkrétne odporúčania na postup do vyšších štádií
+Poskytni analýzu, ale zameraj sa HLAVNE na praktické odporúčania na rast a rozvoj. Minimalizuj všeobecnú analýzu a sústred sa na:
 
-Formátuj svoju odpoveď v HTML s jasne oddelenými sekciami pre štádium, analýzu a odporúčania. Píš po slovensky.`
+1. Identifikácia primárneho štádia (krátko)
+2. **HLAVNÝ DÔRAZ: Konkrétne, praktické odporúčania** na postup do vyšších štádií morálneho uvažovania
+3. Špecifické cvičenia, situácie alebo myšlienkové procesy, ktoré by mali praktizovať
+
+Formátuj odpoveď v Markdown formáte s jasne oddelenými sekciami. Odporúčania by mali byť najväčšou časťou odpovede. Píš po slovensky.`
     : `You are a moral development expert analyzing responses to Kohlberg's moral development scenarios. 
 
 The user has completed an assessment with the following responses:
@@ -264,12 +394,13 @@ User's reasoning: ${r.reasoning}
 Associated stage: ${r.stage}
 `).join('\n')}
 
-Based on these responses, provide a comprehensive analysis including:
-1. Their primary moral development stage (with explanation)
-2. Analysis of their moral reasoning patterns
-3. Specific recommendations for advancing to higher stages
+Provide analysis but focus MAINLY on practical recommendations for growth. Minimize general analysis and focus on:
 
-Format your response in HTML with clear sections for stage, analysis, and recommendations.`
+1. Primary stage identification (brief)
+2. **MAIN FOCUS: Specific, practical recommendations** for advancing to higher stages of moral reasoning
+3. Specific exercises, situations, or thought processes they should practice
+
+Format your response in Markdown with clear sections. Recommendations should be the largest part of the response.`
 
   try {
     const response = await fetch('/api/chat', {
@@ -308,12 +439,37 @@ Format your response in HTML with clear sections for stage, analysis, and recomm
       }
     }
 
-    // Parse the result into sections
-    const sections = result.split(/(?=<h[123]|##|\*\*)/i)
+    // Parse the result into sections and extract primary stage
+    const lines = result.split('\n')
+    let stageSection = ''
+    let analysisSection = ''
+    let recommendationsSection = ''
+    let currentSection = 'stage'
+    
+    for (const line of lines) {
+      if (line.includes('štádium') || line.includes('Stage') || line.includes('#')) {
+        if (line.includes('odporúčan') || line.includes('recommend')) {
+          currentSection = 'recommendations'
+        } else if (line.includes('analýz') || line.includes('analysis')) {
+          currentSection = 'analysis'
+        } else {
+          currentSection = 'stage'
+        }
+      }
+      
+      if (currentSection === 'stage') stageSection += line + '\n'
+      else if (currentSection === 'analysis') analysisSection += line + '\n'
+      else if (currentSection === 'recommendations') recommendationsSection += line + '\n'
+    }
+    
+    // Extract primary stage number
+    const stageMatch = result.match(/štádium\s*(\d+)|stage\s*(\d+)/i)
+    primaryStage.value = stageMatch ? (stageMatch[1] || stageMatch[2]) : calculatePrimaryStage()
+    
     evaluation.value = {
-      stage: sections.find(s => /stage/i.test(s)) || sections[0] || result.slice(0, 500),
-      analysis: sections.find(s => /analysis|pattern/i.test(s)) || sections[1] || result.slice(500, 1000),
-      recommendations: sections.find(s => /recommend|growth|advance/i.test(s)) || sections[2] || result.slice(1000)
+      stage: stageSection || result.slice(0, 500),
+      analysis: analysisSection || 'Analýza vzorcov morálneho uvažovania...',
+      recommendations: recommendationsSection || result.slice(-1000)
     }
   } catch (error) {
     console.error('Evaluation error:', error)
@@ -325,19 +481,22 @@ Format your response in HTML with clear sections for stage, analysis, and recomm
   }
 }
 
+const calculatePrimaryStage = () => {
+  const stageFrequency = responses.value.reduce((acc, response) => {
+    acc[response.stage] = (acc[response.stage] || 0) + 1
+    return acc
+  }, {})
+  
+  return Object.keys(stageFrequency).reduce((a, b) => 
+    stageFrequency[a] > stageFrequency[b] ? a : b
+  )
+}
+
 const saveAssessmentToDatabase = async () => {
   if (!user.value || !evaluation.value) return
 
   try {
-    // Calculate primary stage based on responses
-    const stageFrequency = responses.value.reduce((acc, response) => {
-      acc[response.stage] = (acc[response.stage] || 0) + 1
-      return acc
-    }, {})
-    
-    const primaryStage = Object.keys(stageFrequency).reduce((a, b) => 
-      stageFrequency[a] > stageFrequency[b] ? a : b
-    )
+    const calculatedStage = calculatePrimaryStage()
 
     const { data, error } = await supabase
       .from('assessments')
@@ -345,7 +504,7 @@ const saveAssessmentToDatabase = async () => {
         user_id: user.value.id,
         responses: responses.value,
         evaluation: evaluation.value,
-        primary_stage: parseInt(primaryStage),
+        primary_stage: parseInt(calculatedStage),
         completed_at: new Date().toISOString()
       })
 
