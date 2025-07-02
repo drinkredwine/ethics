@@ -1,3 +1,5 @@
+### Welcome
+
 # Kohlberg Moral Development Assessment
 
 An AI-powered web application that assesses users' moral development stage based on Lawrence Kohlberg's theory, providing personalized insights and recommendations using Claude AI.
