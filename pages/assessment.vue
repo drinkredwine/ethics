@@ -1,37 +1,38 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+  <div class="min-h-screen bg-gray-900">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm">
+    <nav class="bg-black bg-opacity-90 backdrop-blur-md border-b border-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
-            <h1 class="text-xl font-bold text-gray-900">
+            <h1 class="text-xl font-bold text-white">
               {{ $t("assessment.title") }}
             </h1>
             <div class="flex space-x-4">
               <NuxtLink
                 :to="$localePath('/assessment')"
-                class="text-indigo-600 font-medium"
+                class="text-indigo-400 font-medium"
                 >{{ $t("nav.assessment") }}</NuxtLink
               >
               <NuxtLink
                 :to="$localePath('/history')"
-                class="text-gray-600 hover:text-gray-900"
+                class="text-gray-300 hover:text-white transition-colors"
                 >{{ $t("nav.history") }}</NuxtLink
               >
             </div>
           </div>
           <div class="flex items-center space-x-4">
+            <ThemeSwitcher />
             <LanguagePicker />
-            <span class="text-gray-600"
+            <span class="text-gray-300"
               >{{ $t("assessment.question") }} {{ currentQuestion + 1 }}
               {{ $t("assessment.of") }} 3
-              <span class="ml-2 text-indigo-600 font-medium">
+              <span class="ml-2 text-indigo-400 font-medium">
                 • Session {{ sessionNumber }}
               </span>
             </span>
-            <span v-if="user" class="text-gray-600">{{ user.email }}</span>
-            <button @click="logout" class="text-gray-600 hover:text-gray-900">
+            <span v-if="user" class="text-gray-300">{{ user.email }}</span>
+            <button @click="logout" class="text-gray-300 hover:text-white transition-colors">
               {{ $t("nav.logout") }}
             </button>
           </div>
@@ -782,8 +783,17 @@
 // Get user and Supabase client
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
+const route = useRoute();
 
 // Note: Authentication is handled by global middleware
+
+// Get test configuration from query params
+const testId = route.query.test || 'kohlberg_moral';
+const variantId = route.query.variant || null;
+
+// Test configuration
+const testConfig = ref(null);
+const currentTest = ref(null);
 
 const currentQuestion = ref(0);
 const reasoning = ref("");
