@@ -117,10 +117,21 @@ const handleRegister = async () => {
 
     // If we have a session, user is logged in
     if (data?.session) {
-      await navigateTo($localePath("/assessment"));
+      const localePath = useLocalePath();
+      await navigateTo(localePath("/assessment"));
     }
   } catch (err) {
-    error.value = "Registration failed. Please try again.";
+    console.error("Registration navigation error:", err);
+    // Try fallback navigation without localization
+    try {
+      if (data?.session) {
+        await navigateTo("/assessment");
+      }
+    } catch (fallbackErr) {
+      console.error("Fallback navigation error:", fallbackErr);
+      error.value =
+        "Registration successful, but navigation failed. Please manually go to the assessment page.";
+    }
   } finally {
     loading.value = false;
   }
