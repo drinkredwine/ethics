@@ -565,21 +565,27 @@ const getTestLink = (testId) => {
     'communication_skills': '/communication-skills',
     'project_management': '/project-management',
     
-    // New tests - all route to assessment with test parameter for now
-    'personal_motivation': '/assessment?test=personal_motivation',
-    'change_readiness': '/assessment?test=change_readiness',
-    'team_leadership': '/assessment?test=team_leadership',
-    'change_management': '/assessment?test=change_management',
-    'strengths_finder': '/assessment?test=strengths_finder',
-    'critical_thinking': '/assessment?test=critical_thinking',
-    'creativity_assessment': '/assessment?test=creativity_assessment',
-    'collaboration_skills': '/assessment?test=collaboration_skills',
-    'character_assessment': '/assessment?test=character_assessment',
-    'excellence_mindset': '/assessment?test=excellence_mindset',
-    'entrepreneurship': '/assessment?test=entrepreneurship',
-    'engagement_commitment': '/assessment?test=engagement_commitment',
+    // Priority 1 implemented tests - dedicated pages
+    'personal_motivation': '/personal-motivation',
+    'change_readiness': '/change-readiness',
+    'excellence_mindset': '/excellence-mindset',
+    'engagement_commitment': '/engagement-commitment',
+    
+    // Priority 2 implemented tests - dedicated pages
+    'team_leadership': '/team-leadership',
+    'character_assessment': '/character-assessment',
+    'entrepreneurship': '/entrepreneurship',
+    'collaboration_skills': '/collaboration-skills',
+    
+    // Priority 3 implemented tests - dedicated pages
+    'change_management': '/change-management',
+    'strengths_finder': '/strengths-profile',
+    'critical_thinking': '/critical-thinking',
+    'creativity_assessment': '/creativity-innovation',
+    'org_culture_preference': '/culture-fit',
+    
+    // Other new tests - route to assessment with test parameter for now
     'via_values': '/assessment?test=via_values',
-    'org_culture_preference': '/assessment?test=org_culture_preference',
     'kegan_stages': '/assessment?test=kegan_stages',
     'implicit_bias': '/assessment?test=implicit_bias'
   }
