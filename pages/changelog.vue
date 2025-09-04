@@ -143,27 +143,28 @@ const currentStatus = [
   {
     status: "completed",
     color: "green",
-    title: "Assessment Platform",
+    title: "[Done] Prototype Sebapoznanie 2.0",
     description: "Core functionality complete with multiple assessment types",
   },
   {
     status: "in-progress",
     color: "yellow",
-    title: "Translations",
-    description: "Adding SK/CZ variants to various places",
-  },
-  {
-    status: "in-progress",
-    color: "yellow",
-    title: "Test testing",
-    description: "Trying tests 1 by 1",
+    title: "[In progress] Missing translations",
+    description: "Adding SK/CZ variants to all tests",
   },
   {
     status: "development",
     color: "blue",
-    title: "Tree of Knowledge",
+    title: "[Todo] Tree of Knowledge",
     description:
       "Tree with Leafs as completed test resuts in Profile to feel accomplishment",
+  },
+  {
+    status: "development",
+    color: "blue",
+    title: "[Todo] Suggested mentors",
+    description:
+      "Prototype a screen where users defines a growth goal and find a mentor matching his needs. Close to /profile screen.",
   },
 ];
 
@@ -234,12 +235,17 @@ const getStatusColor = (color) => {
   return colors[color] || colors["blue"];
 };
 
+// Configure marked options
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+  headerIds: false,
+  mangle: false,
+});
+
 // Render markdown content
 const renderMarkdown = (content) => {
-  return marked(content, {
-    breaks: true,
-    gfm: true,
-  });
+  return marked.parse(content);
 };
 </script>
 
@@ -278,5 +284,32 @@ const renderMarkdown = (content) => {
 
 .dark .changelog-page::-webkit-scrollbar-thumb {
   background-color: #4a5568;
+}
+
+/* Ensure markdown lists render properly */
+:deep(.prose ul) {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin: 1rem 0 !important;
+}
+
+:deep(.prose ol) {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin: 1rem 0 !important;
+}
+
+:deep(.prose li) {
+  margin: 0.5rem 0 !important;
+  display: list-item !important;
+}
+
+:deep(.prose p) {
+  margin: 0.75rem 0 !important;
+}
+
+:deep(.prose strong) {
+  font-weight: 600 !important;
+  color: inherit !important;
 }
 </style>

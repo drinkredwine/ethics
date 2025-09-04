@@ -58,6 +58,12 @@
           scientifically-backed assessment suite. Get personalized insights and
           track your growth over time.
         </p>
+        <button
+          @click="navigateTo('/changelog')"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+        >
+          Product Changelog
+        </button>
       </div>
 
       <!-- Netflix-style Sections -->
