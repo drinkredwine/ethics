@@ -6,20 +6,20 @@
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
             <NuxtLink :to="$localePath('/')" class="text-xl font-bold text-gray-900">
-              ← Assessment Platform
+              ← {{ $t('bigFive.assessmentPlatform') }}
             </NuxtLink>
             <h1 class="text-xl font-bold text-purple-600">
-              Big Five Personality Test
+              {{ $t('bigFive.title') }}
             </h1>
           </div>
           <div class="flex items-center space-x-4">
             <LanguagePicker />
             <span class="text-gray-600"
-              >Question {{ currentQuestion + 1 }} of {{ questions.length }}
+              >{{ $t('bigFive.question') }} {{ currentQuestion + 1 }} {{ $t('bigFive.of') }} {{ questions.length }}
             </span>
             <span v-if="user" class="text-gray-600">{{ user.email }}</span>
             <button @click="logout" class="text-gray-600 hover:text-gray-900">
-              Logout
+              {{ $t('nav.logout') }}
             </button>
           </div>
         </div>
@@ -38,8 +38,8 @@
           ></div>
         </div>
         <div class="flex justify-between text-sm text-gray-600 mt-2">
-          <span>Progress: {{ Math.round((currentQuestion / questions.length) * 100) }}%</span>
-          <span>Estimated time remaining: {{ Math.ceil((questions.length - currentQuestion) * 0.5) }} minutes</span>
+          <span>{{ $t('bigFive.progress') }} {{ Math.round((currentQuestion / questions.length) * 100) }}%</span>
+          <span>{{ $t('bigFive.estimatedTime') }} {{ Math.ceil((questions.length - currentQuestion) * 0.5) }} {{ $t('bigFive.minutes') }}</span>
         </div>
       </div>
 
@@ -48,10 +48,10 @@
         <div class="text-center mb-8">
           <div class="text-6xl mb-4">🧭</div>
           <h2 class="text-3xl font-bold text-gray-900 mb-2">
-            Assessment Complete!
+            {{ $t('bigFive.assessmentComplete') }}
           </h2>
           <div class="text-lg text-gray-600">
-            Your Big Five personality profile is ready
+            {{ $t('bigFive.profileReady') }}
           </div>
         </div>
 
@@ -85,7 +85,7 @@
 
           <!-- Overall Summary -->
           <div class="bg-white rounded-xl p-6 border-2 border-purple-200">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">Your Personality Profile</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $t('bigFive.personalityProfile') }}</h3>
             <div class="prose max-w-none">
               <p class="text-gray-700 leading-relaxed">{{ results.summary }}</p>
             </div>
@@ -97,7 +97,7 @@
               :to="$localePath('/profile')"
               class="flex-1 bg-purple-600 text-white text-center py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors font-medium"
             >
-              View Full Profile
+              {{ $t('bigFive.viewFullProfile') }}
             </NuxtLink>
             <NuxtLink
               :to="$localePath('/')"
@@ -109,7 +109,7 @@
               @click="retakeTest"
               class="flex-1 bg-amber-100 text-amber-800 text-center py-3 px-6 rounded-lg hover:bg-amber-200 transition-colors"
             >
-              Retake This Test
+              {{ $t('bigFive.retakeTest') }}
             </button>
           </div>
         </div>
@@ -160,7 +160,7 @@
             @click="previousQuestion"
             class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
           >
-            ← Previous
+← {{ $t('bigFive.previous') }}
           </button>
           <div v-else></div>
 
@@ -173,10 +173,10 @@
             }"
             class="px-8 py-3 rounded-lg transition-colors font-medium"
           >
-            {{
+{{
               currentQuestion === questions.length - 1
-                ? 'Complete Assessment'
-                : 'Next →'
+                ? $t('bigFive.assessmentComplete')
+                : $t('bigFive.next') + ' →'
             }}
           </button>
         </div>
@@ -215,13 +215,15 @@ const randomizeQuestions = (questionsArray) => {
 }
 
 // Likert scale options
-const likertOptions = [
-  { label: 'Strongly Disagree', description: 'Not at all like me' },
-  { label: 'Disagree', description: 'Mostly not like me' },
-  { label: 'Neutral', description: 'Somewhat like me' },
-  { label: 'Agree', description: 'Mostly like me' },
-  { label: 'Strongly Agree', description: 'Very much like me' }
-];
+const { t } = useI18n();
+
+const likertOptions = computed(() => [
+  { label: t('bigFive.disagreeStrongly'), description: 'Not at all like me' },
+  { label: t('bigFive.disagree'), description: 'Mostly not like me' },
+  { label: t('bigFive.neutral'), description: 'Somewhat like me' },
+  { label: t('bigFive.agree'), description: 'Mostly like me' },
+  { label: t('bigFive.agreeStrongly'), description: 'Very much like me' }
+]);
 
 // Big Five questions (shortened version - 50 questions, 10 per dimension)
 const questions = ref([
@@ -288,14 +290,7 @@ const questions = ref([
 
 // Helper functions
 const getDimensionName = (dimension) => {
-  const names = {
-    'openness': 'Openness to Experience',
-    'conscientiousness': 'Conscientiousness', 
-    'extraversion': 'Extraversion',
-    'agreeableness': 'Agreeableness',
-    'neuroticism': 'Neuroticism'
-  };
-  return names[dimension] || dimension;
+  return t(`bigFive.dimensions.${dimension}`) || dimension;
 };
 
 const selectAnswer = (value) => {

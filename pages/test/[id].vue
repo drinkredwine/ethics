@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
             <NuxtLink :to="$localePath('/')" :class="`text-xl font-bold ${themeClasses.navText}`">
-              ← Assessment Platform
+              ← {{ $t('testPage.assessmentPlatform') }}
             </NuxtLink>
           </div>
           <div class="flex items-center space-x-4">
@@ -14,10 +14,10 @@
             <LanguagePicker />
             <div v-if="user" class="flex items-center space-x-4">
               <NuxtLink :to="$localePath('/profile')" :class="`${themeClasses.navTextSecondary} ${themeClasses.navTextHover} transition-colors`">
-                Profile
+                {{ $t('testPage.profile') }}
               </NuxtLink>
               <button @click="logout" :class="`${themeClasses.navTextSecondary} ${themeClasses.navTextHover} transition-colors`">
-                Logout
+                {{ $t('testPage.logout') }}
               </button>
             </div>
           </div>
@@ -35,28 +35,28 @@
               <div class="text-6xl mr-4">{{ getTestIcon(test.id) }}</div>
               <div>
                 <div class="text-sm font-medium text-indigo-400 uppercase tracking-wider mb-1">
-                  {{ test.category }} Assessment
+                  {{ getTestCategory(test.category) }} {{ $t('testPage.assessment') }}
                 </div>
-                <h1 :class="`text-4xl font-bold ${themeClasses.textPrimary}`">{{ test.name }}</h1>
+                <h1 :class="`text-4xl font-bold ${themeClasses.textPrimary}`">{{ getTestTitle(test.id) }}</h1>
               </div>
             </div>
             
             <p :class="`text-xl ${themeClasses.textSecondary} leading-relaxed`">
-              {{ test.description }}
+              {{ getTestDescription(test.id) }}
             </p>
           </div>
 
           <!-- Test Details -->
           <div :class="`${themeClasses.cardBackground} rounded-xl ${themeClasses.cardShadow} p-6 mb-8`">
-            <h3 :class="`text-lg font-bold ${themeClasses.textPrimary} mb-4`">Test Details</h3>
+            <h3 :class="`text-lg font-bold ${themeClasses.textPrimary} mb-4`">{{ $t('testPage.testDetails') }}</h3>
             <div class="grid grid-cols-2 gap-6">
               <div class="flex items-center space-x-3">
                 <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <div>
-                  <div :class="`font-semibold ${themeClasses.textPrimary}`">Duration</div>
-                  <div :class="themeClasses.textSecondary">~{{ test.estimated_duration_minutes }} minutes</div>
+                  <div :class="`font-semibold ${themeClasses.textPrimary}`">{{ $t('testPage.duration') }}</div>
+                  <div :class="themeClasses.textSecondary">~{{ test.estimated_duration_minutes }} {{ $t('testPage.minutes') }}</div>
                 </div>
               </div>
               
@@ -65,8 +65,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
                 <div>
-                  <div :class="`font-semibold ${themeClasses.textPrimary}`">Questions</div>
-                  <div :class="themeClasses.textSecondary">{{ test.question_count }} questions</div>
+                  <div :class="`font-semibold ${themeClasses.textPrimary}`">{{ $t('testPage.questions') }}</div>
+                  <div :class="themeClasses.textSecondary">{{ test.question_count }} {{ $t('testPage.questionsText') }}</div>
                 </div>
               </div>
               
@@ -75,7 +75,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                 </svg>
                 <div>
-                  <div :class="`font-semibold ${themeClasses.textPrimary}`">Method</div>
+                  <div :class="`font-semibold ${themeClasses.textPrimary}`">{{ $t('testPage.method') }}</div>
                   <div :class="themeClasses.textSecondary">{{ formatEvaluationMethod(test.evaluation_method) }}</div>
                 </div>
               </div>
@@ -85,7 +85,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                 </svg>
                 <div>
-                  <div :class="`font-semibold ${themeClasses.textPrimary}`">Tags</div>
+                  <div :class="`font-semibold ${themeClasses.textPrimary}`">{{ $t('testPage.tags') }}</div>
                   <div class="flex flex-wrap gap-1 mt-1">
                     <span 
                       v-for="tag in test.tags" 
@@ -103,16 +103,16 @@
           <!-- Progress if user has taken this test -->
           <div v-if="userResult" class="bg-green-50 rounded-xl p-6 mb-8">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg font-bold text-green-800">Your Progress</h3>
-              <div class="text-green-600 font-semibold">✓ Completed</div>
+              <h3 class="text-lg font-bold text-green-800">{{ $t('testPage.yourProgress') }}</h3>
+              <div class="text-green-600 font-semibold">{{ $t('testPage.completed') }}</div>
             </div>
             <div class="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <div class="font-semibold text-green-800">Times Taken</div>
+                <div class="font-semibold text-green-800">{{ $t('testPage.timesTaken') }}</div>
                 <div class="text-green-700">{{ userResult.assessment_count }}</div>
               </div>
               <div>
-                <div class="font-semibold text-green-800">Last Taken</div>
+                <div class="font-semibold text-green-800">{{ $t('testPage.lastTaken') }}</div>
                 <div class="text-green-700">{{ formatDate(userResult.last_taken_at) }}</div>
               </div>
             </div>
@@ -123,15 +123,15 @@
         <div>
           <!-- Sample Questions Preview -->
           <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">What to Expect</h3>
+            <h3 class="text-lg font-bold text-gray-900 mb-4">{{ $t('testPage.whatToExpect') }}</h3>
             <div class="space-y-4">
               <div 
                 v-for="(preview, index) in getTestPreviews(test.id)" 
                 :key="index"
                 class="border-l-4 border-indigo-500 pl-4 py-2"
               >
-                <div class="font-medium text-gray-800 mb-1">{{ preview.title }}</div>
-                <div class="text-gray-600 text-sm">{{ preview.description }}</div>
+                <div class="font-medium text-gray-800 mb-1">{{ getPreviewTitle(test.id, preview.key) }}</div>
+                <div class="text-gray-600 text-sm">{{ getPreviewDescription(test.id, preview.key) }}</div>
               </div>
             </div>
           </div>
@@ -139,13 +139,13 @@
           <!-- Main CTA Button -->
           <div class="text-center">
             <div v-if="!user" class="mb-6">
-              <p class="text-gray-600 mb-4">Please sign up or log in to take this assessment</p>
+              <p class="text-gray-600 mb-4">{{ $t('testPage.signUpLogin') }}</p>
               <div class="space-y-3">
                 <NuxtLink 
                   :to="$localePath('/register')" 
                   class="block w-full bg-indigo-600 text-white py-4 px-8 rounded-xl hover:bg-indigo-700 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
-                  Sign Up & Start Assessment
+                  {{ $t('testPage.signUpStart') }}
                 </NuxtLink>
                 <NuxtLink 
                   :to="$localePath('/login')" 
@@ -161,15 +161,15 @@
                 :to="getTestLink(test.id)" 
                 class="block w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-8 rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                {{ userResult ? 'Retake Assessment' : 'Start Assessment Now' }}
+                {{ userResult ? $t('testPage.retakeAssessment') : $t('testPage.startAssessmentNow') }}
                 <div class="text-sm font-normal opacity-90 mt-1">
-                  {{ userResult ? 'Track your progress over time' : 'Free • Takes ~' + test.estimated_duration_minutes + ' minutes' }}
+                  {{ userResult ? $t('testPage.trackProgress') : $t('testPage.freeMinutes', { minutes: test.estimated_duration_minutes }) }}
                 </div>
               </NuxtLink>
 
               <!-- Alternative test variants if available -->
               <div v-if="hasMultipleVariants(test.id)" class="mt-4 p-4 bg-gray-50 rounded-lg">
-                <p class="text-sm text-gray-600 mb-2">Choose your preferred format:</p>
+                <p class="text-sm text-gray-600 mb-2">{{ $t('testPage.chooseFormat') }}</p>
                 <div class="space-y-2">
                   <NuxtLink 
                     v-for="variant in getTestVariants(test.id)" 
@@ -589,18 +589,9 @@ const getTestPreviews = (testId) => {
     ],
     // Priority 2 Tests
     'team_leadership': [
-      {
-        title: 'Leadership Scenarios',
-        description: 'Navigate complex team situations and leadership challenges'
-      },
-      {
-        title: 'Core Competencies',
-        description: 'Team motivation, delegation, conflict resolution, performance management'
-      },
-      {
-        title: 'Leadership Style',
-        description: 'Discover your natural leadership approach and development areas'
-      }
+      { key: 'scenarios' },
+      { key: 'competencies' },
+      { key: 'style' }
     ],
     'character_assessment': [
       {
@@ -872,13 +863,34 @@ watchEffect(() => {
   }
 })
 
+// Helper functions for translations
+const getTestCategory = (category) => {
+  return t(`testPage.categories.${category.toLowerCase().replace(/\s+&\s+/g, '').replace(/\s+/g, '')}`) || category
+}
+
+const getTestTitle = (testId) => {
+  return t(`testPage.tests.${testId.replace('_', '')}.title`) || test.value?.name || 'Test'
+}
+
+const getTestDescription = (testId) => {
+  return t(`testPage.tests.${testId.replace('_', '')}.description`) || test.value?.description || 'Test description'
+}
+
+const getPreviewTitle = (testId, previewKey) => {
+  return t(`testPage.tests.${testId.replace('_', '')}.previews.${previewKey}.title`) || previewKey
+}
+
+const getPreviewDescription = (testId, previewKey) => {
+  return t(`testPage.tests.${testId.replace('_', '')}.previews.${previewKey}.description`) || 'Preview description'
+}
+
 // Dynamic head management
 useHead(() => ({
-  title: test.value ? `${test.value.name} - Assessment Platform` : 'Assessment Not Found',
+  title: test.value ? `${getTestTitle(testId)} - Assessment Platform` : 'Assessment Not Found',
   meta: [
     { 
       name: 'description', 
-      content: test.value ? test.value.description : 'Assessment not found' 
+      content: test.value ? getTestDescription(testId) : 'Assessment not found' 
     }
   ]
 }))

@@ -6,21 +6,21 @@
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
             <NuxtLink :to="$localePath('/')" :class="`text-xl font-bold ${themeClasses.navText}`">
-              ← Assessment Platform
+              ← {{ $t('teamLeadership.assessmentPlatform') }}
             </NuxtLink>
             <h1 :class="`text-xl font-bold ${themeClasses.navTextAccent}`">
-              Team Leadership Assessment
+              {{ $t('teamLeadership.title') }}
             </h1>
           </div>
           <div class="flex items-center space-x-4">
             <ThemeSwitcher />
             <LanguagePicker />
             <span :class="themeClasses.navTextSecondary"
-              >Question {{ currentQuestion + 1 }} of {{ questions.length }}
+              >{{ $t('teamLeadership.question') }} {{ currentQuestion + 1 }} {{ $t('teamLeadership.of') }} {{ questions.length }}
             </span>
             <span v-if="user" :class="themeClasses.navTextSecondary">{{ user.email }}</span>
             <button @click="logout" :class="`${themeClasses.navTextSecondary} ${themeClasses.navTextHover}`">
-              Logout
+              {{ $t('nav.logout') }}
             </button>
           </div>
         </div>
@@ -39,8 +39,8 @@
           ></div>
         </div>
         <div :class="`flex justify-between text-sm ${themeClasses.textMuted} mt-2`">
-          <span>Progress: {{ Math.round((currentQuestion / questions.length) * 100) }}%</span>
-          <span>Estimated time remaining: {{ Math.ceil((questions.length - currentQuestion) * 0.75) }} minutes</span>
+          <span>{{ $t('teamLeadership.progress') }} {{ Math.round((currentQuestion / questions.length) * 100) }}%</span>
+          <span>{{ $t('teamLeadership.estimatedTime') }} {{ Math.ceil((questions.length - currentQuestion) * 0.75) }} {{ $t('teamLeadership.minutes') }}</span>
         </div>
       </div>
 
@@ -49,7 +49,7 @@
         <div class="text-center mb-8">
           <div class="text-6xl mb-4">👥</div>
           <h2 :class="`text-3xl font-bold ${themeClasses.textPrimary} mb-2`">
-            Assessment Complete!
+            {{ $t('teamLeadership.assessmentComplete') }}
           </h2>
           <div :class="`text-lg ${themeClasses.textSecondary}`">
             Your team leadership profile is ready
@@ -200,13 +200,13 @@
       <div v-else :class="`${themeClasses.cardBackground} rounded-lg ${themeClasses.cardShadow} p-8`">
         <div class="mb-8">
           <h2 :class="`text-2xl font-bold ${themeClasses.textPrimary} mb-6`">
-            Leadership Scenario {{ currentQuestion + 1 }}
+            {{ $t('teamLeadership.question') }} {{ currentQuestion + 1 }}
           </h2>
           <div :class="`${themeClasses.featureBackground} p-6 rounded-lg border-l-4 ${themeClasses.borderAccent} mb-4`">
-            <div :class="`font-semibold ${themeClasses.textPrimary} mb-2`">{{ questions[currentQuestion]?.scenario }}</div>
+            <div :class="`font-semibold ${themeClasses.textPrimary} mb-2`">{{ getQuestionScenario(questions[currentQuestion]?.id) }}</div>
           </div>
           <div :class="`text-lg ${themeClasses.textPrimary} font-medium`">
-            {{ questions[currentQuestion]?.question }}
+            {{ getQuestionText(questions[currentQuestion]?.id) }}
           </div>
         </div>
 
@@ -214,18 +214,18 @@
         <div class="mb-8">
           <div class="space-y-3">
             <button
-              v-for="(option, index) in questions[currentQuestion]?.options"
-              :key="index"
-              @click="selectAnswer(option.value || index)"
+              v-for="(optionKey, index) in ['a', 'b', 'c', 'd']"
+              :key="optionKey"
+              @click="selectAnswer(optionKey)"
               :class="{
-                [`${themeClasses.buttonPrimary} border-transparent`]: selectedAnswer === (option.value || index),
-                [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary}`]: selectedAnswer !== (option.value || index)
+                [`${themeClasses.buttonPrimary} border-transparent`]: selectedAnswer === optionKey,
+                [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary}`]: selectedAnswer !== optionKey
               }"
               class="w-full p-4 border-2 rounded-lg transition-all duration-200 text-left hover:bg-blue-50 hover:border-blue-300 dark:hover:bg-blue-900/20 dark:hover:border-blue-500"
             >
-              <div class="font-semibold mb-2">{{ String.fromCharCode(65 + index) }}. {{ option.text }}</div>
-              <div :class="`text-sm ${selectedAnswer === (option.value || index) ? 'text-white opacity-90' : themeClasses.textMuted}`">
-                {{ option.rationale }}
+              <div class="font-semibold mb-2">{{ String.fromCharCode(65 + index) }}. {{ getOptionText(questions[currentQuestion]?.id, optionKey) }}</div>
+              <div :class="`text-sm ${selectedAnswer === optionKey ? 'text-white opacity-90' : themeClasses.textMuted}`">
+                {{ getOptionExplanation(questions[currentQuestion]?.id, optionKey) }}
               </div>
             </button>
           </div>
@@ -251,10 +251,10 @@
             }"
             class="px-8 py-3 rounded-lg transition-colors font-medium"
           >
-            {{
+{{
               currentQuestion === questions.length - 1
-                ? 'Complete Assessment'
-                : 'Next →'
+                ? $t('teamLeadership.assessmentComplete')
+                : $t('teamLeadership.next') + ' →'
             }}
           </button>
         </div>
@@ -267,9 +267,27 @@
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 const { getThemeClasses } = useTheme()
+const { t } = useI18n()
 
 // Get theme classes
 const themeClasses = computed(() => getThemeClasses())
+
+// Helper functions for question translations
+const getQuestionScenario = (questionId) => {
+  return t(`teamLeadership.questions.${questionId}.scenario`)
+}
+
+const getQuestionText = (questionId) => {
+  return t(`teamLeadership.questions.${questionId}.question`)
+}
+
+const getOptionText = (questionId, optionKey) => {
+  return t(`teamLeadership.questions.${questionId}.options.${optionKey}`)
+}
+
+const getOptionExplanation = (questionId, optionKey) => {
+  return t(`teamLeadership.questions.${questionId}.explanations.${optionKey}`)
+}
 
 // Assessment state
 const currentQuestion = ref(0)
@@ -282,15 +300,8 @@ const results = ref(null)
 const questions = ref([
   // Team Motivation Scenarios
   {
-    scenario: "Your team has been working on a challenging project for months. You notice motivation levels dropping and some team members seem disengaged.",
-    question: "What would be your primary approach to re-energize the team?",
-    category: "motivation",
-    options: [
-      { text: "Schedule one-on-one meetings to understand individual concerns and motivations", value: "individual_focus", rationale: "Shows care for team members as individuals and addresses root causes" },
-      { text: "Organize a team celebration and remind everyone of the project's importance", value: "team_rally", rationale: "Builds collective energy and reinforces shared purpose" },
-      { text: "Break down remaining work into smaller milestones with quick wins", value: "milestone_approach", rationale: "Creates momentum through achievable progress markers" },
-      { text: "Bring in additional resources or negotiate timeline adjustments", value: "resource_support", rationale: "Addresses systemic issues that may be causing burnout" }
-    ]
+    id: "scenario1",
+    category: "motivation"
   },
 
   {
