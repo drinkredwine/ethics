@@ -215,9 +215,9 @@
               @click="selectAnswer(option.value || index)"
               :class="{
                 [`${themeClasses.buttonPrimary} border-transparent`]: selectedAnswer === (option.value || index),
-                [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary} ${themeClasses.hoverHighlight}`]: selectedAnswer !== (option.value || index)
+                [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary}`]: selectedAnswer !== (option.value || index)
               }"
-              class="w-full p-4 border-2 rounded-lg transition-all duration-200 text-left"
+              class="w-full p-4 border-2 rounded-lg transition-all duration-200 text-left hover:bg-blue-50 hover:border-blue-300 dark:hover:bg-blue-900/20 dark:hover:border-blue-500"
             >
               <div class="font-semibold mb-2">{{ String.fromCharCode(65 + index) }}. {{ option.text }}</div>
               <div v-if="option.reasoning" :class="`text-sm ${selectedAnswer === (option.value || index) ? 'text-white opacity-90' : themeClasses.textMuted}`">
@@ -273,6 +273,26 @@ const selectedAnswer = ref(null)
 const responses = ref([])
 const assessmentComplete = ref(false)
 const results = ref(null)
+
+// Randomization utilities
+const shuffleArray = (array) => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
+const randomizeQuestions = (questionsArray) => {
+  // First shuffle the order of questions, then shuffle options within each question
+  const shuffledQuestions = shuffleArray(questionsArray)
+  return shuffledQuestions.map((question, index) => ({
+    ...question,
+    options: shuffleArray(question.options),
+    originalIndex: index
+  }))
+}
 
 // Ethical scenario questions for Character & Integrity Assessment
 const questions = ref([
@@ -920,6 +940,11 @@ const logout = async () => {
   await supabase.auth.signOut()
   await navigateTo('/')
 }
+
+// Initialize randomized questions on component mount
+onMounted(() => {
+  questions.value = randomizeQuestions(questions.value)
+})
 
 useHead({
   title: 'Character & Integrity Assessment - Assessment Platform',

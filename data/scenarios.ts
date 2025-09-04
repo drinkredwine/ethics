@@ -1179,14 +1179,24 @@ export const scenarios: Scenario[] = [
 ];
 
 // Function to get random scenarios
+// Fisher-Yates shuffle algorithm for better randomization
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export function getRandomScenarios(count: number = 3): Scenario[] {
-  const shuffled = [...scenarios].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+  const shuffled = shuffleArray(scenarios);
+  return shuffled.slice(0, count).map(scenario => shuffleScenarioOptions(scenario));
 }
 
 // Function to shuffle options while maintaining stage mapping
 export function shuffleScenarioOptions(scenario: Scenario) {
-  const shuffledOptions = [...scenario.options].sort(() => 0.5 - Math.random());
+  const shuffledOptions = shuffleArray(scenario.options);
 
   return {
     ...scenario,

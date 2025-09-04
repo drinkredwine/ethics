@@ -238,9 +238,9 @@
                   @click="selectAnswer(n)"
                   :class="{
                     [`${themeClasses.buttonPrimary} border-transparent`]: selectedAnswer === n,
-                    [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary} hover:${themeClasses.borderAccent}`]: selectedAnswer !== n
+                    [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary}`]: selectedAnswer !== n
                   }"
-                  class="p-3 border-2 rounded-lg transition-all duration-200"
+                  class="p-3 border-2 rounded-lg transition-all duration-200 hover:bg-blue-50 hover:border-blue-300 dark:hover:bg-blue-900/20 dark:hover:border-blue-500"
                 >
                   {{ n }}
                 </button>

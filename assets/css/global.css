@@ -1,0 +1,70 @@
+/* Global styles for dark mode support */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+@import "tailwindcss";
+@layer base {
+  html {
+    @apply bg-white dark:bg-gray-900;
+    /* Prevent overscroll bounce showing white background on all platforms */
+    overscroll-behavior: none;
+  }
+  
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
+    /* Prevent overscroll bounce showing white background */
+    overscroll-behavior: none;
+    /* Prevent horizontal scroll issues */
+    overflow-x: hidden;
+  }
+  
+  /* Ensure the root element also has proper background */
+  #__nuxt {
+    @apply bg-white dark:bg-gray-900 min-h-screen;
+    /* Ensure the app container covers full viewport */
+    position: relative;
+  }
+  
+  /* Fix for mobile Safari and other WebKit browsers */
+  @supports (-webkit-touch-callout: none) {
+    html {
+      @apply bg-white dark:bg-gray-900;
+      -webkit-overflow-scrolling: touch;
+      /* Prevent rubber band effect */
+      overscroll-behavior: none;
+      -webkit-overscroll-behavior: none;
+    }
+    
+    body {
+      @apply bg-white dark:bg-gray-900;
+      /* Fix iOS overscroll and rubber band effect */
+      position: relative;
+      overflow-x: hidden;
+      overscroll-behavior: none;
+      -webkit-overscroll-behavior: none;
+      /* Fix for iOS Safari bounce */
+      -webkit-overflow-scrolling: touch;
+      touch-action: manipulation;
+    }
+    
+    /* Prevent the infamous iOS Safari bounce */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* Additional fix for Chrome and other modern browsers */
+  @supports (overscroll-behavior: none) {
+    html,
+    body {
+      overscroll-behavior: none;
+    }
+  }
+}
+
+/* Ensure smooth dark mode transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -196,6 +196,24 @@ const responses = ref([]);
 const assessmentComplete = ref(false);
 const results = ref(null);
 
+// Randomization utilities
+const shuffleArray = (array) => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
+const randomizeQuestions = (questionsArray) => {
+  // Shuffle questions while preserving dimension balance
+  return shuffleArray(questionsArray).map((question, index) => ({
+    ...question,
+    originalIndex: index
+  }))
+}
+
 // Likert scale options
 const likertOptions = [
   { label: 'Strongly Disagree', description: 'Not at all like me' },
@@ -454,9 +472,9 @@ const logout = async () => {
   await navigateTo('/');
 };
 
-// Shuffle questions to avoid order effects
+// Initialize randomized questions on component mount
 onMounted(() => {
-  questions.value = questions.value.sort(() => Math.random() - 0.5);
+  questions.value = randomizeQuestions(questions.value);
 });
 
 useHead({

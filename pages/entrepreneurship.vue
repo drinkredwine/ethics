@@ -239,9 +239,9 @@
               @click="selectAnswer(option.value || index)"
               :class="{
                 [`${themeClasses.buttonPrimary} border-transparent`]: selectedAnswer === (option.value || index),
-                [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary} ${themeClasses.hoverHighlight}`]: selectedAnswer !== (option.value || index)
+                [`${themeClasses.cardBackground} ${themeClasses.textPrimary} ${themeClasses.borderSecondary}`]: selectedAnswer !== (option.value || index)
               }"
-              class="w-full p-4 border-2 rounded-lg transition-all duration-200 text-left"
+              class="w-full p-4 border-2 rounded-lg transition-all duration-200 text-left hover:bg-blue-50 hover:border-blue-300 dark:hover:bg-blue-900/20 dark:hover:border-blue-500"
             >
               <div class="font-semibold mb-2">{{ String.fromCharCode(65 + index) }}. {{ option.text }}</div>
               <div v-if="option.reasoning" :class="`text-sm ${selectedAnswer === (option.value || index) ? 'text-white opacity-90' : themeClasses.textMuted}`">

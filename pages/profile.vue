@@ -1,22 +1,19 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm">
+    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center space-x-8">
-            <NuxtLink :to="$localePath('/')" class="text-xl font-bold text-gray-900">
-              Assessment Platform
+            <NuxtLink :to="$localePath('/')" class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ← Assessment Platform
             </NuxtLink>
-            <h1 class="text-xl font-bold text-indigo-600">
-              My Profile
-            </h1>
           </div>
           <div class="flex items-center space-x-4">
             <ThemeSwitcher />
             <LanguagePicker />
-            <span v-if="user" class="text-gray-300">{{ user.email }}</span>
-            <button @click="logout" class="text-gray-300 hover:text-white transition-colors">
+            <span v-if="user" class="text-gray-600 dark:text-gray-300 hidden md:block">{{ user.email }}</span>
+            <button @click="logout" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors">
               Logout
             </button>
           </div>
@@ -25,439 +22,305 @@
     </nav>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <!-- Profile Header -->
-      <div class="mb-8">
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-6">
-              <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                {{ getUserInitials() }}
-              </div>
-              <div>
-                <h1 class="text-3xl font-bold text-gray-900">Your Assessment Profile</h1>
-                <p class="text-gray-600 mt-1">
-                  Member since {{ formatDate(user?.created_at) }}
-                </p>
-                <div class="flex items-center space-x-4 mt-2">
-                  <div class="flex items-center text-sm text-gray-500">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    {{ totalAssessments }} assessments completed
-                  </div>
-                  <div class="flex items-center text-sm text-gray-500">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                    </svg>
-                    {{ completionRate }}% profile completion
-                  </div>
-                </div>
-              </div>
+      <!-- Welcome Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Your Tree of Self-Knowledge
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          Every assessment you complete adds a new leaf to your personal growth journey. 
+          Watch your tree flourish as you discover more about yourself.
+        </p>
+      </div>
+
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
+              <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
             </div>
-            <div class="text-right">
-              <div class="text-sm text-gray-500 mb-1">Profile Score</div>
-              <div class="text-4xl font-bold text-indigo-600">{{ profileScore }}</div>
-              <div class="text-sm text-indigo-500">out of 100</div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Leaves Grown</p>
+              <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ completedTestsCount }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
+              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Tests</p>
+              <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ totalAvailableTests }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
+              <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Growth Progress</p>
+              <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ Math.round(growthPercentage) }}%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="p-2 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
+              <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Tree Level</p>
+              <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ getTreeLevel() }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Assessment Results Grid -->
-      <div class="grid lg:grid-cols-2 gap-8 mb-8">
-        <!-- Values Assessment -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-500 rounded-lg flex items-center justify-center text-white text-2xl mr-4">
-                ⚖️
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-gray-900">Values & Ethics</h3>
-                <p class="text-gray-600 text-sm">Your moral reasoning profile</p>
-              </div>
-            </div>
-            <div v-if="kohlbergResult" class="text-right">
-              <div class="text-2xl font-bold text-blue-600">Stage {{ kohlbergResult.primary_stage }}</div>
-              <div class="text-sm text-gray-500">{{ formatDate(kohlbergResult.completed_at) }}</div>
-            </div>
-          </div>
-
-          <div v-if="kohlbergResult" class="space-y-4">
-            <!-- Kohlberg Stage Progress -->
-            <div class="bg-blue-50 rounded-lg p-4">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-medium text-blue-800">{{ getStageName(kohlbergResult.primary_stage) }}</span>
-                <span class="text-sm text-blue-600">{{ kohlbergResult.assessment_count }} assessment(s)</span>
-              </div>
-              <div class="w-full bg-blue-200 rounded-full h-2">
-                <div 
-                  class="bg-blue-600 h-2 rounded-full transition-all duration-1000"
-                  :style="{ width: `${(kohlbergResult.primary_stage / 6) * 100}%` }"
-                ></div>
-              </div>
-            </div>
-
-            <div class="text-sm text-gray-600">
-              {{ getStageDescription(kohlbergResult.primary_stage) }}
-            </div>
-
-            <NuxtLink 
-              :to="$localePath('/test/kohlberg_moral')" 
-              class="block w-full text-center bg-blue-100 text-blue-800 py-2 px-4 rounded-lg hover:bg-blue-200 transition-colors text-sm font-medium"
-            >
-              Retake Assessment
-            </NuxtLink>
-          </div>
-
-          <div v-else class="text-center py-8">
-            <div class="text-4xl mb-4 opacity-50">⚖️</div>
-            <p class="text-gray-500 mb-4">No values assessment completed yet</p>
-            <NuxtLink 
-              :to="$localePath('/test/kohlberg_moral')" 
-              class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            >
-              Take Assessment
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Personality Assessment -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white text-2xl mr-4">
-                🧭
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-gray-900">Personality</h3>
-                <p class="text-gray-600 text-sm">Your Big Five personality profile</p>
-              </div>
-            </div>
-            <div v-if="bigFiveResult" class="text-right">
-              <div class="text-2xl font-bold text-purple-600">{{ getOverallPersonalityScore() }}%</div>
-              <div class="text-sm text-gray-500">{{ formatDate(bigFiveResult.completed_at) }}</div>
-            </div>
-          </div>
-
-          <div v-if="bigFiveResult" class="space-y-4">
-            <!-- Big Five Dimensions -->
-            <div class="space-y-3">
-              <div 
-                v-for="(dimension, key) in getPersonalityDimensions()"
-                :key="key"
-                class="bg-purple-50 rounded-lg p-3"
-              >
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-medium text-purple-800">{{ dimension.name }}</span>
-                  <span class="text-sm text-purple-600">{{ dimension.score }}%</span>
-                </div>
-                <div class="w-full bg-purple-200 rounded-full h-2">
-                  <div 
-                    class="bg-purple-600 h-2 rounded-full transition-all duration-1000"
-                    :style="{ width: `${dimension.score}%` }"
-                  ></div>
-                </div>
-              </div>
-            </div>
-
-            <NuxtLink 
-              :to="$localePath('/big-five')" 
-              class="block w-full text-center bg-purple-100 text-purple-800 py-2 px-4 rounded-lg hover:bg-purple-200 transition-colors text-sm font-medium"
-            >
-              Retake Assessment
-            </NuxtLink>
-          </div>
-
-          <div v-else class="text-center py-8">
-            <div class="text-4xl mb-4 opacity-50">🧭</div>
-            <p class="text-gray-500 mb-4">No personality assessment completed yet</p>
-            <NuxtLink 
-              :to="$localePath('/big-five')" 
-              class="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 transition-colors font-medium"
-            >
-              Take Assessment
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Communication Skills -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-lg flex items-center justify-center text-white text-2xl mr-4">
-                💬
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-gray-900">Communication Skills</h3>
-                <p class="text-gray-600 text-sm">Professional communication abilities</p>
-              </div>
-            </div>
-            <div v-if="communicationResult" class="text-right">
-              <div class="text-2xl font-bold text-green-600">{{ getCommunicationScore() }}%</div>
-              <div class="text-sm text-gray-500">{{ formatDate(communicationResult.completed_at) }}</div>
-            </div>
-          </div>
-
-          <div v-if="communicationResult" class="space-y-4">
-            <!-- Communication Skill Areas -->
-            <div class="space-y-3">
-              <div 
-                v-for="(skill, key) in getCommunicationSkills()"
-                :key="key"
-                class="bg-green-50 rounded-lg p-3"
-              >
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-medium text-green-800">{{ skill.name }}</span>
-                  <span class="text-sm text-green-600">{{ skill.score }}%</span>
-                </div>
-                <div class="w-full bg-green-200 rounded-full h-2">
-                  <div 
-                    class="bg-green-600 h-2 rounded-full transition-all duration-1000"
-                    :style="{ width: `${skill.score}%` }"
-                  ></div>
-                </div>
-              </div>
-            </div>
-
-            <NuxtLink 
-              :to="$localePath('/communication-skills')" 
-              class="block w-full text-center bg-green-100 text-green-800 py-2 px-4 rounded-lg hover:bg-green-200 transition-colors text-sm font-medium"
-            >
-              Retake Assessment
-            </NuxtLink>
-          </div>
-
-          <div v-else class="text-center py-8">
-            <div class="text-4xl mb-4 opacity-50">💬</div>
-            <p class="text-gray-500 mb-4">No communication skills assessment completed yet</p>
-            <NuxtLink 
-              :to="$localePath('/communication-skills')" 
-              class="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition-colors font-medium"
-            >
-              Take Assessment
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Project Management Skills -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white text-2xl mr-4">
-                🚀
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-gray-900">Project Management</h3>
-                <p class="text-gray-600 text-sm">Leadership and management competencies</p>
-              </div>
-            </div>
-            <div v-if="projectManagementResult" class="text-right">
-              <div class="text-2xl font-bold text-orange-600">{{ getProjectManagementScore() }}%</div>
-              <div class="text-sm text-gray-500">{{ formatDate(projectManagementResult.completed_at) }}</div>
-            </div>
-          </div>
-
-          <div v-if="projectManagementResult" class="space-y-4">
-            <!-- PM Competency Areas -->
-            <div class="space-y-3">
-              <div 
-                v-for="(competency, key) in getProjectManagementCompetencies()"
-                :key="key"
-                class="bg-orange-50 rounded-lg p-3"
-              >
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-medium text-orange-800">{{ competency.name }}</span>
-                  <span class="text-sm text-orange-600">{{ competency.score }}%</span>
-                </div>
-                <div class="w-full bg-orange-200 rounded-full h-2">
-                  <div 
-                    class="bg-orange-600 h-2 rounded-full transition-all duration-1000"
-                    :style="{ width: `${competency.score}%` }"
-                  ></div>
-                </div>
-              </div>
-            </div>
-
-            <NuxtLink 
-              :to="$localePath('/project-management')" 
-              class="block w-full text-center bg-orange-100 text-orange-800 py-2 px-4 rounded-lg hover:bg-orange-200 transition-colors text-sm font-medium"
-            >
-              Retake Assessment
-            </NuxtLink>
-          </div>
-
-          <div v-else class="text-center py-8">
-            <div class="text-4xl mb-4 opacity-50">🚀</div>
-            <p class="text-gray-500 mb-4">No project management assessment completed yet</p>
-            <NuxtLink 
-              :to="$localePath('/project-management')" 
-              class="bg-orange-600 text-white py-2 px-6 rounded-lg hover:bg-orange-700 transition-colors font-medium"
-            >
-              Take Assessment
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
-
-      <!-- Assessment Platform Overview -->
-      <div class="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl border border-gray-700 p-6 mb-8">
-        <h3 class="text-xl font-bold text-white mb-6">📊 Assessment Platform Overview</h3>
+      <!-- Tree of Self-Knowledge Visualization -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-12 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Your Tree of Self-Knowledge</h2>
         
-        <div class="grid md:grid-cols-5 gap-4 mb-6">
-          <div class="text-center">
-            <div class="text-2xl font-bold text-blue-400">{{ testStatistics.total }}</div>
-            <div class="text-gray-300 text-sm">Total Tests</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-green-400">{{ testStatistics.implemented }}</div>
-            <div class="text-gray-300 text-sm">Implemented</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-purple-400">{{ testStatistics.completed }}</div>
-            <div class="text-gray-300 text-sm">Completed</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-yellow-400">{{ testStatistics.available }}</div>
-            <div class="text-gray-300 text-sm">Available</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-orange-400">{{ testStatistics.nonImplemented }}</div>
-            <div class="text-gray-300 text-sm">Coming Soon</div>
+        <div class="relative flex justify-center items-end min-h-[400px] overflow-hidden">
+          <!-- Tree Background -->
+          <div class="absolute inset-0 bg-gradient-to-t from-green-50 dark:from-green-900/10 to-blue-50 dark:to-blue-900/10 rounded-xl"></div>
+          
+          <!-- Ground -->
+          <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-amber-100 dark:from-amber-900/20 to-transparent rounded-b-xl"></div>
+          
+          <!-- Tree Trunk -->
+          <div class="relative z-10 mb-4">
+            <div class="w-16 h-32 bg-gradient-to-t from-amber-800 dark:from-amber-700 to-amber-600 dark:to-amber-500 rounded-t-3xl mx-auto shadow-lg"></div>
+            
+            <!-- Tree Crown Base -->
+            <div class="relative -mt-8">
+              <!-- Main Crown -->
+              <div class="w-64 h-64 bg-gradient-to-br from-green-400 dark:from-green-500 to-green-600 dark:to-green-700 rounded-full opacity-80 shadow-xl"></div>
+              
+              <!-- Secondary Crowns for bigger trees -->
+              <div v-if="completedTestsCount > 5" class="absolute -top-16 -left-16 w-48 h-48 bg-gradient-to-br from-green-300 dark:from-green-400 to-green-500 dark:to-green-600 rounded-full opacity-70 shadow-lg"></div>
+              <div v-if="completedTestsCount > 10" class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-green-300 dark:from-green-400 to-green-500 dark:to-green-600 rounded-full opacity-60 shadow-lg"></div>
+              <div v-if="completedTestsCount > 15" class="absolute -top-8 -left-24 w-32 h-32 bg-gradient-to-br from-green-400 dark:from-green-500 to-green-600 dark:to-green-700 rounded-full opacity-50 shadow-md"></div>
+              
+              <!-- Leaves for each completed test -->
+              <div 
+                v-for="(result, index) in userTestResults.slice(0, 20)" 
+                :key="result.id"
+                class="absolute leaf cursor-pointer transform transition-all duration-300 hover:scale-110"
+                :style="getLeafPosition(index)"
+                @click="showTestDetail(result)"
+                :title="getTestName(result.test_type_id)"
+              >
+                <div 
+                  class="w-8 h-8 rounded-full shadow-lg border-2 border-white dark:border-gray-700 flex items-center justify-center text-white text-xs font-bold"
+                  :class="getLeafColor(result.test_type_id)"
+                >
+                  {{ getTestIcon(result.test_type_id) }}
+                </div>
+              </div>
+              
+              <!-- Sparkling effects for recent tests -->
+              <div 
+                v-for="(sparkle, index) in recentTestSparkles" 
+                :key="`sparkle-${index}`"
+                class="absolute animate-ping"
+                :style="sparkle.style"
+              >
+                <div class="w-2 h-2 bg-yellow-400 rounded-full opacity-75"></div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Completion Progress Bar -->
-        <div class="mb-4">
-          <div class="flex justify-between text-sm text-gray-300 mb-1">
-            <span>Progress</span>
-            <span>{{ Math.round((testStatistics.completed / testStatistics.implemented) * 100) }}% of implemented tests</span>
-          </div>
-          <div class="w-full bg-gray-700 rounded-full h-2">
+        <!-- Tree Growth Message -->
+        <div class="text-center mt-8">
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-2">{{ getTreeMessage() }}</p>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mx-auto max-w-md">
             <div 
-              class="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full transition-all duration-300"
-              :style="{ width: `${(testStatistics.completed / testStatistics.implemented) * 100}%` }"
+              class="bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full transition-all duration-1000"
+              :style="{ width: growthPercentage + '%' }"
             ></div>
           </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            {{ completedTestsCount }} / {{ totalAvailableTests }} assessments completed
+          </p>
         </div>
       </div>
 
-      <!-- All Completed Tests -->
-      <div v-if="completedTestsData.length > 0" class="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl border border-gray-700 p-6 mb-8">
-        <h3 class="text-xl font-bold text-white mb-6">✅ Your Completed Assessments</h3>
-        
-        <div class="grid md:grid-cols-2 gap-4">
-          <div 
-            v-for="test in completedTestsData" 
-            :key="test.id"
-            class="bg-gray-700 bg-opacity-50 rounded-lg p-4 border border-gray-600"
-          >
-            <div class="flex items-center justify-between mb-2">
-              <div class="flex items-center">
-                <div class="text-2xl mr-3">{{ getTestIcon(test.id) }}</div>
+      <!-- Assessment Categories Dashboard -->
+      <div class="grid lg:grid-cols-2 gap-8 mb-12">
+        <!-- Completed Assessments -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Your Assessment Journey</h3>
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 text-sm font-medium rounded-full">
+              {{ completedTestsCount }} Completed
+            </span>
+          </div>
+
+          <div class="space-y-4 max-h-96 overflow-y-auto">
+            <div 
+              v-for="result in sortedTestResults" 
+              :key="result.id"
+              class="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
+              @click="showTestDetail(result)"
+            >
+              <div class="flex items-center space-x-4">
+                <div 
+                  class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                  :class="getLeafColor(result.test_type_id)"
+                >
+                  {{ getTestIcon(result.test_type_id) }}
+                </div>
                 <div>
-                  <div class="font-medium text-white">{{ test.name }}</div>
-                  <div class="text-xs text-gray-400">{{ getCategoryDisplayName(test.category) }}</div>
+                  <h4 class="font-semibold text-gray-900 dark:text-white">{{ getTestName(result.test_type_id) }}</h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">{{ formatDate(result.completed_at) }}</p>
                 </div>
               </div>
-              <div class="text-green-400 font-semibold">
-                {{ getAssessmentScore(getUserResult(test.id)) }}
+              <div class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600 dark:text-gray-400">{{ getResultScore(result) }}</span>
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
               </div>
             </div>
-            <div class="text-sm text-gray-300 mb-2">{{ test.short_description }}</div>
-            <div class="flex justify-between items-center text-xs text-gray-400">
-              <span>{{ formatDate(getUserResult(test.id)?.last_taken_at) }}</span>
-              <NuxtLink 
-                :to="$localePath(`/test/${test.id}`)"
-                class="text-indigo-400 hover:text-indigo-300 transition-colors"
-              >
-                View Details
-              </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Recommended Next Steps -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Grow Your Tree</h3>
+            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300 text-sm font-medium rounded-full">
+              {{ remainingTestsCount }} Remaining
+            </span>
+          </div>
+
+          <div class="space-y-4 max-h-96 overflow-y-auto">
+            <div 
+              v-for="test in recommendedTests" 
+              :key="test.id"
+              class="group flex items-center justify-between p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all cursor-pointer"
+              @click="startTest(test.id)"
+            >
+              <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-400 text-sm group-hover:bg-blue-100 dark:group-hover:bg-blue-900/20 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {{ getTestIcon(test.id) }}
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-white">{{ test.name }}</h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">{{ test.estimated_duration_minutes }} minutes • {{ test.question_count }} questions</p>
+                </div>
+              </div>
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Progress Over Time -->
-      <div v-if="totalAssessments > 0" class="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl border border-gray-700 p-6 mb-8">
-        <h3 class="text-xl font-bold text-white mb-6">📈 Recent Activity</h3>
+      <!-- Assessment Categories Progress -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Progress by Category</h3>
         
-        <div class="space-y-3">
-          <div 
-            v-for="assessment in recentAssessments" 
-            :key="assessment.id"
-            class="flex items-center justify-between p-3 bg-gray-700 bg-opacity-50 rounded-lg"
-          >
-            <div class="flex items-center">
-              <div class="text-2xl mr-3">{{ getTestIcon(assessment.test_type_id) }}</div>
-              <div>
-                <div class="font-medium text-white">{{ getTestName(assessment.test_type_id) }}</div>
-                <div class="text-sm text-gray-400">{{ formatDate(assessment.completed_at) }}</div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div v-for="category in categoryProgress" :key="category.name" class="text-center">
+            <div class="relative w-24 h-24 mx-auto mb-4">
+              <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-width="8"
+                  fill="transparent"
+                  class="text-gray-200 dark:text-gray-700"
+                />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-width="8"
+                  fill="transparent"
+                  :stroke-dasharray="circumference"
+                  :stroke-dashoffset="circumference - (category.progress / 100) * circumference"
+                  :class="category.color"
+                  class="transition-all duration-1000 ease-out"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-lg font-bold text-gray-900 dark:text-white">{{ Math.round(category.progress) }}%</span>
               </div>
             </div>
-            <div class="text-right">
-              <div class="font-semibold text-indigo-400">{{ getAssessmentScore(assessment) }}</div>
-            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-1">{{ category.name }}</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ category.completed }}/{{ category.total }}</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Recommended Next Steps -->
-      <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-xl shadow-lg text-white p-6">
-        <h3 class="text-2xl font-bold mb-6 text-white">🎯 Recommended Next Steps</h3>
-        
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-semibold mb-4 text-white">📋 Tests to Take</h4>
-            <div class="space-y-3">
-              <div 
-                v-for="recommendation in getTestRecommendations()"
-                :key="recommendation.testId"
-                class="bg-black bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 rounded-lg p-4 hover:bg-opacity-20 transition-all duration-200"
-              >
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    <div class="text-2xl mr-3">{{ recommendation.icon }}</div>
-                    <div>
-                      <div class="font-medium text-white">{{ recommendation.name }}</div>
-                      <div class="text-sm text-white text-opacity-90">{{ recommendation.reason }}</div>
-                    </div>
-                  </div>
-                  <NuxtLink 
-                    :to="$localePath(`/test/${recommendation.testId}`)"
-                    class="bg-white text-indigo-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-100 transition-colors shadow-sm"
-                  >
-                    Start
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
+    <!-- Test Detail Modal -->
+    <div v-if="selectedTestDetail" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" @click="closeTestDetail">
+      <div class="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto" @click.stop>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ getTestName(selectedTestDetail.test_type_id) }}</h3>
+            <button @click="closeTestDetail" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
           </div>
-
-          <div>
-            <h4 class="text-lg font-semibold mb-4 text-white">🔄 Tests to Retake</h4>
-            <div class="space-y-3">
-              <div 
-                v-for="retake in getRetakeRecommendations()"
-                :key="retake.testId"
-                class="bg-black bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 rounded-lg p-4 hover:bg-opacity-20 transition-all duration-200"
+          
+          <div class="space-y-4">
+            <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <span class="font-medium text-gray-900 dark:text-white">Completed:</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ formatDate(selectedTestDetail.completed_at) }}</span>
+            </div>
+            
+            <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <span class="font-medium text-gray-900 dark:text-white">Result:</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ getResultScore(selectedTestDetail) }}</span>
+            </div>
+            
+            <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <p class="text-sm text-blue-800 dark:text-blue-300">
+                {{ getTestDescription(selectedTestDetail.test_type_id) }}
+              </p>
+            </div>
+            
+            <div class="flex space-x-4 pt-4">
+              <button 
+                @click="retakeTest(selectedTestDetail.test_type_id)"
+                class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
               >
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    <div class="text-2xl mr-3">{{ retake.icon }}</div>
-                    <div>
-                      <div class="font-medium text-white">{{ retake.name }}</div>
-                      <div class="text-sm text-white text-opacity-90">{{ retake.reason }}</div>
-                    </div>
-                  </div>
-                  <NuxtLink 
-                    :to="retake.link"
-                    class="bg-white text-indigo-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-100 transition-colors shadow-sm"
-                  >
-                    Retake
-                  </NuxtLink>
-                </div>
-              </div>
+                Retake Assessment
+              </button>
+              <button 
+                @click="closeTestDetail"
+                class="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-3 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors font-medium"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
@@ -467,676 +330,272 @@
 </template>
 
 <script setup>
-const user = useSupabaseUser()
+import { ref, computed, onMounted } from 'vue'
+
 const supabase = useSupabaseClient()
+const user = useSupabaseUser()
+const selectedTestDetail = ref(null)
 
 // Reactive data
 const userTestResults = ref([])
-const allAssessments = ref([])
-const loading = ref(true)
 
-// All available tests (synced with landing page)
-const allTests = ref([
-  // === EXISTING TESTS (keeping for compatibility) ===
-  {
-    id: 'kohlberg_moral',
-    name: 'Kohlberg Moral Development',
-    short_description: 'Discover your moral reasoning stage through ethical dilemmas',
-    description: 'Assess your stage of moral reasoning based on Lawrence Kohlberg\'s theory of moral development',
-    category: 'values_mindsets',
-    subcategory: 'other_values',
-    tags: ['morals', 'ethics', 'development'],
-    question_count: 3,
-    estimated_duration_minutes: 15,
-    evaluation_method: 'ai_analysis',
-    popularity: 4,
-    implemented: true
-  },
-  {
-    id: 'big_five_personality',
-    name: 'Big Five Personality (OCEAN)',
-    short_description: 'Explore your personality across five key dimensions',
-    description: 'Comprehensive personality assessment based on the five-factor model (OCEAN)',
-    category: 'values_mindsets',
-    subcategory: 'other_values',
-    tags: ['personality', 'traits', 'psychology'],
-    question_count: 50,
-    estimated_duration_minutes: 25,
-    evaluation_method: 'multiple_choice',
-    popularity: 5,
-    implemented: true
-  },
-  {
-    id: 'communication_skills',
-    name: 'Communication Skills',
-    short_description: 'Assess your communication effectiveness and style',
-    description: 'Evaluate your communication effectiveness across different contexts and situations',
-    category: 'skills_strengths',
-    subcategory: '4cs',
-    tags: ['communication', 'interpersonal', 'professional'],
-    question_count: 30,
-    estimated_duration_minutes: 20,
-    evaluation_method: 'multiple_choice',
-    popularity: 3,
-    implemented: true
-  },
-  {
-    id: 'project_management',
-    name: 'Project Management',
-    short_description: 'Measure your project leadership and management skills',
-    description: 'Assess your project management skills and leadership capabilities',
-    category: 'knowledge',
-    subcategory: 'managerial',
-    tags: ['management', 'leadership', 'planning'],
-    question_count: 35,
-    estimated_duration_minutes: 25,
-    evaluation_method: 'multiple_choice',
-    popularity: 2,
-    implemented: true
-  },
+// All available tests (from the tests-tasks.md file)
+const allAvailableTests = [
+  // Priority 1
+  { id: 'personal_motivation', name: 'Personal Motivations Assessment', category: 'motivation', description: 'Deep dive into your fundamental motivational drivers and patterns', estimated_duration_minutes: 20, question_count: 25 },
+  { id: 'change_readiness', name: 'Change Readiness Assessment', category: 'motivation', description: 'Evaluate your present life situation and readiness for transformation', estimated_duration_minutes: 15, question_count: 20 },
+  { id: 'excellence_mindset', name: 'Excellence Orientation', category: 'values_mindsets', description: 'Assess your commitment to excellence and continuous improvement', estimated_duration_minutes: 20, question_count: 26 },
+  { id: 'engagement_commitment', name: 'Engagement & Commitment', category: 'values_mindsets', description: 'Measure your level of engagement and commitment to causes', estimated_duration_minutes: 18, question_count: 24 },
+  
+  // Priority 2
+  { id: 'team_leadership', name: 'Team Leadership Assessment', category: 'knowledge', description: 'Comprehensive evaluation of team leadership capabilities', estimated_duration_minutes: 30, question_count: 40 },
+  { id: 'character_assessment', name: 'Character & Integrity Assessment', category: 'values_mindsets', description: 'Evaluate character development and ethical decision-making', estimated_duration_minutes: 25, question_count: 32 },
+  { id: 'entrepreneurship', name: 'Entrepreneurial Mindset', category: 'values_mindsets', description: 'Assess entrepreneurial thinking and opportunity recognition', estimated_duration_minutes: 25, question_count: 30 },
+  { id: 'collaboration_skills', name: 'Collaboration Excellence', category: 'skills_strengths', description: 'Evaluate teamwork and collaborative leadership skills', estimated_duration_minutes: 22, question_count: 28 },
+  
+  // Priority 3
+  { id: 'change_management', name: 'Change Management Mastery', category: 'knowledge', description: 'Skills in leading organizational transformation', estimated_duration_minutes: 25, question_count: 35 },
+  { id: 'strengths_finder', name: 'Strengths Profile Assessment', category: 'skills_strengths', description: 'Identify your top natural talents and strengths', estimated_duration_minutes: 30, question_count: 45 },
+  { id: 'critical_thinking', name: 'Critical Thinking Assessment', category: 'skills_strengths', description: 'Evaluate analytical and logical reasoning abilities', estimated_duration_minutes: 35, question_count: 30 },
+  { id: 'creativity_assessment', name: 'Creativity & Innovation Assessment', category: 'skills_strengths', description: 'Measure creative thinking and innovation potential', estimated_duration_minutes: 30, question_count: 25 },
+  { id: 'org_culture_preference', name: 'Organizational Culture Fit', category: 'values_mindsets', description: 'Identify preferred organizational culture types', estimated_duration_minutes: 25, question_count: 35 },
+  
+  // Priority 4
+  { id: 'via_values', name: 'Values in Action (VIA) Survey', category: 'values_mindsets', description: 'Comprehensive assessment of 24 character strengths', estimated_duration_minutes: 45, question_count: 120 },
+  { id: 'kegan_stages', name: 'Adult Development Stages (Kegan)', category: 'values_mindsets', description: 'Assess stage of adult psychological development', estimated_duration_minutes: 30, question_count: 28 },
+  { id: 'implicit_bias', name: 'Implicit Bias Awareness', category: 'values_mindsets', description: 'Explore unconscious biases and develop awareness', estimated_duration_minutes: 35, question_count: 40 },
 
-  // === NEW MOTIVATION TESTS ===
-  {
-    id: 'personal_motivation',
-    name: 'Personal Motivations Assessment',
-    short_description: 'Discover what truly drives you: fears, passions, and core motivations',
-    description: 'Deep dive into your fundamental motivational drivers, including fear-based and passion-driven behaviors',
-    category: 'motivation',
-    subcategory: 'personal_drivers',
-    tags: ['motivation', 'passion', 'fear', 'self-awareness'],
-    question_count: 25,
-    estimated_duration_minutes: 20,
-    evaluation_method: 'mixed',
-    popularity: 4,
-    implemented: false
-  },
-  {
-    id: 'change_readiness',
-    name: 'Change Readiness Assessment',
-    short_description: 'Evaluate your current challenges and readiness for transformation',
-    description: 'Assess your current life situation, challenges, and readiness to implement meaningful changes',
-    category: 'motivation',
-    subcategory: 'change_planning',
-    tags: ['change', 'planning', 'readiness', 'transformation'],
-    question_count: 20,
-    estimated_duration_minutes: 15,
-    evaluation_method: 'reflective',
-    popularity: 3,
-    implemented: false
-  },
+  // Existing tests
+  { id: 'kohlberg_moral', name: 'Kohlberg Moral Development', category: 'values_mindsets', description: 'AI-powered analysis of ethical reasoning', estimated_duration_minutes: 30, question_count: 10 },
+  { id: 'big_five_personality', name: 'Big Five Personality', category: 'skills_strengths', description: 'Comprehensive personality assessment', estimated_duration_minutes: 15, question_count: 50 },
+  { id: 'communication_skills', name: 'Communication Skills', category: 'skills_strengths', description: 'Scenario-based communication evaluation', estimated_duration_minutes: 20, question_count: 25 },
+  { id: 'project_management', name: 'Project Management', category: 'knowledge', description: 'Competency-based management assessment', estimated_duration_minutes: 25, question_count: 30 }
+]
 
-  // === NEW KNOWLEDGE TESTS ===
-  {
-    id: 'team_leadership',
-    name: 'Team Leadership Assessment',
-    short_description: 'Measure your effectiveness in leading and managing teams',
-    description: 'Comprehensive evaluation of your team leadership skills, including motivation, delegation, and team dynamics',
-    category: 'knowledge',
-    subcategory: 'managerial',
-    tags: ['leadership', 'teams', 'management', 'delegation'],
-    question_count: 40,
-    estimated_duration_minutes: 30,
-    evaluation_method: 'scenario_based',
-    popularity: 5,
-    implemented: false
-  },
-  {
-    id: 'change_management',
-    name: 'Change Management Mastery',
-    short_description: 'Assess your ability to drive and manage organizational change',
-    description: 'Evaluate your skills in leading organizational transformation, overcoming resistance, and implementing change',
-    category: 'knowledge',
-    subcategory: 'managerial',
-    tags: ['change management', 'transformation', 'leadership', 'strategy'],
-    question_count: 35,
-    estimated_duration_minutes: 25,
-    evaluation_method: 'case_study',
-    popularity: 4,
-    implemented: false
-  },
+// Computed properties
+const completedTestsCount = computed(() => userTestResults.value.length)
+const totalAvailableTests = computed(() => allAvailableTests.length)
+const remainingTestsCount = computed(() => totalAvailableTests.value - completedTestsCount.value)
+const growthPercentage = computed(() => (completedTestsCount.value / totalAvailableTests.value) * 100)
 
-  // === NEW SKILLS/STRENGTHS TESTS ===
-  {
-    id: 'strengths_finder',
-    name: 'Strengths Profile Assessment',
-    short_description: 'Identify your top strengths and natural talents',
-    description: 'Discover your unique combination of talents and strengths, similar to StrengthsFinder methodology',
-    category: 'skills_strengths',
-    subcategory: 'strengths',
-    tags: ['strengths', 'talents', 'natural abilities', 'excellence'],
-    question_count: 45,
-    estimated_duration_minutes: 30,
-    evaluation_method: 'forced_choice',
-    popularity: 5,
-    implemented: false
-  },
-  {
-    id: 'critical_thinking',
-    name: 'Critical Thinking Assessment',
-    short_description: 'Evaluate your analytical and logical reasoning abilities',
-    description: 'Assess your critical thinking skills including analysis, evaluation, inference, and problem-solving',
-    category: 'skills_strengths',
-    subcategory: '4cs',
-    tags: ['critical thinking', 'analysis', 'logic', 'reasoning'],
-    question_count: 30,
-    estimated_duration_minutes: 35,
-    evaluation_method: 'problem_solving',
-    popularity: 4,
-    implemented: false
-  },
-  {
-    id: 'creativity_assessment',
-    name: 'Creativity & Innovation',
-    short_description: 'Measure your creative thinking and innovation potential',
-    description: 'Evaluate your creative problem-solving abilities, divergent thinking, and innovation mindset',
-    category: 'skills_strengths',
-    subcategory: '4cs',
-    tags: ['creativity', 'innovation', 'divergent thinking', 'ideation'],
-    question_count: 25,
-    estimated_duration_minutes: 30,
-    evaluation_method: 'creative_tasks',
-    popularity: 3,
-    implemented: false
-  },
-  {
-    id: 'collaboration_skills',
-    name: 'Collaboration Excellence',
-    short_description: 'Assess your teamwork and collaborative leadership skills',
-    description: 'Evaluate your ability to work effectively with others, facilitate cooperation, and build consensus',
-    category: 'skills_strengths',
-    subcategory: '4cs',
-    tags: ['collaboration', 'teamwork', 'cooperation', 'consensus'],
-    question_count: 28,
-    estimated_duration_minutes: 22,
-    evaluation_method: 'behavioral',
-    popularity: 4,
-    implemented: false
-  },
-
-  // === NEW VALUES & MINDSETS TESTS ===
-  {
-    id: 'character_assessment',
-    name: 'Character & Integrity (Charakternosť)',
-    short_description: 'Evaluate your character strength, moral courage, and integrity',
-    description: 'Assess your character development including respect, moral courage, and ethical decision-making',
-    category: 'values_mindsets',
-    subcategory: '4es_chela',
-    tags: ['character', 'integrity', 'moral courage', 'respect'],
-    question_count: 32,
-    estimated_duration_minutes: 25,
-    evaluation_method: 'ethical_scenarios',
-    popularity: 3,
-    implemented: false
-  },
-  {
-    id: 'excellence_mindset',
-    name: 'Excellence Orientation',
-    short_description: 'Measure your drive for excellence and continuous improvement',
-    description: 'Assess your commitment to excellence, quality standards, and continuous improvement mindset',
-    category: 'values_mindsets',
-    subcategory: '4es_chela',
-    tags: ['excellence', 'quality', 'improvement', 'standards'],
-    question_count: 26,
-    estimated_duration_minutes: 20,
-    evaluation_method: 'behavioral',
-    popularity: 4,
-    implemented: false
-  },
-  {
-    id: 'entrepreneurship',
-    name: 'Entrepreneurial Mindset (Podnikavosť)',
-    short_description: 'Assess your entrepreneurial thinking and opportunity recognition',
-    description: 'Evaluate your entrepreneurial mindset including opportunity identification, risk-taking, and bias for action',
-    category: 'values_mindsets',
-    subcategory: '4es_chela',
-    tags: ['entrepreneurship', 'opportunity', 'risk-taking', 'action'],
-    question_count: 30,
-    estimated_duration_minutes: 25,
-    evaluation_method: 'scenario_based',
-    popularity: 4,
-    implemented: false
-  },
-  {
-    id: 'engagement_commitment',
-    name: 'Engagement & Commitment (Angažovanosť)',
-    short_description: 'Measure your level of engagement and commitment to causes',
-    description: 'Assess your dedication, commitment level, and engagement with work and causes you care about',
-    category: 'values_mindsets',
-    subcategory: '4es_chela',
-    tags: ['engagement', 'commitment', 'dedication', 'purpose'],
-    question_count: 24,
-    estimated_duration_minutes: 18,
-    evaluation_method: 'reflective',
-    popularity: 3,
-    implemented: false
-  },
-  {
-    id: 'via_values',
-    name: 'Values in Action (VIA) Survey',
-    short_description: 'Discover your core character strengths and values',
-    description: 'Comprehensive assessment of 24 character strengths that represent your core values in action',
-    category: 'values_mindsets',
-    subcategory: 'other_values',
-    tags: ['values', 'character strengths', 'virtues', 'VIA'],
-    question_count: 120,
-    estimated_duration_minutes: 45,
-    evaluation_method: 'likert_scale',
-    popularity: 5,
-    implemented: false
-  },
-  {
-    id: 'org_culture_preference',
-    name: 'Organizational Culture Fit',
-    short_description: 'Identify your preferred organizational culture and development stage',
-    description: 'Assess your preferences across organizational culture types from Red to Teal (Spiral Dynamics)',
-    category: 'values_mindsets',
-    subcategory: 'other_values',
-    tags: ['culture', 'organization', 'spiral dynamics', 'development'],
-    question_count: 35,
-    estimated_duration_minutes: 25,
-    evaluation_method: 'preference_ranking',
-    popularity: 3,
-    implemented: false
-  },
-  {
-    id: 'kegan_stages',
-    name: 'Adult Development Stages (Kegan)',
-    short_description: 'Understand your stage of adult psychological development',
-    description: 'Assessment based on Robert Kegan\'s stages of adult development and meaning-making',
-    category: 'values_mindsets',
-    subcategory: 'other_values',
-    tags: ['development', 'psychology', 'meaning-making', 'Kegan'],
-    question_count: 28,
-    estimated_duration_minutes: 30,
-    evaluation_method: 'developmental',
-    popularity: 2,
-    implemented: false
-  },
-  {
-    id: 'implicit_bias',
-    name: 'Implicit Bias Awareness',
-    short_description: 'Explore your unconscious biases and develop awareness',
-    description: 'Assessment to help identify and understand your implicit biases across various dimensions',
-    category: 'values_mindsets',
-    subcategory: 'other_values',
-    tags: ['bias', 'unconscious', 'awareness', 'diversity'],
-    question_count: 40,
-    estimated_duration_minutes: 35,
-    evaluation_method: 'iat_style',
-    popularity: 4,
-    implemented: false
-  }
-])
-
-// Computed properties for individual test results
-const kohlbergResult = computed(() => 
-  userTestResults.value.find(result => result.test_type_id === 'kohlberg_moral')
-)
-
-const bigFiveResult = computed(() => 
-  userTestResults.value.find(result => result.test_type_id === 'big_five_personality')
-)
-
-const communicationResult = computed(() => 
-  userTestResults.value.find(result => result.test_type_id === 'communication_skills')
-)
-
-const projectManagementResult = computed(() => 
-  userTestResults.value.find(result => result.test_type_id === 'project_management')
-)
-
-// Overall profile metrics
-const totalAssessments = computed(() => allAssessments.value.length)
-
-const completionRate = computed(() => {
-  const totalPossibleTests = 4 // Kohlberg, Big Five, Communication, PM
-  const completedTests = userTestResults.value.length
-  return Math.round((completedTests / totalPossibleTests) * 100)
+const sortedTestResults = computed(() => {
+  return [...userTestResults.value].sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at))
 })
 
-const profileScore = computed(() => {
-  if (userTestResults.value.length === 0) return 0
+const recommendedTests = computed(() => {
+  const completedTestIds = new Set(userTestResults.value.map(r => r.test_type_id))
+  return allAvailableTests.filter(test => !completedTestIds.has(test.id)).slice(0, 6)
+})
+
+const recentTestSparkles = computed(() => {
+  const recent = userTestResults.value.filter(test => {
+    const testDate = new Date(test.completed_at)
+    const weekAgo = new Date()
+    weekAgo.setDate(weekAgo.getDate() - 7)
+    return testDate > weekAgo
+  })
   
-  let totalScore = 0
-  let count = 0
+  return recent.slice(0, 3).map((_, index) => ({
+    style: {
+      top: Math.random() * 200 + 'px',
+      left: Math.random() * 200 + 'px'
+    }
+  }))
+})
+
+const categoryProgress = computed(() => {
+  const categories = {
+    'motivation': { name: 'Motivation', color: 'text-green-500', completed: 0, total: 0 },
+    'knowledge': { name: 'Knowledge', color: 'text-blue-500', completed: 0, total: 0 },
+    'skills_strengths': { name: 'Skills & Strengths', color: 'text-purple-500', completed: 0, total: 0 },
+    'values_mindsets': { name: 'Values & Mindsets', color: 'text-orange-500', completed: 0, total: 0 }
+  }
   
-  // Calculate average score across all tests
-  userTestResults.value.forEach(result => {
-    if (result.test_type_id === 'kohlberg_moral' && result.primary_stage) {
-      totalScore += (result.primary_stage / 6) * 100
-      count++
-    } else if (result.latest_score) {
-      // For other tests that have overall scores
-      if (result.latest_score.overallScore) {
-        totalScore += result.latest_score.overallScore
-        count++
-      } else if (result.latest_score.dimensions) {
-        // Big Five average
-        const scores = Object.values(result.latest_score.dimensions).map(d => d.score)
-        const average = scores.reduce((sum, score) => sum + score, 0) / scores.length
-        totalScore += average
-        count++
+  const completedTestIds = new Set(userTestResults.value.map(r => r.test_type_id))
+  
+  allAvailableTests.forEach(test => {
+    if (categories[test.category]) {
+      categories[test.category].total++
+      if (completedTestIds.has(test.id)) {
+        categories[test.category].completed++
       }
     }
   })
   
-  return count > 0 ? Math.round(totalScore / count) : 0
+  return Object.values(categories).map(cat => ({
+    ...cat,
+    progress: cat.total > 0 ? (cat.completed / cat.total) * 100 : 0
+  }))
 })
 
-const recentAssessments = computed(() => 
-  allAssessments.value
-    .sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at))
-    .slice(0, 5)
-)
+const circumference = 2 * Math.PI * 40 // for progress circles
 
 // Helper functions
-const getUserInitials = () => {
-  if (!user.value?.email) return 'U'
-  const email = user.value.email
-  return email.charAt(0).toUpperCase()
+const getTreeLevel = () => {
+  const count = completedTestsCount.value
+  if (count === 0) return 'Seedling'
+  if (count < 5) return 'Sprout'
+  if (count < 10) return 'Young Tree'
+  if (count < 15) return 'Growing Tree'
+  if (count < 20) return 'Mature Tree'
+  return 'Ancient Tree'
 }
 
-const formatDate = (dateString) => {
-  if (!dateString) return 'Unknown'
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
+const getTreeMessage = () => {
+  const count = completedTestsCount.value
+  if (count === 0) return 'Plant your first seed of self-knowledge'
+  if (count < 5) return 'Your tree is beginning to sprout new leaves'
+  if (count < 10) return 'Watch your tree grow with each new insight'
+  if (count < 15) return 'Your tree is flourishing with wisdom'
+  if (count < 20) return 'You have cultivated a magnificent tree of knowledge'
+  return 'Your ancient tree stands as a testament to your self-discovery journey'
 }
 
-const getStageName = (stage) => {
-  const names = {
-    1: 'Punishment Avoidance',
-    2: 'Self-Interest',
-    3: 'Social Approval',
-    4: 'Law and Order',
-    5: 'Social Contract', 
-    6: 'Universal Principles'
-  }
-  return names[stage] || `Stage ${stage}`
-}
-
-const getStageDescription = (stage) => {
-  const descriptions = {
-    1: 'Moral reasoning based on avoiding punishment and consequences',
-    2: 'Decisions based on personal benefit and reciprocity',
-    3: 'Focus on social approval and maintaining relationships',
-    4: 'Emphasis on rules, laws, and maintaining social order',
-    5: 'Consideration of social contracts and individual rights',
-    6: 'Universal ethical principles that transcend specific situations'
-  }
-  return descriptions[stage] || 'Moral reasoning assessment'
-}
-
-const getPersonalityDimensions = () => {
-  if (!bigFiveResult.value?.latest_score?.dimensions) return []
+const getLeafPosition = (index) => {
+  // Create organic-looking positioning for leaves
+  const angles = [
+    { top: '10%', left: '30%' }, { top: '15%', left: '70%' }, { top: '25%', left: '20%' },
+    { top: '30%', left: '80%' }, { top: '35%', left: '15%' }, { top: '40%', left: '75%' },
+    { top: '20%', left: '50%' }, { top: '45%', left: '40%' }, { top: '50%', left: '60%' },
+    { top: '55%', left: '25%' }, { top: '60%', left: '70%' }, { top: '25%', left: '85%' },
+    { top: '65%', left: '45%' }, { top: '70%', left: '30%' }, { top: '75%', left: '65%' },
+    { top: '35%', left: '5%' }, { top: '80%', left: '50%' }, { top: '45%', left: '90%' },
+    { top: '85%', left: '35%' }, { top: '90%', left: '70%' }
+  ]
   
-  const dimensionNames = {
-    openness: 'Openness to Experience',
-    conscientiousness: 'Conscientiousness',
-    extraversion: 'Extraversion',
-    agreeableness: 'Agreeableness',
-    neuroticism: 'Neuroticism'
-  }
-  
-  return Object.entries(bigFiveResult.value.latest_score.dimensions).map(([key, data]) => ({
-    name: dimensionNames[key] || key,
-    score: data.score
-  }))
+  return angles[index % angles.length]
 }
 
-const getOverallPersonalityScore = () => {
-  const dimensions = getPersonalityDimensions()
-  if (dimensions.length === 0) return 0
-  
-  const average = dimensions.reduce((sum, dim) => sum + dim.score, 0) / dimensions.length
-  return Math.round(average)
-}
-
-const getCommunicationSkills = () => {
-  if (!communicationResult.value?.latest_score?.skillAreas) return []
-  
-  const skillNames = {
-    verbal: 'Verbal Communication',
-    written: 'Written Communication',
-    listening: 'Active Listening',
-    nonverbal: 'Non-verbal Communication',
-    conflict: 'Conflict Resolution'
+const getLeafColor = (testTypeId) => {
+  const colors = {
+    'personal_motivation': 'bg-emerald-500',
+    'change_readiness': 'bg-teal-500', 
+    'excellence_mindset': 'bg-cyan-500',
+    'engagement_commitment': 'bg-sky-500',
+    'team_leadership': 'bg-blue-500',
+    'character_assessment': 'bg-indigo-500',
+    'entrepreneurship': 'bg-purple-500',
+    'collaboration_skills': 'bg-violet-500',
+    'change_management': 'bg-fuchsia-500',
+    'strengths_finder': 'bg-pink-500',
+    'critical_thinking': 'bg-rose-500',
+    'creativity_assessment': 'bg-orange-500',
+    'org_culture_preference': 'bg-amber-500',
+    'via_values': 'bg-yellow-500',
+    'kegan_stages': 'bg-lime-500',
+    'implicit_bias': 'bg-green-500',
+    'kohlberg_moral': 'bg-red-500',
+    'big_five_personality': 'bg-slate-500',
+    'communication_skills': 'bg-zinc-500',
+    'project_management': 'bg-stone-500'
   }
   
-  return Object.entries(communicationResult.value.latest_score.skillAreas).map(([key, data]) => ({
-    name: skillNames[key] || key,
-    score: data.score
-  }))
-}
-
-const getCommunicationScore = () => {
-  return communicationResult.value?.latest_score?.overallScore || 0
-}
-
-const getProjectManagementCompetencies = () => {
-  if (!projectManagementResult.value?.latest_score?.competencyAreas) return []
-  
-  const competencyNames = {
-    planning: 'Project Planning',
-    leadership: 'Team Leadership',
-    risk: 'Risk Management',
-    stakeholder: 'Stakeholder Management',
-    communication: 'Communication & Quality'
-  }
-  
-  return Object.entries(projectManagementResult.value.latest_score.competencyAreas).map(([key, data]) => ({
-    name: competencyNames[key] || key,
-    score: data.score
-  }))
-}
-
-const getProjectManagementScore = () => {
-  return projectManagementResult.value?.latest_score?.overallScore || 0
-}
-
-const getUniqueTestsCount = () => {
-  const uniqueTests = new Set(userTestResults.value.map(result => result.test_type_id))
-  return uniqueTests.size
-}
-
-const getAverageScore = () => {
-  return profileScore.value
+  return colors[testTypeId] || 'bg-gray-500'
 }
 
 const getTestIcon = (testId) => {
   const icons = {
+    'personal_motivation': '🎯',
+    'change_readiness': '🔄',
+    'excellence_mindset': '⭐',
+    'engagement_commitment': '💪',
+    'team_leadership': '👥',
+    'character_assessment': '🛡️',
+    'entrepreneurship': '🚀',
+    'collaboration_skills': '🤝',
+    'change_management': '📈',
+    'strengths_finder': '💎',
+    'critical_thinking': '🧠',
+    'creativity_assessment': '🎨',
+    'org_culture_preference': '🏢',
+    'via_values': '🌟',
+    'kegan_stages': '🌱',
+    'implicit_bias': '👁️',
     'kohlberg_moral': '⚖️',
-    'big_five_personality': '🧭',
+    'big_five_personality': '🌈',
     'communication_skills': '💬',
-    'project_management': '🚀'
+    'project_management': '📋'
   }
+  
   return icons[testId] || '📊'
 }
 
-const getCategoryDisplayName = (category) => {
-  const names = {
-    motivation: "Motivation",
-    knowledge: "Knowledge",
-    skills_strengths: "Skills & Strengths",
-    values_mindsets: "Values & Mindsets",
-    other: "Other Assessments",
-  };
-  return names[category] || category;
-};
-
 const getTestName = (testId) => {
-  const names = {
-    'kohlberg_moral': 'Kohlberg Moral Development',
-    'big_five_personality': 'Big Five Personality',
-    'communication_skills': 'Communication Skills',
-    'project_management': 'Project Management'
-  }
-  return names[testId] || testId
+  const test = allAvailableTests.find(t => t.id === testId)
+  return test ? test.name : testId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
 
-const getAssessmentScore = (assessment) => {
-  if (assessment.test_type_id === 'kohlberg_moral') {
-    return `Stage ${assessment.primary_stage || 'N/A'}`
-  }
-  if (assessment.evaluation?.overallScore) {
-    return `${assessment.evaluation.overallScore}%`
-  }
-  return 'Complete'
-}
-
-const getTestRecommendations = () => {
-  const completedTests = new Set(userTestResults.value.map(r => r.test_type_id))
-  const availableTests = allTests.value.filter(test => 
-    !completedTests.has(test.id) && test.implemented
-  )
-  
-  // If no implemented tests available, return empty
-  if (availableTests.length === 0) {
-    return []
-  }
-  
-  // Randomly shuffle and return up to 3 recommendations
-  const shuffled = [...availableTests].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, 3).map(test => ({
-    testId: test.id,
-    name: test.name,
-    icon: getTestIcon(test.id),
-    reason: test.short_description,
-    category: getCategoryDisplayName(test.category),
-    duration: test.estimated_duration_minutes,
-    questionCount: test.question_count
-  }))
-}
-
-// Computed properties for test analytics
-const implementedTests = computed(() => 
-  allTests.value.filter(test => test.implemented)
-)
-
-const nonImplementedTests = computed(() => 
-  allTests.value.filter(test => !test.implemented)
-)
-
-const completedTestsData = computed(() => {
-  const completedIds = new Set(userTestResults.value.map(r => r.test_type_id))
-  return allTests.value.filter(test => completedIds.has(test.id))
-})
-
-const testStatistics = computed(() => {
-  return {
-    total: allTests.value.length,
-    implemented: implementedTests.value.length,
-    nonImplemented: nonImplementedTests.value.length,
-    completed: completedTestsData.value.length,
-    available: implementedTests.value.filter(test => 
-      !userTestResults.value.find(r => r.test_type_id === test.id)
-    ).length
-  }
-})
-
-const getRetakeRecommendations = () => {
-  const recommendations = []
-  const now = new Date()
-  
-  userTestResults.value.forEach(result => {
-    const lastTaken = new Date(result.last_taken_at)
-    const daysSince = Math.floor((now - lastTaken) / (1000 * 60 * 60 * 24))
-    
-    // Recommend retaking if it's been more than 90 days
-    if (daysSince > 90) {
-      const testInfo = {
-        'kohlberg_moral': { name: 'Moral Development', icon: '⚖️', link: '/test/kohlberg_moral' },
-        'big_five_personality': { name: 'Big Five Personality', icon: '🧭', link: '/big-five' },
-        'communication_skills': { name: 'Communication Skills', icon: '💬', link: '/communication-skills' },
-        'project_management': { name: 'Project Management', icon: '🚀', link: '/project-management' }
-      }
-      
-      const info = testInfo[result.test_type_id]
-      if (info) {
-        recommendations.push({
-          testId: result.test_type_id,
-          name: info.name,
-          icon: info.icon,
-          link: info.link,
-          reason: `Last taken ${daysSince} days ago - track your progress`
-        })
-      }
-    }
-  })
-  
-  // If no retakes needed, suggest improvements
-  if (recommendations.length === 0 && userTestResults.value.length > 0) {
-    // Find lowest scoring test
-    const lowestResult = userTestResults.value.reduce((lowest, current) => {
-      const currentScore = getResultScore(current)
-      const lowestScore = getResultScore(lowest)
-      return currentScore < lowestScore ? current : lowest
-    })
-    
-    const testInfo = {
-      'kohlberg_moral': { name: 'Moral Development', icon: '⚖️', link: '/test/kohlberg_moral' },
-      'big_five_personality': { name: 'Big Five Personality', icon: '🧭', link: '/big-five' },
-      'communication_skills': { name: 'Communication Skills', icon: '💬', link: '/communication-skills' },
-      'project_management': { name: 'Project Management', icon: '🚀', link: '/project-management' }
-    }
-    
-    const info = testInfo[lowestResult.test_type_id]
-    if (info) {
-      recommendations.push({
-        testId: lowestResult.test_type_id,
-        name: info.name,
-        icon: info.icon,
-        link: info.link,
-        reason: 'Room for improvement - see your progress'
-      })
-    }
-  }
-  
-  return recommendations
+const getTestDescription = (testId) => {
+  const test = allAvailableTests.find(t => t.id === testId)
+  return test ? test.description : 'Assessment description not available'
 }
 
 const getResultScore = (result) => {
   if (result.test_type_id === 'kohlberg_moral') {
-    return (result.primary_stage || 1) * 16.67 // Convert stage to percentage
+    return `Stage ${result.evaluation?.primary_stage || 'N/A'}`
   }
-  return result.latest_score?.overallScore || 0
+  if (result.evaluation?.overallScore) {
+    return `${Math.round(result.evaluation.overallScore)}%`
+  }
+  if (result.evaluation?.primaryStage) {
+    return result.evaluation.primaryStage.name || 'Completed'
+  }
+  if (result.evaluation?.strengthScores) {
+    return `${result.evaluation.strengthScores.length} strengths identified`
+  }
+  if (result.evaluation?.overallLevel) {
+    return result.evaluation.overallLevel
+  }
+  return 'Completed'
 }
 
-// Data loading functions
-const loadUserData = async () => {
-  if (!user.value) return
-  
-  loading.value = true
-  
-  try {
-    // Load test results summary
-    const { data: testResults, error: testError } = await supabase
-      .from('user_test_results')
-      .select('*')
-      .eq('user_id', user.value.id)
-    
-    if (!testError && testResults) {
-      userTestResults.value = testResults
-    }
-    
-    // Load all assessments for timeline
-    const { data: assessments, error: assessmentError } = await supabase
-      .from('assessments')
-      .select('*')
-      .eq('user_id', user.value.id)
-      .order('completed_at', { ascending: false })
-    
-    if (!assessmentError && assessments) {
-      allAssessments.value = assessments
-    }
-    
-  } catch (error) {
-    console.error('Error loading user data:', error)
-  } finally {
-    loading.value = false
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+
+const showTestDetail = (result) => {
+  selectedTestDetail.value = result
+}
+
+const closeTestDetail = () => {
+  selectedTestDetail.value = null
+}
+
+const startTest = (testId) => {
+  const testRoutes = {
+    'personal_motivation': '/personal-motivation',
+    'change_readiness': '/change-readiness',
+    'excellence_mindset': '/excellence-mindset',
+    'engagement_commitment': '/engagement-commitment',
+    'team_leadership': '/team-leadership',
+    'character_assessment': '/character-assessment',
+    'entrepreneurship': '/entrepreneurship',
+    'collaboration_skills': '/collaboration-skills',
+    'change_management': '/change-management',
+    'strengths_finder': '/strengths-profile',
+    'critical_thinking': '/critical-thinking',
+    'creativity_assessment': '/creativity-innovation',
+    'org_culture_preference': '/culture-fit',
+    'via_values': '/via-values',
+    'kegan_stages': '/kegan-stages',
+    'implicit_bias': '/implicit-bias',
+    'kohlberg_moral': '/assessment?test=kohlberg_moral',
+    'big_five_personality': '/big-five',
+    'communication_skills': '/communication-skills',
+    'project_management': '/project-management'
   }
+  
+  const route = testRoutes[testId] || `/assessment?test=${testId}`
+  navigateTo(route)
+}
+
+const retakeTest = (testId) => {
+  closeTestDetail()
+  startTest(testId)
 }
 
 const logout = async () => {
@@ -1144,24 +603,87 @@ const logout = async () => {
   await navigateTo('/')
 }
 
-// Initialize data
-onMounted(async () => {
-  if (user.value) {
-    await loadUserData()
+// Load user test results
+const loadUserTestResults = async () => {
+  if (!user.value) return
+  
+  try {
+    const { data, error } = await supabase
+      .from('user_test_results')
+      .select('*')
+      .eq('user_id', user.value.id)
+      .order('completed_at', { ascending: false })
+    
+    if (!error && data) {
+      userTestResults.value = data
+    }
+  } catch (error) {
+    console.error('Error loading user test results:', error)
   }
-})
+}
 
-// Watch for auth changes
-watchEffect(() => {
-  if (user.value) {
-    loadUserData()
+onMounted(() => {
+  if (!user.value) {
+    navigateTo('/login')
+  } else {
+    loadUserTestResults()
   }
 })
 
 useHead({
-  title: 'My Profile - Assessment Platform',
+  title: 'Your Tree of Self-Knowledge - Profile Dashboard',
   meta: [
-    { name: 'description', content: 'View your comprehensive assessment profile and track your personal development across personality, values, and skills.' }
+    { name: 'description', content: 'Track your assessment journey and watch your tree of self-knowledge grow with every completed test.' }
   ]
 })
 </script>
+
+<style scoped>
+.leaf {
+  animation: leafSway 3s ease-in-out infinite;
+}
+
+.leaf:nth-child(even) {
+  animation-delay: -1.5s;
+}
+
+@keyframes leafSway {
+  0%, 100% {
+    transform: rotate(-2deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(2deg) translateY(-2px);
+  }
+}
+
+/* Scrollbar styling for dark mode */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-track {
+  background-color: #374151;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 9999px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280;
+}
+</style>
