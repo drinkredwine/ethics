@@ -1115,10 +1115,11 @@ const completeAssessment = async () => {
   
   try {
     const { error } = await supabase
-      .from('user_test_results')
+      .from('assessments')
       .insert({
         user_id: user.value.id,
         test_type_id: 'kegan_stages',
+        responses: answers.value,
         evaluation: results.value,
         completed_at: new Date().toISOString()
       })

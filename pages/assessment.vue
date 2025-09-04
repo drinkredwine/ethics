@@ -1496,6 +1496,7 @@ const saveAssessmentToDatabase = async () => {
   try {
     const { error } = await supabase.from("assessments").insert({
       user_id: user.value.id,
+      test_type_id: 'kohlberg_moral',
       responses: responses.value,
       evaluation: evaluation.value,
       primary_stage: parseInt(primaryStage.value) || 0,

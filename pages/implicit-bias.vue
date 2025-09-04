@@ -859,10 +859,11 @@ const completeAssessment = async () => {
   
   try {
     const { error } = await supabase
-      .from('user_test_results')
+      .from('assessments')
       .insert({
         user_id: user.value.id,
         test_type_id: 'implicit_bias',
+        responses: { answers: answers.value, reactionTimes: reactionTimes.value },
         evaluation: results.value,
         completed_at: new Date().toISOString()
       })

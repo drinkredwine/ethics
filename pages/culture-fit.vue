@@ -903,9 +903,9 @@ const saveResults = async () => {
       .insert([
         {
           user_id: user.value.id,
-          assessment_type: 'culture_fit',
+          test_type_id: 'org_culture_preference',
           responses: answers.value,
-          results: results.value,
+          evaluation: results.value,
           completed_at: new Date().toISOString()
         }
       ])
