@@ -529,6 +529,234 @@ const getTestPreviews = (testId) => {
         title: 'Industry Standards',
         description: 'Based on PMI and other recognized frameworks'
       }
+    ],
+    // Priority 1 Tests
+    'personal_motivation': [
+      {
+        title: 'Reflective Questions',
+        description: 'Deep dive into your fundamental motivational drivers and patterns'
+      },
+      {
+        title: 'Scenario Analysis',
+        description: 'How you respond to different motivational situations and challenges'
+      },
+      {
+        title: 'Fear vs Passion',
+        description: 'Understand whether you are driven by intrinsic passions or external fears'
+      }
+    ],
+    'change_readiness': [
+      {
+        title: 'Current State Assessment',
+        description: 'Evaluate your present life situation and satisfaction levels'
+      },
+      {
+        title: 'Change Capacity',
+        description: 'Assess your readiness and resources for personal transformation'
+      },
+      {
+        title: 'Action Planning',
+        description: 'Get personalized next steps for your change journey'
+      }
+    ],
+    'excellence_mindset': [
+      {
+        title: 'Quality Standards',
+        description: 'How you approach excellence in work and personal endeavors'
+      },
+      {
+        title: 'Continuous Improvement',
+        description: 'Your mindset towards learning and getting better over time'
+      },
+      {
+        title: 'Performance Optimization',
+        description: 'Strategies to enhance your pursuit of excellence'
+      }
+    ],
+    'engagement_commitment': [
+      {
+        title: 'Purpose Alignment',
+        description: 'How well your work and activities align with your values'
+      },
+      {
+        title: 'Dedication Levels',
+        description: 'Measure your commitment to causes and responsibilities'
+      },
+      {
+        title: 'Engagement Drivers',
+        description: 'Discover what motivates your deepest engagement'
+      }
+    ],
+    // Priority 2 Tests
+    'team_leadership': [
+      {
+        title: 'Leadership Scenarios',
+        description: 'Navigate complex team situations and leadership challenges'
+      },
+      {
+        title: 'Core Competencies',
+        description: 'Team motivation, delegation, conflict resolution, performance management'
+      },
+      {
+        title: 'Leadership Style',
+        description: 'Discover your natural leadership approach and development areas'
+      }
+    ],
+    'character_assessment': [
+      {
+        title: 'Ethical Scenarios',
+        description: 'Complex moral situations testing integrity and character strength'
+      },
+      {
+        title: 'Character Dimensions',
+        description: 'Honesty, moral courage, respect, consistency across 8 key areas'
+      },
+      {
+        title: 'Development Planning',
+        description: 'Personalized recommendations for character growth'
+      }
+    ],
+    'entrepreneurship': [
+      {
+        title: 'Business Scenarios',
+        description: 'Real entrepreneurial challenges and opportunity recognition'
+      },
+      {
+        title: 'Entrepreneurial Thinking',
+        description: 'Risk-taking, innovation mindset, bias for action, opportunity identification'
+      },
+      {
+        title: 'Venture Readiness',
+        description: 'Assess your readiness to start or lead entrepreneurial initiatives'
+      }
+    ],
+    'collaboration_skills': [
+      {
+        title: 'Team Scenarios',
+        description: 'Various collaborative situations from conflict to consensus-building'
+      },
+      {
+        title: 'Collaboration Style',
+        description: 'How you work with others, facilitate cooperation, and build consensus'
+      },
+      {
+        title: 'Team Effectiveness',
+        description: 'Strategies to enhance your collaborative impact'
+      }
+    ],
+    // Priority 3 Tests
+    'change_management': [
+      {
+        title: 'Change Case Studies',
+        description: 'Mini case studies of organizational transformation scenarios'
+      },
+      {
+        title: 'Change Frameworks',
+        description: 'Application of Kotter, ADKAR, and other change methodologies'
+      },
+      {
+        title: 'Stakeholder Management',
+        description: 'How you handle resistance and drive successful change initiatives'
+      }
+    ],
+    'strengths_finder': [
+      {
+        title: 'Forced Choice Questions',
+        description: 'Choose between statements that best describe your natural talents'
+      },
+      {
+        title: 'Top 5 Strengths',
+        description: 'Identify your signature strengths from 34 talent themes'
+      },
+      {
+        title: 'Application Strategies',
+        description: 'How to leverage your strengths for maximum impact'
+      }
+    ],
+    'critical_thinking': [
+      {
+        title: 'Logic Problems',
+        description: 'Puzzles and scenarios that test analytical reasoning abilities'
+      },
+      {
+        title: 'Argument Analysis',
+        description: 'Evaluate the strength and validity of different arguments'
+      },
+      {
+        title: 'Problem Solving',
+        description: 'Systematic approaches to complex thinking challenges'
+      }
+    ],
+    'creativity_assessment': [
+      {
+        title: 'Creative Challenges',
+        description: 'Open-ended tasks that measure innovative thinking abilities'
+      },
+      {
+        title: 'Divergent Thinking',
+        description: 'Generate multiple creative solutions to problems'
+      },
+      {
+        title: 'Innovation Style',
+        description: 'Discover your unique creative approach and enhancement strategies'
+      }
+    ],
+    'org_culture_preference': [
+      {
+        title: 'Culture Scenarios',
+        description: 'Preferences across different organizational culture types'
+      },
+      {
+        title: 'Spiral Dynamics',
+        description: 'From Red (power) to Teal (evolutionary) organizational stages'
+      },
+      {
+        title: 'Cultural Fit',
+        description: 'Find organizations that match your development stage and values'
+      }
+    ],
+    // Priority 4 Tests
+    'via_values': [
+      {
+        title: '24 Character Strengths',
+        description: 'Comprehensive assessment across wisdom, courage, humanity, justice, temperance, and transcendence'
+      },
+      {
+        title: '120 Questions',
+        description: 'Rate statements about yourself on a 5-point scale (5 questions per strength)'
+      },
+      {
+        title: 'Signature Strengths',
+        description: 'Discover your top 5 character strengths and how to apply them daily'
+      }
+    ],
+    'kegan_stages': [
+      {
+        title: 'Developmental Scenarios',
+        description: 'Complex situations that reveal your meaning-making capacity'
+      },
+      {
+        title: 'Three Domains',
+        description: 'Self-identity, relationships, and authority across development stages'
+      },
+      {
+        title: 'Growth Pathway',
+        description: 'Understand your current stage and next developmental edge'
+      }
+    ],
+    'implicit_bias': [
+      {
+        title: 'Reaction Time Tasks',
+        description: 'Quick categorization tasks that reveal automatic associations'
+      },
+      {
+        title: 'Multiple Bias Categories',
+        description: 'Race, gender, age, and socioeconomic bias awareness'
+      },
+      {
+        title: 'Bias Education',
+        description: 'Learn strategies to recognize and reduce unconscious bias'
+      }
     ]
   }
   return previews[testId] || []
@@ -584,10 +812,10 @@ const getTestLink = (testId) => {
     'creativity_assessment': '/creativity-innovation',
     'org_culture_preference': '/culture-fit',
     
-    // Other new tests - route to assessment with test parameter for now
-    'via_values': '/assessment?test=via_values',
-    'kegan_stages': '/assessment?test=kegan_stages',
-    'implicit_bias': '/assessment?test=implicit_bias'
+    // Priority 4 implemented tests - dedicated pages
+    'via_values': '/via-values',
+    'kegan_stages': '/kegan-stages',
+    'implicit_bias': '/implicit-bias'
   }
   return testRoutes[testId] || `/assessment?test=${testId}`
 }

@@ -955,6 +955,17 @@ const getTestIcon = (testId) => {
   return icons[testId] || '📊'
 }
 
+const getCategoryDisplayName = (category) => {
+  const names = {
+    motivation: "Motivation",
+    knowledge: "Knowledge",
+    skills_strengths: "Skills & Strengths",
+    values_mindsets: "Values & Mindsets",
+    other: "Other Assessments",
+  };
+  return names[category] || category;
+};
+
 const getTestName = (testId) => {
   const names = {
     'kohlberg_moral': 'Kohlberg Moral Development',
