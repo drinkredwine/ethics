@@ -608,7 +608,9 @@
       "development": "Development",
       "assessment": "Assessment",
       "valuesandmindsets": "Values & Mindsets",
+      "valuesmindsets": "Values & Mindsets",
       "skillsandstrengths": "Skills & Strengths",
+      "skillsstrengths": "Skills & Strengths",
       "motivation": "Motivation"
     },
     "tests": {
@@ -627,6 +629,222 @@
           "style": {
             "title": "Leadership Style",
             "description": "Discover your natural leadership approach and development areas"
+          }
+        }
+      },
+      "viavalues": {
+        "title": "VIA Character Strengths Assessment",
+        "description": "Comprehensive assessment of 24 character strengths that represent your core values in action. Discover your signature strengths and learn how to apply them more effectively.",
+        "previews": {
+          "0": {
+            "title": "24 Character Strengths",
+            "description": "Comprehensive assessment across wisdom, courage, humanity, justice, temperance, and transcendence"
+          },
+          "1": {
+            "title": "120 Questions",
+            "description": "Rate statements about yourself on a 5-point scale (5 questions per strength)"
+          },
+          "2": {
+            "title": "Signature Strengths",
+            "description": "Discover your top 5 character strengths and how to apply them daily"
+          }
+        }
+      },
+      "strengthsfinder": {
+        "title": "Strengths Profile Assessment",
+        "description": "Identify your top natural talents and strengths using a methodology similar to StrengthsFinder. Discover your unique combination of abilities and learn how to leverage them for peak performance.",
+        "previews": {
+          "0": {
+            "title": "Forced Choice Questions",
+            "description": "Choose between statements that best describe your natural talents"
+          },
+          "1": {
+            "title": "Top 5 Strengths",
+            "description": "Identify your signature strengths from 34 talent themes"
+          },
+          "2": {
+            "title": "Application Strategies",
+            "description": "How to leverage your strengths for maximum impact"
+          }
+        }
+      },
+      "kohlbergmoral": {
+        "title": "Kohlberg Moral Development",
+        "description": "Discover your stage of moral reasoning through carefully crafted ethical dilemmas. Based on Lawrence Kohlberg's groundbreaking research, this assessment analyzes how you approach moral decisions and provides insights into your ethical framework.",
+        "previews": {
+          "0": {
+            "title": "Ethical Dilemmas",
+            "description": "Real-world scenarios that challenge your moral reasoning"
+          },
+          "1": {
+            "title": "Open-Ended Responses",
+            "description": "Explain your thinking process in your own words"
+          },
+          "2": {
+            "title": "AI-Powered Analysis",
+            "description": "Advanced analysis of your moral development stage"
+          }
+        }
+      },
+      "personalmotivation": {
+        "title": "Personal Motivations Assessment",
+        "description": "Dive deep into what truly drives you - your fears, passions, and core motivational patterns. This comprehensive assessment explores both conscious and unconscious drivers that influence your decisions, helping you understand your fundamental motivational blueprint.",
+        "previews": {
+          "0": {
+            "title": "Reflective Questions",
+            "description": "Deep dive into your fundamental motivational drivers and patterns"
+          },
+          "1": {
+            "title": "Scenario Analysis",
+            "description": "How you respond to different motivational situations and challenges"
+          },
+          "2": {
+            "title": "Fear vs Passion",
+            "description": "Understand whether you are driven by intrinsic passions or external fears"
+          }
+        }
+      },
+      "changereadiness": {
+        "title": "Change Readiness Assessment",
+        "description": "Evaluate your current life situation, identify challenges you're facing, and assess your readiness for meaningful transformation. This assessment helps you understand where you are and what changes might be most beneficial.",
+        "previews": {
+          "0": {
+            "title": "Current State Assessment",
+            "description": "Evaluate your present life situation and satisfaction levels"
+          },
+          "1": {
+            "title": "Change Capacity",
+            "description": "Assess your readiness and resources for personal transformation"
+          },
+          "2": {
+            "title": "Action Planning",
+            "description": "Get personalized next steps for your change journey"
+          }
+        }
+      },
+      "projectmanagement": {
+        "title": "Project Management",
+        "description": "Assess your project management skills including planning, execution, leadership, risk management, and stakeholder communication. Perfect for both aspiring and experienced project managers.",
+        "previews": {
+          "0": {
+            "title": "PM Scenarios",
+            "description": "Real project challenges and decision points"
+          },
+          "1": {
+            "title": "Core Competencies",
+            "description": "Planning, execution, leadership, and stakeholder management"
+          },
+          "2": {
+            "title": "Industry Standards",
+            "description": "Based on PMI and other recognized frameworks"
+          }
+        }
+      },
+      "changemanagement": {
+        "title": "Change Management Mastery",
+        "description": "Evaluate your skills in leading organizational transformation, overcoming resistance to change, and implementing successful change initiatives. Based on proven change management frameworks.",
+        "previews": {
+          "0": {
+            "title": "Change Case Studies",
+            "description": "Mini case studies of organizational transformation scenarios"
+          },
+          "1": {
+            "title": "Change Frameworks",
+            "description": "Application of Kotter, ADKAR, and other change methodologies"
+          },
+          "2": {
+            "title": "Stakeholder Management",
+            "description": "How you handle resistance and drive successful change initiatives"
+          }
+        }
+      },
+      "communicationskills": {
+        "title": "Communication Skills",
+        "description": "Evaluate your communication effectiveness across different contexts including presentations, interpersonal conversations, written communication, and conflict resolution. Discover your strengths and areas for improvement.",
+        "previews": {
+          "0": {
+            "title": "Scenario-Based Questions",
+            "description": "How would you handle various communication challenges?"
+          },
+          "1": {
+            "title": "Multiple Contexts",
+            "description": "Professional, personal, and public communication scenarios"
+          },
+          "2": {
+            "title": "Skill Areas",
+            "description": "Listening, speaking, writing, and non-verbal communication"
+          }
+        }
+      },
+      "criticalthinking": {
+        "title": "Critical Thinking Assessment",
+        "description": "Evaluate your analytical and logical reasoning abilities including analysis, evaluation, inference, interpretation, and problem-solving skills. Essential for effective decision-making.",
+        "previews": {
+          "0": {
+            "title": "Logic Problems",
+            "description": "Puzzles and scenarios that test analytical reasoning abilities"
+          },
+          "1": {
+            "title": "Argument Analysis",
+            "description": "Evaluate the strength and validity of different arguments"
+          },
+          "2": {
+            "title": "Problem Solving",
+            "description": "Systematic approaches to complex thinking challenges"
+          }
+        }
+      },
+      "bigfive_personality": {
+        "title": "Big Five Personality (OCEAN)",
+        "description": "Explore your personality across the five major dimensions that define human character: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. Get detailed insights into your unique personality profile.",
+        "previews": {
+          "0": {
+            "title": "Personality Statements",
+            "description": "Rate how well statements describe you on a 5-point scale"
+          },
+          "1": {
+            "title": "Five Dimensions",
+            "description": "Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism"
+          },
+          "2": {
+            "title": "Detailed Profile",
+            "description": "Comprehensive breakdown of your personality traits"
+          }
+        }
+      },
+      "entrepreneurship": {
+        "title": "Entrepreneurial Mindset (Podnikavosť)",
+        "description": "Evaluate your entrepreneurial thinking including opportunity identification, risk-taking propensity, bias for action, and innovative problem-solving approaches.",
+        "previews": {
+          "0": {
+            "title": "Business Scenarios",
+            "description": "Real entrepreneurial challenges and opportunity recognition"
+          },
+          "1": {
+            "title": "Entrepreneurial Thinking",
+            "description": "Risk-taking, innovation mindset, bias for action, opportunity identification"
+          },
+          "2": {
+            "title": "Venture Readiness",
+            "description": "Assess your readiness to start or lead entrepreneurial initiatives"
+          }
+        }
+      },
+      "keganstages": {
+        "title": "Adult Development Stages (Kegan)",
+        "description": "Understand your stage of adult psychological development based on Robert Kegan's developmental psychology. Learn how your meaning-making system shapes your worldview.",
+        "previews": {
+          "0": {
+            "title": "Developmental Scenarios",
+            "description": "Complex situations that reveal your meaning-making capacity"
+          },
+          "1": {
+            "title": "Three Domains",
+            "description": "Self-identity, relationships, and authority across development stages"
+          },
+          "2": {
+            "title": "Growth Pathway",
+            "description": "Understand your current stage and next developmental edge"
           }
         }
       }

@@ -853,24 +853,6 @@
             "description": "Posúčte svoju pripravenosť začať alebo viesť podnikateľské iniciátívy"
           }
         }
-      },
-      "keganstages": {
-        "title": "Štádiá dospelého vývoja (Kegan)",
-        "description": "Pochopte svoje štádium dospelého psychologického vývoja podľa vývojovej psychológie Roberta Kegana. Naučte sa, ako váš systém tvorby zmyslu formuje váš svetonázor.",
-        "previews": {
-          "0": {
-            "title": "Vývojové scenáre",
-            "description": "Komplexné situácie, ktoré odhaľujú vašu kapacitu tvorby zmyslu"
-          },
-          "1": {
-            "title": "Tri domény",
-            "description": "Sebaidentita, vzťahy a autorita cez vývojové štádiá"
-          },
-          "2": {
-            "title": "Cesta rastu",
-            "description": "Pochopte svoje súčasné štádium a ďalší vývojový stupeň"
-          }
-        }
       }
     }
   }

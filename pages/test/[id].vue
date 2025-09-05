@@ -130,8 +130,8 @@
                 :key="index"
                 class="border-l-4 border-indigo-500 pl-4 py-2"
               >
-                <div class="font-medium text-gray-800 mb-1">{{ getPreviewTitle(test.id, preview.key) }}</div>
-                <div class="text-gray-600 text-sm">{{ getPreviewDescription(test.id, preview.key) }}</div>
+                <div class="font-medium text-gray-800 mb-1">{{ getPreviewTitle(test.id, preview.key || index) }}</div>
+                <div class="text-gray-600 text-sm">{{ getPreviewDescription(test.id, preview.key || index) }}</div>
               </div>
             </div>
           </div>
